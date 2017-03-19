@@ -1,4 +1,4 @@
-package main;
+package CS310Hubbert;
 
 public class Main {
 

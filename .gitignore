@@ -1,2 +1,5 @@
 #meta
 .metadata
+
+#ide stuff
+.recommenders/
