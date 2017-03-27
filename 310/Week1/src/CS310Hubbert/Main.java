@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Main {
 
 	public static void main(String[] args) {
-
+		
 		final String INPUT_FILENAME = "input/assn1input.txt";
 
 		BufferedReader br = null;

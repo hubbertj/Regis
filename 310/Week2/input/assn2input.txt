@@ -1,0 +1,8 @@
+REALTOR,ADD,AB1234567,Jose,Ferguson,303-333-3333,0.018
+REALTOR,ADD,DK4567890,Antonia,Swarez,720-444-4444,0.020
+PROPERTY,ADD,7654321,AB1234567,567 Main St,Denver,CO,80221,3,1.5,N,222333
+PROPERTY,ADD,9876543,DK4567890,111 Hover St,Longmont,CO,80501,4,2,Y,321321
+
+REALTOR,ADD,licenseNum,firstName,lastName,phoneNumber,commissionPercentage REALTOR,DEL,licenseNum
+PROPERTY,ADD,mlsNum,licenseNum,streetAddr,city,state,zipCode,numBedrooms, numBathRooms,sold(Y/N),askingPrice
+PROPERTY,DEL,mslNum
