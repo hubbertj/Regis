@@ -24,7 +24,8 @@ public class PropertyLogImpl {
 
 	public boolean add(Property property) {
 		try {
-			this.propertyArray[this.numProperties + 1] = property;
+			
+			this.propertyArray[this.numProperties] = property;
 			this.numProperties++;
 			return true;
 		} catch (Exception ex) {
@@ -58,11 +59,10 @@ public class PropertyLogImpl {
 	}
 
 	public boolean isMlsUnique(int mlsNum) {
-		boolean recordFound = false;
+		boolean recordFound = true;
 		for (int i = 0; i < this.numProperties; i++) {
-			if (new Integer(propertyArray[i].getMlsNum()) == mlsNum) {
-				this.propertyArray[i] = null;
-				recordFound = true;
+			if (Integer.parseInt(propertyArray[i].getMlsNum()) == mlsNum) {
+				recordFound = false;
 				break;
 			}
 		}

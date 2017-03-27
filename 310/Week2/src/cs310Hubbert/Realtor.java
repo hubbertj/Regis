@@ -79,13 +79,12 @@ public class Realtor {
 	}
 
 	public Boolean isPhoneNumValid(String phoneNum) {
-		// Check the phone number is 12 chars long and contains dashes and
-		String regexStr = "^(?:(?:\\+?1\\s*(?:[.-]\\s*)?)?(?:\\(\\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\\s*\\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\\s*(?:[.-]\\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\\s*(?:[.-]\\s*)?([0-9]{4})(?:\\s*(?:#|x\\.?|ext\\.?|extension)\\s*(\\d+))?$";
+		String regexStr = "^(1\\-)?[0-9]{3}\\-?[0-9]{3}\\-?[0-9]{4}$";
 		// regex check for phone number
-		if (!phoneNum.matches(regexStr)) {
-			return false;
+		if (phoneNum.matches(regexStr)) {
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 	public String getLicenseNum() {

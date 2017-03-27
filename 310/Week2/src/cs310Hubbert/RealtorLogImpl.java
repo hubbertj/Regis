@@ -1,6 +1,8 @@
 package cs310Hubbert;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class RealtorLogImpl {
 
@@ -10,20 +12,26 @@ public class RealtorLogImpl {
 	public RealtorLogImpl() {
 		super();
 		this.realtorLog = new ArrayList<Realtor>();
+		this.realtorLog.sort(this.getComparator());
 	}
 
 	public void add(Realtor realtor) {
-		int index = 0;
-		if (realtor == null || realtor.equals(null)) {
+		if (realtor == null) {
 			return;
 		}
-		for (Realtor real : this.realtorLog) {
-			if(new Integer(real.getLicenseNum()) > new Integer(realtor.getLicenseNum()) ){
-				this.realtorLog.add(index, realtor);
-				break;
+		this.realtorLog.add(realtor);
+		this.realtorLog.sort(this.getComparator());
+	}
+	
+	private Comparator<Realtor> getComparator(){
+		return new Comparator<Realtor>() {
+
+			@Override
+			public int compare(Realtor realtor1, Realtor realtor2) {
+				return realtor1.getLicenseNum().compareTo(realtor2.getLicenseNum());
 			}
-			index ++;
-		}
+			
+		};
 	}
 
 	public boolean remove(String license) {
@@ -31,6 +39,16 @@ public class RealtorLogImpl {
 	}
 
 	public boolean isLicenseUnique(String license) {
+		Realtor real = new Realtor();
+		real.setLicenseNum(license);
+		this.realtorLog.sort(this.getComparator());
+		if(Collections.binarySearch(this.realtorLog, real, getComparator()) > -1){
+			return false;
+		}
 		return true;
+	}
+
+	public ArrayList<Realtor> getRealtorLog() {
+		return realtorLog;
 	}
 }

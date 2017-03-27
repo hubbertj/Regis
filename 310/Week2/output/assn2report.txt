@@ -1,0 +1,12 @@
+AA1111111 Astrid, Anna
+1111111	111 Main St	2/1.0	$ 111111.0	SOLD
+11111222	112 Main St	1/1.0	$ 111111.0	
+
+Number of Property Listings for Realtor: 2
+Total sales value of Property Listings for Realtor: $222222.0
+
+CC333333X Carlson, Carl
+
+Number of Property Listings for Realtor: 0
+Total sales value of Property Listings for Realtor: $0.0
+
