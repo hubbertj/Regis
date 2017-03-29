@@ -4,11 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 
 /**
- *
  * @author Jerum Hubbert
+ *
  */
 public class Main {
 
@@ -17,6 +16,9 @@ public class Main {
 
 	static final String INPUT_FILENAME = "input/assn2input.txt";
 
+	/**
+	 * Reads the data from the INPUT FILE
+	 */
 	static void readDataFile() {
 		BufferedReader br = null;
 		String line = "";
@@ -66,6 +68,13 @@ public class Main {
 		}
 	}
 
+	/**
+	 * 
+	 * Adds a realtor to our list
+	 * 
+	 * @param realtorArr
+	 *            String[] a array which holds all data for creating a realtor
+	 */
 	static void realtorAdd(String[] realtorArr) {
 		Realtor realtor = new Realtor(realtorArr);
 
@@ -89,16 +98,24 @@ public class Main {
 
 	}
 
+	/**
+	 * Adds a property to our list
+	 * 
+	 * @param propertyArr
+	 *            String[] a array which holds all data for creating a property
+	 */
 	static void propertyAdd(String[] propertyArr) {
 		Property property = new Property(propertyArr);
 		if (!property.isMlsValid(property.getMlsNum())) {
 			System.err.println("Property " + property.getMlsNum() + " has bad mls number.\n");
 		}
-		if(!property.isStateValid(property.getState())){
-			System.err.println("Property " + property.getMlsNum() + ", " + property.getState() + " state is not valid.\n");
+		if (!property.isStateValid(property.getState())) {
+			System.err.println(
+					"Property " + property.getMlsNum() + ", " + property.getState() + " state is not valid.\n");
 		}
-		if(!property.isZipcodeValid(property.getZipCode())){
-			System.err.println("Property " + property.getMlsNum() + ", " + property.getZipCode() + " zipcode is not valid.\n");
+		if (!property.isZipcodeValid(property.getZipCode())) {
+			System.err.println(
+					"Property " + property.getMlsNum() + ", " + property.getZipCode() + " zipcode is not valid.\n");
 		}
 		if (!realtorLogImpl.isLicenseUnique(property.getLicenseNum())
 				&& propertyLogImpl.isMlsUnique(Integer.parseInt(property.getMlsNum()))) {
@@ -111,27 +128,45 @@ public class Main {
 			System.out.println("ADDED: Property with MLS number " + property.getMlsNum() + "");
 			propertyLogImpl.add(property);
 		}
-		
+
 	}
 
+	/**
+	 * 
+	 * Deletes a Realtor from our list using their license number.
+	 * 
+	 * 
+	 * @param license
+	 *            String the license number for the Realtor
+	 */
 	static void realtordel(String license) {
-		if(!realtorLogImpl.isLicenseUnique(license)){
+		if (!realtorLogImpl.isLicenseUnique(license)) {
 			System.out.println("DELETED: Realtor license " + license + " from log.\n");
 			realtorLogImpl.remove(license);
 			propertyLogImpl.remove(license);
-		}else{
+		} else {
 			System.err.println("Realtor license " + license + " not in log.\n");
 		}
 	}
 
+	/**
+	 * Deletes a property from our list using its MLS number.
+	 * 
+	 * 
+	 * @param mlsNum
+	 *            String a unique number for a property
+	 */
 	static void propertyDel(String mlsNum) {
-		if(!propertyLogImpl.isMlsUnique(Integer.parseInt(mlsNum))){
+		if (!propertyLogImpl.isMlsUnique(Integer.parseInt(mlsNum))) {
 			System.out.println("DELETED: Property with MLS number " + mlsNum + "\n");
-		}else{
+		} else {
 			System.err.println("Property with MLS number " + mlsNum + " not in log.\n");
 		}
 	}
 
+	/**
+	 * Creates a report so data can be view quickly
+	 */
 	static void createReport() {
 		System.out.println("Creating report...");
 		PrintImpl printImpl = new PrintImpl(propertyLogImpl, realtorLogImpl);
@@ -139,6 +174,12 @@ public class Main {
 		printImpl.print();
 	}
 
+	/**
+	 * The main method which run the entire program
+	 * 
+	 * @param args
+	 *            String[] options arguments passed in when running the program.
+	 */
 	public static void main(String[] args) {
 		readDataFile();
 		createReport();

@@ -8,26 +8,32 @@ import java.util.ArrayList;
  *
  * @author Jerum Hubbert
  */
-
 public class PrintImpl {
 
 	final String OUTPUT_FILENAME = "output/assn2report.txt";
-
 	private ArrayList<Realtor> realtorList;
 	private Property[] propertyArr;
 	private int propertyNum = 0;
 
+	/**
+	 * Constructor which creates our data for the list which are passed in.
+	 * 
+	 * @param propertyLogImpl
+	 *            PropertyLogImpl A list of properties
+	 * @param realtorLogImpl
+	 *            RealtorLogImpl A list of realtors
+	 */
 	public PrintImpl(PropertyLogImpl propertyLogImpl, RealtorLogImpl realtorLogImpl) {
 		this.realtorList = new ArrayList<Realtor>();
 		this.realtorList.addAll(realtorLogImpl.getRealtorLog());
 		this.propertyArr = propertyLogImpl.getPropertyArray();
 		this.propertyNum = propertyLogImpl.getNumProperties();
-		this.init();
 	}
 
-	private void init() {
-	}
-
+	/**
+	 * This method prints the report using the data which was used to create the
+	 * object. Currently this is the only report this class prints.
+	 */
 	public void print() {
 		try {
 			PrintWriter writer = new PrintWriter(this.OUTPUT_FILENAME, "UTF-8");
@@ -49,15 +55,15 @@ public class PrintImpl {
 						}
 						System.out.println(prop.getMlsNum() + "\t" + prop.getStreetAddr() + "\t" + prop.getBedrooms()
 								+ "/" + prop.getBathrooms() + "\t" + "$ " + prop.getAskingPrice() + "\t" + sold);
-						writer.println(prop.getMlsNum() + "\t" + prop.getStreetAddr() + "\t" + prop.getBedrooms()
-						+ "/" + prop.getBathrooms() + "\t" + "$ " + prop.getAskingPrice() + "\t" + sold);
+						writer.println(prop.getMlsNum() + "\t" + prop.getStreetAddr() + "\t" + prop.getBedrooms() + "/"
+								+ prop.getBathrooms() + "\t" + "$ " + prop.getAskingPrice() + "\t" + sold);
 					}
 				}
 				writer.print("\n");
 				writer.println("Number of Property Listings for Realtor: " + listCount);
 				writer.println("Total sales value of Property Listings for Realtor: $" + total);
 				writer.print("\n");
-				
+
 				System.out.print("\n");
 				System.out.println("Number of Property Listings for Realtor: " + listCount);
 				System.out.println("Total sales value of Property Listings for Realtor: $" + total);

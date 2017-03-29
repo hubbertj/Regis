@@ -11,29 +11,24 @@ public class Realtor {
 	private String phoneNum;
 	private Double commission;
 
+	/**
+	 *  A blank constructor for the Realtor object.
+	 */
 	public Realtor() {
-		this.init();
+		super();
 	}
 
 	/**
-	 * This constructor requires all fields to be passed as parameters.
+	 * Main constructor for the Realtor object.
 	 * 
-	 * @param licenseNum
-	 *            - this is an String attribute.
 	 * 
-	 * @param firstName
-	 *            - this is a String attribute.
 	 * 
-	 * @param lastName
-	 *            - this is a String attribute.
-	 * 
-	 * @param phoneNum
-	 *            - this is an String attribute.
-	 * 
-	 * @param commission
-	 *            - this is a Double attribute.
+	 * @param licenseNum String the license number for the Realtor
+	 * @param firstName String the first name of the Realtor
+	 * @param lastName String the last name of the Realtor
+	 * @param phoneNum String office phone of the Realtor
+	 * @param commission Double the amount of money the Realtor makes on sales
 	 */
-
 	public Realtor(String licenseNum, String firstName, String lastName, String phoneNum, Double commission) {
 		super();
 		this.setLicenseNum(licenseNum);
@@ -41,19 +36,19 @@ public class Realtor {
 		this.lastName = lastName;
 		this.setPhoneNum(phoneNum);
 		this.commission = commission;
-		this.init();
 	}
 
+	/**
+	 * @param realtorArr String[] Array which hold all needed values to create a Realtor
+	 */
 	public Realtor(String[] realtorArr) {
 		this.setRealtorAttributes(realtorArr);
-		this.init();
 	}
 
-	private void init() {
-
-	}
-
-	public void setRealtorAttributes(String[] arr) {
+	/**
+	 * @param arr String[] Array which hold all needed values to create a Realtor
+	 */
+	private void setRealtorAttributes(String[] arr) {
 		this.setLicenseNum(arr[0]);
 		this.setFirstName(arr[1]);
 		this.setLastName(arr[2]);
@@ -61,6 +56,14 @@ public class Realtor {
 		this.setCommission(Double.parseDouble(arr[4]));
 	}
 
+	/**
+	 * This method check to see if the Realtor license number meets
+	 * requirements.
+	 * 
+	 * 
+	 * @param licenseNum String the license number for the Realtor
+	 * @return Boolean true if license number is valid
+	 */
 	public Boolean isLicenseNumValid(String licenseNum) {
 		int licenseLength = licenseNum.length();
 
@@ -78,6 +81,14 @@ public class Realtor {
 
 	}
 
+	/**
+	 * This method check to see if the Realtor phone number meets
+	 * requirements.
+	 * 
+	 * 
+	 * @param phoneNum String office phone of the Realtor
+	 * @return Boolean true if phone number is valid
+	 */
 	public Boolean isPhoneNumValid(String phoneNum) {
 		String regexStr = "^(1\\-)?[0-9]{3}\\-?[0-9]{3}\\-?[0-9]{4}$";
 		// regex check for phone number
@@ -87,46 +98,93 @@ public class Realtor {
 		return false;
 	}
 
+	/**
+	 * @return String the license number for the Realtor
+	 */
 	public String getLicenseNum() {
 		return licenseNum;
 	}
 
+	/**
+	 * Sets the license number
+	 * 
+	 * @param licenseNum String the license number for the Realtor
+	 */
 	public void setLicenseNum(String licenseNum) {
 		this.licenseNum = licenseNum;
 	}
 
+	/**
+	 * Sets the phone number
+	 * 
+	 * @param phoneNum String office phone of the Realtor
+	 */
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
 	}
 
+	/**
+	 * 
+	 * 
+	 * @return String first name of Realtor
+	 */
 	public String getFirstName() {
 		return firstName;
 	}
 
+	/**
+	 * Sets the first name
+	 * 
+	 * @param firstName String first name of Realtor
+	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
+	/**
+	 * @return String last name of Realtor
+	 */
 	public String getLastName() {
 		return lastName;
 	}
 
+	/**
+	 * Sets the last name
+	 * 
+	 * @param lastName String last name of Realtor
+	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
+	/**
+	 * 
+	 * 
+	 * @return String phone numer of Realtor
+	 */
 	public String getPhoneNum() {
 		return phoneNum;
 	}
 
+	/**
+	 * @return Double The amount a Realtor makes on a sale
+	 */
 	public Double getCommission() {
 		return commission;
 	}
 
+	/**
+	 * Sets the commission for the Realtor
+	 * 
+	 * @param commission Double The amount a Realtor makes on a sale
+	 */
 	public void setCommission(Double commission) {
 		this.commission = commission;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		Realtor real = (Realtor) obj;
@@ -144,6 +202,9 @@ public class Realtor {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return licenseNum + ", " + firstName + ", " + lastName + ", " + phoneNum + ", " + commission.toString();
