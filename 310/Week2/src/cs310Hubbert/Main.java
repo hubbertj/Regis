@@ -14,7 +14,7 @@ public class Main {
 	static RealtorLogImpl realtorLogImpl = new RealtorLogImpl();
 	static PropertyLogImpl propertyLogImpl = new PropertyLogImpl();
 
-	static final String INPUT_FILENAME = "input/assn2input.txt";
+	static final String INPUT_FILENAME = "input/assn2input1.txt";
 
 	/**
 	 * Reads the data from the INPUT FILE

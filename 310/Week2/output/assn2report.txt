@@ -5,8 +5,3 @@ AA1111111 Astrid, Anna
 Number of Property Listings for Realtor: 2
 Total sales value of Property Listings for Realtor: $222222.0
 
-CC333333X Carlson, Carl
-
-Number of Property Listings for Realtor: 0
-Total sales value of Property Listings for Realtor: $0.0
-
