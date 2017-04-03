@@ -1,5 +1,7 @@
 package cs310Hubbert;
 
+import java.util.LinkedList;
+
 /**
  * @author Jerum Hubbert
  *
@@ -7,6 +9,7 @@ package cs310Hubbert;
 public class PropertyLogImpl {
 
 	private Property[] propertyArray; // unordered list
+	private LinkedList<Property> proreptyLinkList;
 	private int numProperties = 0;
 	private final int PROPERTY_SIZE = 1000;
 
