@@ -14,7 +14,7 @@ public class CS310Hubbert {
 	static RealtorLogImpl realtorLogImpl = new RealtorLogImpl();
 	static PropertyLogImpl propertyLogImpl = new PropertyLogImpl();
 
-	static final String INPUT_FILENAME = "input/assn2input1.txt";
+	static final String INPUT_FILENAME = "input/assn3input3.txt";
 
 	/**
 	 * Reads the data from the INPUT FILE
@@ -70,11 +70,12 @@ public class CS310Hubbert {
 
 	/**
 	 * 
-	 * Adds a realtor to our list
+	 * Adds a Realtor to our list
 	 * 
 	 * @param realtorArr
 	 *            String[] a array which holds all data for creating a realtor
 	 */
+	@SuppressWarnings("unchecked")
 	static void realtorAdd(String[] realtorArr) {
 		Realtor realtor = new Realtor(realtorArr);
 
@@ -91,7 +92,8 @@ public class CS310Hubbert {
 
 		if (realtorLogImpl.isLicenseUnique(realtor.getLicenseNum())) {
 			System.out.println("ADDED: Realtor with license " + realtor.getLicenseNum() + " to log.\n");
-			realtorLogImpl.add(realtor);
+			RealtorNode<Realtor> node = new RealtorNode<Realtor>(realtor);
+			realtorLogImpl.add(node);
 		} else {
 			System.out.println("Realtor with license " + realtor.getLicenseNum() + " already exist in log.\n");
 		}
@@ -167,10 +169,11 @@ public class CS310Hubbert {
 	/**
 	 * Creates a report so data can be view quickly
 	 */
-	static void createReport() {
+	@SuppressWarnings("unchecked")
+	static void createReport(String fileName) {
 		System.out.println("Creating report...");
-		PrintImpl printImpl = new PrintImpl(propertyLogImpl, realtorLogImpl);
-		System.out.println("Report is located in file: " + printImpl.OUTPUT_FILENAME + "\n");
+		PrintImpl printImpl = new PrintImpl(propertyLogImpl, realtorLogImpl, fileName);
+		System.out.println("Report is located in file: " + printImpl.getFileName() + "\n");
 		printImpl.print();
 	}
 
@@ -181,8 +184,20 @@ public class CS310Hubbert {
 	 *            String[] options arguments passed in when running the program.
 	 */
 	public static void main(String[] args) {
+		//first run
 		readDataFile();
-		createReport();
+		createReport("output/assn3initialReport.txt");
+		
+		//display data
+		realtorLogImpl.traverseDisplay();
+		propertyLogImpl.traverseDisplay();
+		
+		//clean up list
+		realtorLogImpl.cleanUp();
+		propertyLogImpl.cleanUp();
+		
+		//second run
+		createReport("output/assn3cleanReport.txt");
 	}
 
 }

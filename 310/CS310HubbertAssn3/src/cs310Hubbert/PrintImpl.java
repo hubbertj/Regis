@@ -3,6 +3,7 @@ package cs310Hubbert;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  *
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  */
 public class PrintImpl {
 
-	final String OUTPUT_FILENAME = "output/assn2report.txt";
+	private String fileName = null;
 	private ArrayList<Realtor> realtorList;
 	private Property[] propertyArr;
 	private int propertyNum = 0;
@@ -22,12 +23,44 @@ public class PrintImpl {
 	 *            PropertyLogImpl A list of properties
 	 * @param realtorLogImpl
 	 *            RealtorLogImpl A list of realtors
+	 * @param fileName String the name of the file the report will be saved too.
 	 */
-	public PrintImpl(PropertyLogImpl propertyLogImpl, RealtorLogImpl realtorLogImpl) {
+	public PrintImpl(PropertyLogImpl propertyLogImpl, RealtorLogImpl<Realtor> realtorLogImpl, String fileName) {
+		this.fileName = fileName;
 		this.realtorList = new ArrayList<Realtor>();
-		this.realtorList.addAll(realtorLogImpl.getRealtorLog());
-		this.propertyArr = propertyLogImpl.getPropertyArray();
+		LinkedList<Property> linkListProperty = propertyLogImpl.getProreptyLinkList();
+		this.propertyArr = new Property[linkListProperty.size()];
+		RealtorNode<Realtor> cNode = realtorLogImpl.getHead();
+
+		if (realtorLogImpl.getSize() > 0) {
+			do {
+				realtorList.add(cNode.getRealtor());
+				cNode = cNode.getNext();
+			} while (cNode.getNext() != null);
+		}
+		for (int i = 0; i < linkListProperty.size(); i++) {
+			this.propertyArr[i] = linkListProperty.get(i);
+		}
 		this.propertyNum = propertyLogImpl.getNumProperties();
+	}
+
+	/**
+	 * Gets the file name as a string
+	 * 
+	 * @return String Name of file
+	 */
+	public String getFileName() {
+		return fileName;
+	}
+
+	/**
+	 * Sets the output file location and name
+	 * 
+	 * @param fileName
+	 *            String Name of file
+	 */
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	/**
@@ -36,7 +69,7 @@ public class PrintImpl {
 	 */
 	public void print() {
 		try {
-			PrintWriter writer = new PrintWriter(this.OUTPUT_FILENAME, "UTF-8");
+			PrintWriter writer = new PrintWriter(this.fileName, "UTF-8");
 
 			for (Realtor realtor : this.realtorList) {
 				int listCount = 0;
@@ -71,7 +104,7 @@ public class PrintImpl {
 			}
 			writer.close();
 		} catch (IOException e) {
-			System.err.println("failed to read to file " + this.OUTPUT_FILENAME);
+			System.err.println("failed to read to file " + this.fileName);
 			e.printStackTrace();
 		}
 	}
