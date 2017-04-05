@@ -186,6 +186,7 @@ public class PropertyLogImpl {
 		while (pIterator.hasNext()) {
 			System.out.println(pIterator.next().toString());
 		}
+		System.out.println("\n");
 	}
 
 	/**

@@ -1,0 +1,13 @@
+AB1234567 Munez, Matthew
+1234567	1234 Which Way	3/3.0	$ 222222.0	SOLD
+2234567	345 Main St	4/3.5	$ 222333.0	
+
+Number of Property Listings for Realtor: 2
+Total sales value of Property Listings for Realtor: $444555.0
+
+MN4564567 Combs, Carla
+4455667	4455 This Circle	1/1.0	$ 344555.0	
+
+Number of Property Listings for Realtor: 1
+Total sales value of Property Listings for Realtor: $344555.0
+

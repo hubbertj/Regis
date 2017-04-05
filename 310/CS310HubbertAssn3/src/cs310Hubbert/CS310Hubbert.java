@@ -14,7 +14,7 @@ public class CS310Hubbert {
 	static RealtorLogImpl realtorLogImpl = new RealtorLogImpl();
 	static PropertyLogImpl propertyLogImpl = new PropertyLogImpl();
 
-	static final String INPUT_FILENAME = "input/assn3input3.txt";
+	static final String INPUT_FILENAME = "input/assn3input5.txt";
 
 	/**
 	 * Reads the data from the INPUT FILE
@@ -57,6 +57,8 @@ public class CS310Hubbert {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch(Exception e){
+			e.printStackTrace();
 		} finally {
 			if (br != null) {
 				try {
@@ -77,7 +79,16 @@ public class CS310Hubbert {
 	 */
 	@SuppressWarnings("unchecked")
 	static void realtorAdd(String[] realtorArr) {
-		Realtor realtor = new Realtor(realtorArr);
+		Realtor realtor = null;
+		try{
+			 realtor = new Realtor(realtorArr);
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		
+		if(realtor == null){
+			return;
+		}
 
 		if (!realtor.isLicenseNumValid(realtor.getLicenseNum())) {
 			System.err.println("Failed to add Realtor, bad license number " + realtor.getLicenseNum() + "\n");
@@ -89,7 +100,7 @@ public class CS310Hubbert {
 					+ realtor.getPhoneNum() + "\n\n");
 			return;
 		}
-
+		
 		if (realtorLogImpl.isLicenseUnique(realtor.getLicenseNum())) {
 			System.out.println("ADDED: Realtor with license " + realtor.getLicenseNum() + " to log.\n");
 			RealtorNode<Realtor> node = new RealtorNode<Realtor>(realtor);
@@ -107,7 +118,18 @@ public class CS310Hubbert {
 	 *            String[] a array which holds all data for creating a property
 	 */
 	static void propertyAdd(String[] propertyArr) {
-		Property property = new Property(propertyArr);
+		Property property = null;
+		
+		try{
+			property = new Property(propertyArr);
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		
+		if(property == null){
+			return;
+		}
+		
 		if (!property.isMlsValid(property.getMlsNum())) {
 			System.err.println("Property " + property.getMlsNum() + " has bad mls number.\n");
 		}
@@ -119,7 +141,7 @@ public class CS310Hubbert {
 			System.err.println(
 					"Property " + property.getMlsNum() + ", " + property.getZipCode() + " zipcode is not valid.\n");
 		}
-		if (!realtorLogImpl.isLicenseUnique(property.getLicenseNum())
+		if (realtorLogImpl.isLicenseUnique(property.getLicenseNum())
 				&& propertyLogImpl.isMlsUnique(Integer.parseInt(property.getMlsNum()))) {
 			System.out.println("ADDED: Property with MLS number " + property.getMlsNum() + " for realtor "
 					+ property.getLicenseNum() + ".\n");

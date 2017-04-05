@@ -84,7 +84,7 @@ public class RealtorLogImpl<E> {
 	 */
 	public void add(RealtorNode<E> realtor) {
 		RealtorNode<E> prev = null;
-		RealtorNode<E> current = head;
+		RealtorNode<E> current = this.head;
 
 		if (realtor == null) {
 			return;
@@ -98,29 +98,33 @@ public class RealtorLogImpl<E> {
 			this.size++;
 			return;
 		}
-
-		while (current.getNext() != null) {
+		
+		do{
 			Realtor inRealtor = (Realtor) realtor.getRealtor();
 			Realtor cRealtor = (Realtor) current.getRealtor();
-
-			if (Integer.parseInt(inRealtor.getLicenseNum()) <= Integer.parseInt(cRealtor.getLicenseNum())) {
-				// insert into list
+			int compare = inRealtor.getLicenseNum().compareTo(cRealtor.getLicenseNum());
+			if(compare < 0){
 				realtor.setNext(current);
-				if (prev == null) {
+				// We know we are at the head
+				if (current.equals(this.head)) {
 					this.head = realtor;
 				} else {
 					prev.setNext(realtor);
 				}
 				this.size++;
 				return;
-			} else {
-				// check next node in list
+				//We insert at the end of the list
+			}else if(current.equals(this.tail)) {
+				current.setNext(realtor);
+				realtor.setNext(null);
+				this.tail = realtor;
+				this.size++;
+				return;
+			}else{
 				prev = current;
-			}
-		}
-
-		current.setNext(realtor);
-		this.tail = realtor;
+				current = current.getNext();
+			}			
+		}while (current != null && current.getNext() != null);
 	}
 
 	/**
@@ -142,14 +146,14 @@ public class RealtorLogImpl<E> {
 			Realtor cRealtor = (Realtor) current.getRealtor();
 			if (cRealtor.getLicenseNum().equals(license)) {
 				// if we have 1 element in the list
-				if (current.getNext() == null && prev == null) {
+				if (this.size == 1) {
 					this.head = null;
 					this.tail = null;
 					// if the element is the last element
 				} else if (current.equals(this.tail)) {
 					prev.setNext(null);
 					this.tail = prev;
-					// if the element is the first element
+					// if the element is the head element
 				} else if (current.equals(this.head)) {
 					RealtorNode<E> nextRealtor = current.getNext();
 					this.head = nextRealtor;
@@ -161,8 +165,9 @@ public class RealtorLogImpl<E> {
 				return true;
 			} else {
 				prev = current;
+				current = current.getNext();
 			}
-		} while (current.getNext() != null);
+		} while (current != null && current.getNext() != null);
 
 		return false;
 	}
@@ -173,22 +178,23 @@ public class RealtorLogImpl<E> {
 	 * 
 	 * @param license
 	 *            String license number of the Realtor
-	 * @return Boolean true if Realtor was found.
+	 * @return Boolean false if Realtor was found.
 	 */
 	public boolean isLicenseUnique(String license) {
 		RealtorNode<E> current = this.head;
 		if (license == null || current == null) {
-			return false;
+			return true;
 		}
 
 		do {
 			Realtor cRealtor = (Realtor) current.getRealtor();
 			if (cRealtor.getLicenseNum().equals(license)) {
-				return true;
+				return false;
 			}
+			current = current.getNext();
 
-		} while (current.getNext() != null);
-		return false;
+		} while (current != null && current.getNext() != null);
+		return true;
 	}
 
 	/**
@@ -198,14 +204,15 @@ public class RealtorLogImpl<E> {
 	public void traverseDisplay() {
 		RealtorNode<E> current = this.head;
 		System.out.println("Realtor Log:");
-		if(this.size >= 0){
+		if(this.size <= 0){
 			return;
 		}
 		do {
 			Realtor cRealtor = (Realtor) current.getRealtor();
 			System.out.println(cRealtor.toString());
 			current = current.getNext();
-		} while (current.getNext() != null);
+		} while (current != null && current.getNext() != null);
+		System.out.println("\n");
 	}
 
 	/**
@@ -214,8 +221,7 @@ public class RealtorLogImpl<E> {
 	 */
 	public void cleanUp() {
 		RealtorNode<E> current = this.head;
-		System.out.println("Realtor Log:");
-		if(this.size >= 0){
+		if(this.size <= 0){
 			return;
 		}
 		do {
@@ -224,6 +230,6 @@ public class RealtorLogImpl<E> {
 				this.remove(cRealtor.getLicenseNum());
 			}
 			current = current.getNext();
-		} while (current.getNext() != null);
+		} while (current != null && current.getNext() != null);
 	}
 }

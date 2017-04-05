@@ -36,7 +36,7 @@ public class PrintImpl {
 			do {
 				realtorList.add(cNode.getRealtor());
 				cNode = cNode.getNext();
-			} while (cNode.getNext() != null);
+			} while (cNode != null && cNode.getNext() != null);
 		}
 		for (int i = 0; i < linkListProperty.size(); i++) {
 			this.propertyArr[i] = linkListProperty.get(i);
