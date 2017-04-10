@@ -2,7 +2,8 @@ package cs310Hubbert;
 
 /**
  * @author Jerum Hubbert
- * @param <E> This is going to be the Realtor type
+ * @param <E>
+ *            This is going to be the Realtor type
  *
  */
 public class RealtorLogImpl<E> {
@@ -98,12 +99,12 @@ public class RealtorLogImpl<E> {
 			this.size++;
 			return;
 		}
-		
-		do{
+
+		do {
 			Realtor inRealtor = (Realtor) realtor.getRealtor();
 			Realtor cRealtor = (Realtor) current.getRealtor();
 			int compare = inRealtor.getLicenseNum().compareTo(cRealtor.getLicenseNum());
-			if(compare < 0){
+			if (compare < 0) {
 				realtor.setNext(current);
 				// We know we are at the head
 				if (current.equals(this.head)) {
@@ -113,18 +114,43 @@ public class RealtorLogImpl<E> {
 				}
 				this.size++;
 				return;
-				//We insert at the end of the list
-			}else if(current.equals(this.tail)) {
+				// We insert at the end of the list
+			} else if (current.equals(this.tail)) {
 				current.setNext(realtor);
 				realtor.setNext(null);
 				this.tail = realtor;
 				this.size++;
 				return;
-			}else{
+			} else {
 				prev = current;
 				current = current.getNext();
-			}			
-		}while (current != null);
+			}
+		} while (current != null);
+	}
+
+	/**
+	 * Loops thur the link list and if a Realtor is found return it.
+	 * 
+	 * @param licenseNumber
+	 * @return Realtor If we find a Realtor we return it if not we return null
+	 */
+	public Realtor getRealtorByLicense(String licenseNumber) {
+		@SuppressWarnings("unchecked")
+		RealtorNode<Realtor> current = (RealtorNode<Realtor>) this.head;
+
+		if (licenseNumber == "" || licenseNumber.equals(null) || current == null) {
+			return null;
+		}
+
+		do {
+			Realtor cRealtor = (Realtor) current.getRealtor();
+			if (cRealtor.getLicenseNum().equals(licenseNumber)) {
+				return cRealtor;
+			}
+			current = current.getNext();
+
+		} while (current != null);
+		return null;
 	}
 
 	/**
@@ -204,7 +230,7 @@ public class RealtorLogImpl<E> {
 	public void traverseDisplay() {
 		RealtorNode<E> current = this.head;
 		System.out.println("Realtor Log:");
-		if(this.size <= 0){
+		if (this.size <= 0) {
 			return;
 		}
 		do {
@@ -221,12 +247,12 @@ public class RealtorLogImpl<E> {
 	 */
 	public void cleanUp() {
 		RealtorNode<E> current = this.head;
-		if(this.size <= 0){
+		if (this.size <= 0) {
 			return;
 		}
 		do {
 			Realtor cRealtor = (Realtor) current.getRealtor();
-			if(!cRealtor.isLicenseNumValid(cRealtor.getLicenseNum())){
+			if (!cRealtor.isLicenseNumValid(cRealtor.getLicenseNum())) {
 				this.remove(cRealtor.getLicenseNum());
 			}
 			current = current.getNext();

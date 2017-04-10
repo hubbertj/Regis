@@ -7,49 +7,49 @@ import java.util.HashMap;
  *
  */
 public class VehicleUsageImpl {
-	
+
 	HashMap<Realtor, Car> vehicleAssigmment = new HashMap<Realtor, Car>();
-	
+
 	/**
 	 * 
 	 */
-	public VehicleUsageImpl(){
+	public VehicleUsageImpl() {
 		super();
 	}
-	
+
 	/**
 	 * @param realtor
 	 * @param car
 	 * @return
 	 */
-	public Boolean add(Realtor realtor, Car car){
-		try{
+	public Boolean add(Realtor realtor, Car car) {
+		try {
 			this.vehicleAssigmment.put(realtor, car);
 			return true;
-		}catch(Exception ex){
+		} catch (Exception ex) {
 			ex.printStackTrace();
 			return false;
 		}
 	}
-	
+
 	/**
+	 * Removes a Realtor from the checked out list.
+	 * 
 	 * @param realtor
-	 * @return
+	 *            A agent of the office
+	 * @return Car The car which the Realtor had checked out or null if nothing
+	 *         was checked out
 	 */
-	public Boolean remove(Realtor realtor){
-		if(this.vehicleAssigmment.remove(realtor) != null){
-			return true;
-		}else{
-			return false;
-		}
+	public Car remove(Realtor realtor) {
+		return this.vehicleAssigmment.remove(realtor);
 	}
-	
+
 	/**
 	 * @param realtor
 	 * @return
 	 */
-	public Car getRealtorCurrentCar(Realtor realtor){
-		if(this.vehicleAssigmment.get(realtor) != null){
+	public Car getRealtorCurrentCar(Realtor realtor) {
+		if (this.vehicleAssigmment.get(realtor) != null) {
 			return this.vehicleAssigmment.get(realtor);
 		}
 		return null;

@@ -14,6 +14,8 @@ public class PrintImpl {
 	private String fileName = null;
 	private ArrayList<Realtor> realtorList;
 	private Property[] propertyArr;
+	private CarStackImpl carStackLuxury;
+	private CarStackImpl carStack;
 	private int propertyNum = 0;
 
 	/**
@@ -23,7 +25,8 @@ public class PrintImpl {
 	 *            PropertyLogImpl A list of properties
 	 * @param realtorLogImpl
 	 *            RealtorLogImpl A list of realtors
-	 * @param fileName String the name of the file the report will be saved too.
+	 * @param fileName
+	 *            String the name of the file the report will be saved too.
 	 */
 	public PrintImpl(PropertyLogImpl propertyLogImpl, RealtorLogImpl<Realtor> realtorLogImpl, String fileName) {
 		this.fileName = fileName;
@@ -42,6 +45,21 @@ public class PrintImpl {
 			this.propertyArr[i] = linkListProperty.get(i);
 		}
 		this.propertyNum = propertyLogImpl.getNumProperties();
+	}
+
+	/**
+	 * @param propertyLogImpl
+	 * @param realtorLogImpl
+	 * @param vehicleUsage
+	 * @param carStackLuxury
+	 * @param carStack
+	 * @param fileName
+	 */
+	public PrintImpl(PropertyLogImpl propertyLogImpl, RealtorLogImpl<Realtor> realtorLogImpl,
+			VehicleUsageImpl vehicleUsage, CarStackImpl carStackLuxury, CarStackImpl carStack, String fileName) {
+			this(propertyLogImpl, realtorLogImpl, fileName);
+			this.carStackLuxury = carStackLuxury;
+			this.carStack = carStack;
 	}
 
 	/**
@@ -64,8 +82,8 @@ public class PrintImpl {
 	}
 
 	/**
-	 * This method prints the report using the data which was used to create the
-	 * object. Currently this is the only report this class prints.
+	 * This method prints the standard realtor and proerty report using the data which was used to create the
+	 * object.
 	 */
 	public void print() {
 		try {
@@ -106,6 +124,16 @@ public class PrintImpl {
 		} catch (IOException e) {
 			System.err.println("failed to read to file " + this.fileName);
 			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * This method prints the Car Usage Report using the data which was used to create the
+	 * object.
+	 */
+	public void printCarUsageReport(){
+		if(carStackLuxury == null || carStack == null){
+			return;
 		}
 	}
 }

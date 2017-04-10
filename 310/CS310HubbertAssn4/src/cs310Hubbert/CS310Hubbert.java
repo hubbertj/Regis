@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
+
+import cs310Hubbert.Car.CAR_TYPES;
 
 /**
  * @author Jerum Hubbert
@@ -14,13 +17,137 @@ public class CS310Hubbert {
 	@SuppressWarnings("rawtypes")
 	static RealtorLogImpl realtorLogImpl = new RealtorLogImpl();
 	static PropertyLogImpl propertyLogImpl = new PropertyLogImpl();
+	static VehicleUsageImpl vehicleUsage = new VehicleUsageImpl();
+	static RealtorQueueImpl realtorQueue = new RealtorQueueImpl();
+	static CarStackImpl carStack;
+	static CarStackImpl carStackLuxury;
 
-	static final String INPUT_FILENAME = "input/assn4input1.txt";
+	/**
+	 * The main method which run the entire program
+	 * 
+	 * @param args
+	 *            String[] options arguments passed in when running the program.
+	 */
+	public static void main(String[] args) {
+		final String INPUT_FILENAME_REALTOR_PROPERTY = "input/assn4input1.txt";
+		final String INPUT_FILENAME_CAR_INFO = "input/carInfo1a.txt";
+
+		readDataFile(INPUT_FILENAME_REALTOR_PROPERTY);
+		// display data
+		realtorLogImpl.traverseDisplay();
+		propertyLogImpl.traverseDisplay();
+		// clean up list
+		realtorLogImpl.cleanUp();
+		propertyLogImpl.cleanUp();
+		createReport("output/assn4cleanReport.txt");
+
+		// Then, for this assignment, you will be building several new
+		// implementations, and adding code to the end of the main method to
+		// manage the cars.
+		initStacks();
+		processCarInfo(INPUT_FILENAME_CAR_INFO);
+		createCarUsageReport("output/carUsageReport.txt");
+
+	}
+	
+	/**
+	 *  init the stack and adds car to them;
+	 */
+	static void initStacks(){
+		//Basic Stack
+		carStack = new CarStackImpl();
+		carStack.push(new Car(1, "BasicCar1", CAR_TYPES.BASIC));
+		carStack.push(new Car(2, "BasicCar2", CAR_TYPES.BASIC));
+		carStack.push(new Car(3, "BasicCar3", CAR_TYPES.BASIC));
+		carStack.push(new Car(4, "BasicCar4", CAR_TYPES.BASIC));
+		
+		//Luxury Stack
+		carStackLuxury = new CarStackImpl();
+		carStack.push(new Car(5, "LuxuryCar5", CAR_TYPES.LUXURY));
+		carStack.push(new Car(6, "LuxuryCar6", CAR_TYPES.LUXURY));
+		carStack.push(new Car(7, "LuxuryCar7", CAR_TYPES.LUXURY));
+	}
+
+	static void processCarInfo(String INPUT_FILENAME_CAR_INFO) {
+		BufferedReader br = null;
+		String line = "";
+		try {
+			br = new BufferedReader(new FileReader(INPUT_FILENAME_CAR_INFO));
+			while ((line = br.readLine()) != null) {
+				// use space as separator
+				String[] inputRead = line.split(" ");
+				System.out.println(Arrays.toString(inputRead));
+
+				String action = inputRead[0].toUpperCase();
+				String realtorLicenseNumber = inputRead[1].toUpperCase();
+
+				if (action == null || realtorLicenseNumber == null) {
+					continue;
+				}
+
+				if (action.equals("REQUEST")) {
+					processCarRequest(realtorLicenseNumber);
+				} else if (action.equals("RETURN")) {
+					processCarReturn(realtorLicenseNumber);
+				} else {
+					System.err.println("Bad property in file");
+				}
+
+			}
+
+		} catch (FileNotFoundException e) {
+			System.err.println("cannot find " + INPUT_FILENAME_CAR_INFO);
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	static void processCarRequest(String realtorLicenseNumber) {
+		// Standard realtor Helen Hull has been assigned basic car number 1
+		// John Johnson waiting in standard realtor queue
+	}
+
+	/**
+	 * Process a car return and adds it back in the correct stack
+	 * 
+	 * @param realtorLicenseNumber
+	 *            String the license number of the Realtor
+	 */
+	static void processCarReturn(String realtorLicenseNumber) {
+		Realtor realtor = realtorLogImpl.getRealtorByLicense(realtorLicenseNumber);
+		if (realtor == null) {
+			return;
+		}
+		Car returnedCar = vehicleUsage.remove(realtor);
+
+		if (returnedCar != null) {
+			System.out.println(realtor.getFirstName() + " " + realtor.getLastName() + " has returned car number "
+					+ returnedCar.getId());
+
+			switch (returnedCar.getType()) {
+			case LUXURY:
+				carStackLuxury.push(returnedCar);
+				break;
+			case BASIC:
+				carStack.push(returnedCar);
+				break;
+			}
+		}
+	}
 
 	/**
 	 * Reads the data from the INPUT FILE
 	 */
-	static void readDataFile() {
+	static void readDataFile(String INPUT_FILENAME) {
 		BufferedReader br = null;
 		String line = "";
 		try {
@@ -58,7 +185,7 @@ public class CS310Hubbert {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if (br != null) {
@@ -81,13 +208,13 @@ public class CS310Hubbert {
 	@SuppressWarnings("unchecked")
 	static void realtorAdd(String[] realtorArr) {
 		Realtor realtor = null;
-		try{
-			 realtor = new Realtor(realtorArr);
-		}catch(Exception ex){
+		try {
+			realtor = new Realtor(realtorArr);
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		
-		if(realtor == null){
+
+		if (realtor == null) {
 			return;
 		}
 
@@ -101,7 +228,7 @@ public class CS310Hubbert {
 					+ realtor.getPhoneNum() + "\n\n");
 			return;
 		}
-		
+
 		if (realtorLogImpl.isLicenseUnique(realtor.getLicenseNum())) {
 			System.out.println("ADDED: Realtor with license " + realtor.getLicenseNum() + " to log.");
 			RealtorNode<Realtor> node = new RealtorNode<Realtor>(realtor);
@@ -120,17 +247,17 @@ public class CS310Hubbert {
 	 */
 	static void propertyAdd(String[] propertyArr) {
 		Property property = null;
-		
-		try{
+
+		try {
 			property = new Property(propertyArr);
-		}catch(Exception ex){
+		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		
-		if(property == null){
+
+		if (property == null) {
 			return;
 		}
-		
+
 		if (!property.isMlsValid(property.getMlsNum())) {
 			System.err.println("Property " + property.getMlsNum() + " has bad mls number.\n");
 		}
@@ -199,28 +326,12 @@ public class CS310Hubbert {
 		System.out.println("Report is located in file: " + printImpl.getFileName() + "\n");
 		printImpl.print();
 	}
-
-	/**
-	 * The main method which run the entire program
-	 * 
-	 * @param args
-	 *            String[] options arguments passed in when running the program.
-	 */
-	public static void main(String[] args) {
-		//first run
-		readDataFile();
-		createReport("output/assn3initialReport.txt");
-		
-		//display data
-		realtorLogImpl.traverseDisplay();
-		propertyLogImpl.traverseDisplay();
-		
-		//clean up list
-		realtorLogImpl.cleanUp();
-		propertyLogImpl.cleanUp();
-		
-		//second run
-		createReport("output/assn3cleanReport.txt");
+	
+	@SuppressWarnings({ "unchecked"})
+	static void createCarUsageReport(String fileName) {
+		System.out.println("CAR USAGE REPORT");
+		PrintImpl printImpl = new PrintImpl(propertyLogImpl, realtorLogImpl, vehicleUsage, carStackLuxury, carStack, fileName);
+		System.out.println("Car usage report is located in file: " + printImpl.getFileName());
+		printImpl.printCarUsageReport();
 	}
-
 }

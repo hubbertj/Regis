@@ -22,7 +22,7 @@ public class CarStackImpl {
 	 */
 	@SuppressWarnings("null")
 	public Car pop() {
-		return new Car((Integer) null, "");
+		return new Car((Integer) null, null, Car.CAR_TYPES.LUXURY);
 	}
 
 	/**

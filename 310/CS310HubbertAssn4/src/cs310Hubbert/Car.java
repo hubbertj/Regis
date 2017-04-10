@@ -6,16 +6,20 @@ package cs310Hubbert;
  */
 public class Car {
 	
+	public static enum CAR_TYPES {LUXURY, BASIC};
 	private int id;
-	private String type;
+	private CAR_TYPES type;
+	private String alias;
+	
 	
 	/**
 	 * @param id
 	 * @param type
 	 */
-	public Car(int id, String type){
+	public Car(int id, String alias, CAR_TYPES type){
 		this.id = id;
 		this.type = type;
+		this.alias = alias;
 	}
 	
 	/**
@@ -35,14 +39,29 @@ public class Car {
 	/**
 	 * @return
 	 */
-	public String getType() {
+	public CAR_TYPES getType() {
 		return type;
 	}
 
 	/**
 	 * @param type
 	 */
-	public void setType(String type) {
+	public void setType(CAR_TYPES type) {
 		this.type = type;
-	}	
+	}
+
+	/**
+	 * @return
+	 */
+	public String getAlias() {
+		return alias;
+	}
+
+	/**
+	 * @param alias
+	 */
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
+	
 }
