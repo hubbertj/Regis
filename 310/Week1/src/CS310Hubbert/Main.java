@@ -24,7 +24,7 @@ public class Main {
 
 		Property myProperty = null;
 		Property aProperty = null;
-
+		
 		// Week 2
 
 		System.out.println("Running Test Set 1a...\n");

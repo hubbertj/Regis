@@ -1,0 +1,23 @@
+AA1111111 Astrid, Anna
+1111111	111 Main St	2/1.0	$ 111111.0	SOLD
+
+Number of Property Listings for Realtor: 1
+Total sales value of Property Listings for Realtor: $111111.0
+
+AA1111112 Kee, Jeff
+
+Number of Property Listings for Realtor: 0
+Total sales value of Property Listings for Realtor: $0.0
+
+BB2222222 Benson, Bob
+2222211	222 Flower Ln	3/1.5	$ 222222.0	
+2222222	1234 First St	4/2.0	$ 222222.0	SOLD
+
+Number of Property Listings for Realtor: 2
+Total sales value of Property Listings for Realtor: $444444.0
+
+BB2222223 Baa, Bob
+
+Number of Property Listings for Realtor: 0
+Total sales value of Property Listings for Realtor: $0.0
+
