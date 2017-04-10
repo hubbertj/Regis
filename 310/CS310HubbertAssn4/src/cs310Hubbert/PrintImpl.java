@@ -54,14 +54,25 @@ public class PrintImpl {
 	}
 
 	/**
+	 * 
+	 * A child constructor which is used to run the car report
+	 * 
 	 * @param propertyLogImpl
+	 *            PropertyLogImpl A list of properties
 	 * @param realtorLogImpl
+	 *            RealtorLogImpl A list of realtors
 	 * @param vehicleUsage
+	 *            VehicleUsageImpl Hold the data of what realtor has what car
 	 * @param carStackLuxury
+	 *            CarStackImpl A stack which holds all the high end cars
 	 * @param carStack
+	 *            CarStackImpl A stack which holds all the basic cars
 	 * @param realtorQueue
+	 *            RealtorQueueImpl A Queue of realtors waiting for, basic cars
 	 * @param realtorLuxuryQueue
+	 *            RealtorQueueImpl A Queue of realtors waiting for, high cars
 	 * @param fileName
+	 *            String the name of the file the report will be saved too.
 	 */
 	public PrintImpl(PropertyLogImpl propertyLogImpl, RealtorLogImpl<Realtor> realtorLogImpl,
 			VehicleUsageImpl vehicleUsage, CarStackImpl carStackLuxury, CarStackImpl carStack,
@@ -217,7 +228,7 @@ public class PrintImpl {
 
 			System.out.println("\nSTANDARD REALTOR QUEUE");
 			writer.println("\nSTANDARD REALTOR QUEUE");
-			
+
 			if (this.realtorQueue.getSize() <= 0) {
 				System.out.println("There are no realtors waiting");
 				writer.println("There are no realtors waiting");

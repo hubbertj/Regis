@@ -1,7 +1,5 @@
 package cs310Hubbert;
 
-import java.util.LinkedList;
-
 /**
  * @author Jay
  *
@@ -13,7 +11,7 @@ public class RealtorQueueImpl {
 	private int size;
 	
 	/**
-	 * 
+	 *  Standard constructor
 	 */
 	public RealtorQueueImpl(){
 		super();
@@ -22,19 +20,42 @@ public class RealtorQueueImpl {
 		this.size = 0;
 	}
 
+	/**
+	 * Returns the first element in the link list
+	 * this object should be the first to get processed
+	 * 
+	 * @return RealtorNode A wrapper for a realtor object
+	 */
 	public RealtorNode<Realtor> getFront() {
 		return front;
 	}
 
 
+	/**
+	 * Returns the newest element in the link list
+	 * this object should be the last to get processed
+	 * 
+	 * @return RealtorNode A wrapper for a realtor object
+	 */
 	public RealtorNode<Realtor> getBack() {
 		return back;
 	}
 	
+	/**
+	 * The size of the whole list
+	 * 
+	 * @return int the current size of the link list
+	 */
 	public int getSize() {
 		return size;
 	}
 
+	/**
+	 * pushes a realtor into the queue
+	 * 
+	 * @param realtor Realtor A person who sells houses
+	 * @return Realtor A person who sells houses
+	 */
 	public Realtor add(Realtor realtor){
 		if(this.front == null){
 			this.back = new RealtorNode<Realtor>(realtor);
@@ -50,6 +71,11 @@ public class RealtorQueueImpl {
 		return realtor;
 	}
 	
+	/**
+	 * 
+	 * Looks at the next object which should be processed
+	 * @return Realtor A person who sells house
+	 */
 	public Realtor peek(){
 		if(this.size == 0){
 			return null;
@@ -58,7 +84,10 @@ public class RealtorQueueImpl {
 	}
 	
 	/**
-	 * @return
+	 * Grabs the next object which should be processed
+	 * removes it from the queue
+	 * 
+	 * @return Realtor A person who sells house
 	 */
 	public Realtor remove(){
 		Realtor realtor = this.peek();

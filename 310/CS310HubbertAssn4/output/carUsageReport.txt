@@ -1,14 +1,15 @@
 CAR USAGE REPORT
-Anna Astrid is using car number 4
-Carl Carlson is using car number 3
+Anna Astrid is using car number 7
+Jeff Kee is using car number 2
+Bob Benson is using car number 1
+Bob Baa is using car number 3
+Carl Carlson is using car number 4
 
 AVAILABLE CARS
 	BASIC CARS
-		basic car number 2 is available
-		basic car number 1 is available
+		No basic cars are available
 
 	LUXURY CARS
-		luxury car number 7 is available
 		luxury car number 6 is available
 		luxury car number 5 is available
 
@@ -16,4 +17,8 @@ TOP SELLER QUEUE
 There are no top selling realtors waiting
 
 STANDARD REALTOR QUEUE
-There are no realtors waiting
+Jeff Kee is waiting
+Carll Carlsonn is waiting
+Bobb Baaa is waiting
+Jefff Keee is waiting
+Bobb Baaa is waiting

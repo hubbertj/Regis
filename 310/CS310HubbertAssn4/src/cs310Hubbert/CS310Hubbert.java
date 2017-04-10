@@ -30,8 +30,8 @@ public class CS310Hubbert {
 	 *            String[] options arguments passed in when running the program.
 	 */
 	public static void main(String[] args) {
-		final String INPUT_FILENAME_REALTOR_PROPERTY = "input/assn4input1.txt";
-		final String INPUT_FILENAME_CAR_INFO = "input/carInfo1a.txt";
+		final String INPUT_FILENAME_REALTOR_PROPERTY = "input/assn4input2.txt";
+		final String INPUT_FILENAME_CAR_INFO = "input/carInfo2a.txt";
 
 		readDataFile(INPUT_FILENAME_REALTOR_PROPERTY);
 		// display data
@@ -66,6 +66,11 @@ public class CS310Hubbert {
 		carStackLuxury.push(new Car(7, "LuxuryCar7", CAR_TYPES.LUXURY));
 	}
 
+	/**
+	 * This method read the input file and processes it as needed.
+	 * 
+	 * @param INPUT_FILENAME_CAR_INFO String a dir of the file which will be read in
+	 */
 	static void processCarInfo(String INPUT_FILENAME_CAR_INFO) {
 		BufferedReader br = null;
 		String line = "";
@@ -109,7 +114,9 @@ public class CS310Hubbert {
 	}
 
 	/**
-	 * @param licenseNumber
+	 * Processes a car request
+	 * 
+	 * @param licenseNumber String the license number of the realtor
 	 */
 	static void processCarRequest(String licenseNumber) {
 		Realtor realtor = realtorLogImpl.getRealtorByLicense(licenseNumber);
@@ -154,7 +161,7 @@ public class CS310Hubbert {
 			} else {
 				System.out.println(
 						realtor.getFirstName() + " " + realtor.getLastName() + " waiting in standard realtor queue");
-				realtorLuxuryQueue.add(realtor);
+				realtorQueue.add(realtor);
 				return;
 			}
 		}
@@ -362,6 +369,7 @@ public class CS310Hubbert {
 
 	/**
 	 * Creates a report so data can be view quickly
+	 * @param fileName String the location of the generated report
 	 */
 	@SuppressWarnings("unchecked")
 	static void createReport(String fileName) {
@@ -371,6 +379,10 @@ public class CS310Hubbert {
 		printImpl.print();
 	}
 
+	/**
+	 * Creates a Car Usage report so data can be view quickly
+	 * @param fileName String the location of the generated report
+	 */
 	@SuppressWarnings({ "unchecked" })
 	static void createCarUsageReport(String fileName) {
 		PrintImpl printImpl = new PrintImpl(propertyLogImpl, realtorLogImpl, vehicleUsage, carStackLuxury, carStack,

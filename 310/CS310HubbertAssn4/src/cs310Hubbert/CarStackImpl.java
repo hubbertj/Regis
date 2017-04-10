@@ -13,16 +13,16 @@ public class CarStackImpl{
 	private Car[] cars;
 
 	/**
-	 * 
+	 *  Simple constructor
 	 */
 	public CarStackImpl() {
 		this.cars = new Car[this.CAR_NUMBER];
 	}
 
-	
 	/**
-	 * @return
-	 * @throws EmptyStackException
+	 * This method removes a car for the top of the stack
+	 * @return Car a car object
+	 * @throws EmptyStackException This will throw if out stack is empty
 	 */
 	public Car pop() throws EmptyStackException {
 		if(this.isEmpty()){
@@ -32,8 +32,10 @@ public class CarStackImpl{
 	}
 
 	/**
-	 * @param car
-	 * @return
+	 * 
+	 * Adds a Car to the stack
+	 * @param car Car a car object 
+	 * @return Car a car object
 	 */
 	public Car push(Car car) {
 		if(this.topOfStack == this.cars.length -1){
@@ -54,7 +56,8 @@ public class CarStackImpl{
 	}
 	
 	/**
-	 * @return
+	 * Look at the top of the stack, does not remove it.
+	 * @return Car a car object
 	 */
 	public Car peek(){
 		if(this.isEmpty()){

@@ -130,8 +130,7 @@ public class RealtorLogImpl<E> {
 
 	/**
 	 * Loops thur the link list and if a Realtor is found return it.
-	 * 
-	 * @param licenseNumber
+	 * @param licenseNumber String The license number of the realtor your looking for
 	 * @return Realtor If we find a Realtor we return it if not we return null
 	 */
 	public Realtor getRealtorByLicense(String licenseNumber) {
