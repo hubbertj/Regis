@@ -19,6 +19,7 @@ public class CS310Hubbert {
 	static PropertyLogImpl propertyLogImpl = new PropertyLogImpl();
 	static VehicleUsageImpl vehicleUsage = new VehicleUsageImpl();
 	static RealtorQueueImpl realtorQueue = new RealtorQueueImpl();
+	static RealtorQueueImpl realtorLuxuryQueue = new RealtorQueueImpl();
 	static CarStackImpl carStack;
 	static CarStackImpl carStackLuxury;
 
@@ -41,31 +42,28 @@ public class CS310Hubbert {
 		propertyLogImpl.cleanUp();
 		createReport("output/assn4cleanReport.txt");
 
-		// Then, for this assignment, you will be building several new
-		// implementations, and adding code to the end of the main method to
-		// manage the cars.
 		initStacks();
 		processCarInfo(INPUT_FILENAME_CAR_INFO);
 		createCarUsageReport("output/carUsageReport.txt");
 
 	}
-	
+
 	/**
-	 *  init the stack and adds car to them;
+	 * init the stack and adds car to them;
 	 */
-	static void initStacks(){
-		//Basic Stack
+	static void initStacks() {
+		// Basic Stack
 		carStack = new CarStackImpl();
 		carStack.push(new Car(1, "BasicCar1", CAR_TYPES.BASIC));
 		carStack.push(new Car(2, "BasicCar2", CAR_TYPES.BASIC));
 		carStack.push(new Car(3, "BasicCar3", CAR_TYPES.BASIC));
 		carStack.push(new Car(4, "BasicCar4", CAR_TYPES.BASIC));
-		
-		//Luxury Stack
+
+		// Luxury Stack
 		carStackLuxury = new CarStackImpl();
-		carStack.push(new Car(5, "LuxuryCar5", CAR_TYPES.LUXURY));
-		carStack.push(new Car(6, "LuxuryCar6", CAR_TYPES.LUXURY));
-		carStack.push(new Car(7, "LuxuryCar7", CAR_TYPES.LUXURY));
+		carStackLuxury.push(new Car(5, "LuxuryCar5", CAR_TYPES.LUXURY));
+		carStackLuxury.push(new Car(6, "LuxuryCar6", CAR_TYPES.LUXURY));
+		carStackLuxury.push(new Car(7, "LuxuryCar7", CAR_TYPES.LUXURY));
 	}
 
 	static void processCarInfo(String INPUT_FILENAME_CAR_INFO) {
@@ -76,7 +74,6 @@ public class CS310Hubbert {
 			while ((line = br.readLine()) != null) {
 				// use space as separator
 				String[] inputRead = line.split(" ");
-				System.out.println(Arrays.toString(inputRead));
 
 				String action = inputRead[0].toUpperCase();
 				String realtorLicenseNumber = inputRead[1].toUpperCase();
@@ -111,9 +108,56 @@ public class CS310Hubbert {
 		}
 	}
 
-	static void processCarRequest(String realtorLicenseNumber) {
-		// Standard realtor Helen Hull has been assigned basic car number 1
-		// John Johnson waiting in standard realtor queue
+	/**
+	 * @param licenseNumber
+	 */
+	static void processCarRequest(String licenseNumber) {
+		Realtor realtor = realtorLogImpl.getRealtorByLicense(licenseNumber);
+		Boolean topSeller = false;
+
+		// only realtor on the list can checkout a car
+		if (realtor == null) {
+			System.err.println("Unknown realtor " + licenseNumber + " not allowed access to cars. Request ignored.");
+			return;
+		}
+
+		if (propertyLogImpl.totalPropertyValue(licenseNumber) >= 1_000_000) {
+			topSeller = true;
+		}
+
+		if (topSeller) {
+			// process top seller
+			Car car = null;
+			if (!carStackLuxury.isEmpty()) {
+				car = carStackLuxury.pop();
+			} else if (!carStack.isEmpty()) {
+				car = carStack.pop();
+			} else {
+				System.out.println(
+						realtor.getFirstName() + " " + realtor.getLastName() + " waiting in luxury realtor queue");
+				realtorLuxuryQueue.add(realtor);
+				return;
+			}
+			System.out.println("Top Seller " + realtor.getFirstName() + " " + realtor.getLastName()
+					+ " has been assigned " + car.getType().toString().toLowerCase() + " car number " + car.getId());
+			vehicleUsage.add(realtor, car);
+			return;
+		} else {
+			// process non top seller
+			Car car = null;
+			if (!carStack.isEmpty()) {
+				car = carStack.pop();
+				System.out.println("Standard realtor " + realtor.getFirstName() + " " + realtor.getLastName()
+						+ " has been assigned " + car.getType().toString().toLowerCase() + " car number "
+						+ car.getId());
+				vehicleUsage.add(realtor, car);
+			} else {
+				System.out.println(
+						realtor.getFirstName() + " " + realtor.getLastName() + " waiting in standard realtor queue");
+				realtorLuxuryQueue.add(realtor);
+				return;
+			}
+		}
 	}
 
 	/**
@@ -326,12 +370,12 @@ public class CS310Hubbert {
 		System.out.println("Report is located in file: " + printImpl.getFileName() + "\n");
 		printImpl.print();
 	}
-	
-	@SuppressWarnings({ "unchecked"})
+
+	@SuppressWarnings({ "unchecked" })
 	static void createCarUsageReport(String fileName) {
-		System.out.println("CAR USAGE REPORT");
-		PrintImpl printImpl = new PrintImpl(propertyLogImpl, realtorLogImpl, vehicleUsage, carStackLuxury, carStack, fileName);
-		System.out.println("Car usage report is located in file: " + printImpl.getFileName());
+		PrintImpl printImpl = new PrintImpl(propertyLogImpl, realtorLogImpl, vehicleUsage, carStackLuxury, carStack,
+				realtorQueue, realtorLuxuryQueue, fileName);
+		System.out.println("\nCar usage report is located in file: " + printImpl.getFileName() + "\n");
 		printImpl.printCarUsageReport();
 	}
 }

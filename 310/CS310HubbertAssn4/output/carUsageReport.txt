@@ -1,0 +1,19 @@
+CAR USAGE REPORT
+Anna Astrid is using car number 4
+Carl Carlson is using car number 3
+
+AVAILABLE CARS
+	BASIC CARS
+		basic car number 2 is available
+		basic car number 1 is available
+
+	LUXURY CARS
+		luxury car number 7 is available
+		luxury car number 6 is available
+		luxury car number 5 is available
+
+TOP SELLER QUEUE
+There are no top selling realtors waiting
+
+STANDARD REALTOR QUEUE
+There are no realtors waiting

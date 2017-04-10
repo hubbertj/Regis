@@ -63,5 +63,15 @@ public class Car {
 	public void setAlias(String alias) {
 		this.alias = alias;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return (this.id == ((Car) obj).getId());
+	}
+
+	@Override
+	public String toString() {
+		return "id " + this.id + " alias " + this.alias + " type " + this.type.toString(); 
+	}
 	
 }

@@ -16,6 +16,10 @@ public class VehicleUsageImpl {
 	public VehicleUsageImpl() {
 		super();
 	}
+	
+	public HashMap<Realtor, Car> getVehicleAssigmment() {
+		return vehicleAssigmment;
+	}
 
 	/**
 	 * @param realtor

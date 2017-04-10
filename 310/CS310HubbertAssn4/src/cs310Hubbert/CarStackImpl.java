@@ -1,13 +1,15 @@
 package cs310Hubbert;
 
+import java.util.EmptyStackException;
+
 /**
  * @author Jay
  *
  */
-public class CarStackImpl {
-
+public class CarStackImpl{
+	
+	private int topOfStack = -1;
 	private final int CAR_NUMBER = 4;
-	@SuppressWarnings("unused")
 	private Car[] cars;
 
 	/**
@@ -17,20 +19,29 @@ public class CarStackImpl {
 		this.cars = new Car[this.CAR_NUMBER];
 	}
 
+	
 	/**
 	 * @return
+	 * @throws EmptyStackException
 	 */
-	@SuppressWarnings("null")
-	public Car pop() {
-		return new Car((Integer) null, null, Car.CAR_TYPES.LUXURY);
+	public Car pop() throws EmptyStackException {
+		if(this.isEmpty()){
+			throw new EmptyStackException();
+		}
+		return this.cars[this.topOfStack --];
 	}
 
 	/**
 	 * @param car
 	 * @return
 	 */
-	public Boolean push(Car car) {
-		return true;
+	public Car push(Car car) {
+		if(this.topOfStack == this.cars.length -1){
+			return null; //stack is full
+		}
+		this.topOfStack ++;
+		this.cars[topOfStack] = car;
+		return car;
 	}
 
 	/**
@@ -39,13 +50,17 @@ public class CarStackImpl {
 	 * @return Boolean True if the stack is empty
 	 */
 	public Boolean isEmpty() {
-		Boolean isEmpty = true;
-		for (Integer i = 0; i < this.cars.length; i++) {
-			if (cars[i] != null) {
-				isEmpty = false;
-			}
+		return (this.topOfStack == -1);
+	}
+	
+	/**
+	 * @return
+	 */
+	public Car peek(){
+		if(this.isEmpty()){
+			return null;
 		}
-		return isEmpty;
+		return this.cars[this.topOfStack];
 	}
 	
 	/**
