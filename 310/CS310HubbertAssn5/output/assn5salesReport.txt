@@ -1,0 +1,11 @@
+Realtor AA1111111, Anna Astrid
+	Property 1111111 is available for $111111.0
+	Property 2222222 is available for $222222.0
+Realtor CC333333X, Carl Carlson
+	Property 2222222 is available for $222222.0
+	Property 3333344 is SOLD
+	Property 3333333 is SOLD
+Realtor AA1111112, Anna Astrid
+	Property 1111111 is available for $111111.0
+	Property 2222222 is available for $222222.0
+	Property 1111122 is available for $111111.0

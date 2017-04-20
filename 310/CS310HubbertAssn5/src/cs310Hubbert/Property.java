@@ -354,7 +354,7 @@ public class Property {
 	@Override
 	public boolean equals(Object obj) {
 		Property prop = (Property) obj;
-		if (!prop.getMlsNum().equals(this.mlsNum)) {
+		if (prop == null || !prop.getMlsNum().equals(this.mlsNum)) {
 			return false;
 		} else if (!prop.getLicenseNum().equals(this.licenseNum)) {
 			return false;

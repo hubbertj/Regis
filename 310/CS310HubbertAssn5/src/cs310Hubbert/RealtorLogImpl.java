@@ -1,260 +1,205 @@
 package cs310Hubbert;
 
+import java.util.HashSet;
+
 /**
  * @author Jerum Hubbert
- * @param <E>
- *            This is going to be the Realtor type
  *
  */
-public class RealtorLogImpl<E> {
+public class RealtorLogImpl {
 
-	private RealtorNode<E> head = null;
-	private RealtorNode<E> tail = null;
+	private HashSet<Realtor> realtorSet = new HashSet<Realtor>();
+	private Realtor[] hashTable;
+	private final int START_CAPACITY = 23;
 	private int size;
 
 	/**
-	 * Creates the object, sorts the list.
+	 * Main Constructor addes realtors to the set and to the hashtable.
+	 * 
 	 */
 	public RealtorLogImpl() {
-		super();
+		this.hashTable = new Realtor[this.START_CAPACITY];
 	}
-
-	/**
-	 * Gets the first element in this list
+	
+	/** Gets the hashset of all the realtors
 	 * 
-	 * @return RealtorNode - A node wrapper for a Realtor
+	 * @return HashSet The hash set of all the realtors
 	 */
-	public RealtorNode<E> getHead() {
-		return head;
+	public HashSet<Realtor> getRealtorSet() {
+		return realtorSet;
 	}
-
-	/**
-	 * Set the first element in this list
+	
+	/** Gets the capacity of the hash table.
 	 * 
-	 * @param head
-	 *            RealtorNode - A node wrapper for a Realtor
+	 * @return int Max capacity of the hash table.
 	 */
-	public void setHead(RealtorNode<E> head) {
-		this.head = head;
+	public int getSTART_CAPACITY() {
+		return START_CAPACITY;
 	}
 
 	/**
-	 * Gets the last element of this list
+	 * Gets the current size of the hash table
 	 * 
-	 * @return RealtorNode - A node wrapper for a Realtor
-	 */
-	public RealtorNode<E> getTail() {
-		return tail;
-	}
-
-	/**
-	 * Sets the last element of this list
-	 * 
-	 * @param tail
-	 *            RealtorNode - A node wrapper for a Realtor
-	 */
-	public void setTail(RealtorNode<E> tail) {
-		this.tail = tail;
-	}
-
-	/**
-	 * Gets the current size of the link list
-	 * 
-	 * @return int The current size of list
+	 * @return int The current size of hash table
 	 */
 	public int getSize() {
 		return size;
 	}
+	
+	private int insert(int hashCode, Realtor realtor) throws Exception {
+		int index = hashCode;
 
-	/**
-	 * Sets the size of the list
-	 * 
-	 * @param size
-	 *            int The current size of list
-	 */
-	public void setSize(int size) {
-		this.size = size;
-	}
-
-	/**
-	 * Adds a RealtorNode to the ordered list We current order the list by
-	 * Realtor License number
-	 * 
-	 * @param realtor
-	 *            Realtor The object you want to be added.
-	 */
-	public void add(RealtorNode<E> realtor) {
-		RealtorNode<E> prev = null;
-		RealtorNode<E> current = this.head;
-
-		if (realtor == null) {
-			return;
+		if (index < 0 || index > this.hashTable.length) {
+			index += this.hashTable.length;
+			hashCode = this.hashTable.length;
 		}
 
-		// if we don't have any head;
-		if (current == null) {
-			this.head = realtor;
-			this.tail = realtor;
-			realtor.setNext(null);
+		while (index < this.hashTable.length) {
+			if (this.hashTable[index] == null) {
+				this.hashTable[index] = realtor;
+				return index;
+			}
+			index++;
+
+			if (index == hashCode) {
+				throw new Exception("Hash table is full");
+			}
+			// wrap back around the array
+			if (index >= this.hashTable.length) {
+				index = 0;
+			}
+		}
+
+		// never reached but just in case
+		return index;
+	}
+	
+	/**Calculates the hash code using the realtor license number
+	 * 
+	 * @param licenseNum String the license number of the realtor
+	 * @return int The hash code for the license number
+	 */
+	public int getHash(String licenseNum) {
+		char[] chars = null;
+		int totalCount = 0;
+		int hash = 0;
+		if (licenseNum == null) {
+			return 0;
+		}
+		chars = licenseNum.toCharArray();
+
+		for (char character : chars) {
+			int asciiNum = (int) character;
+			totalCount += asciiNum;
+		}
+
+		if (totalCount != 0) {
+			hash = totalCount % this.START_CAPACITY;
+		}
+		return hash;
+	}
+	
+	/**
+	 * Calculates the hash code using a Realtor object
+	 * 
+	 * @param realtor Realtor The realtor you want to get a hash for
+	 * @return int The hash code for the Realtor object
+	 */
+	public int getHash(Realtor realtor) {
+		char[] chars = null;
+		int totalCount = 0;
+		int hash = 0;
+		if (realtor.equals(null) || realtor == null || realtor.getLicenseNum() == null) {
+			return 0;
+		}
+		chars = realtor.getLicenseNum().toCharArray();
+
+		for (char character : chars) {
+			int asciiNum = (int) character;
+			totalCount += asciiNum;
+		}
+
+		if (totalCount != 0) {
+			hash = totalCount % this.START_CAPACITY;
+		}
+		return hash;
+	}
+	
+	/**
+	 * Places a Realtor into the hash table, if we failed to insert return -1
+	 * 
+	 * @param realtor Realtor The realtor you insert into the table
+	 * @return int the index where the Realtor was placed
+	 */
+	public int add(Realtor realtor) {
+		if(!this.realtorSet.add(realtor)){
+			return -1;
+		}
+		int hashCode = this.getHash(realtor);
+		int index = 0;
+		try {
+			index = this.insert(hashCode, realtor);
 			this.size++;
-			return;
+			return index;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return -1;
 		}
-
-		do {
-			Realtor inRealtor = (Realtor) realtor.getRealtor();
-			Realtor cRealtor = (Realtor) current.getRealtor();
-			int compare = inRealtor.getLicenseNum().compareTo(cRealtor.getLicenseNum());
-			if (compare < 0) {
-				realtor.setNext(current);
-				// We know we are at the head
-				if (current.equals(this.head)) {
-					this.head = realtor;
-				} else {
-					prev.setNext(realtor);
-				}
-				this.size++;
-				return;
-				// We insert at the end of the list
-			} else if (current.equals(this.tail)) {
-				current.setNext(realtor);
-				realtor.setNext(null);
-				this.tail = realtor;
-				this.size++;
-				return;
-			} else {
-				prev = current;
-				current = current.getNext();
-			}
-		} while (current != null);
 	}
-
+	
 	/**
-	 * Loops thur the link list and if a Realtor is found return it.
-	 * @param licenseNumber String The license number of the realtor your looking for
-	 * @return Realtor If we find a Realtor we return it if not we return null
+	 * Trys to find the Realtor in the hash table using the Realtor license Number
+	 * if not found returns null
+	 * 
+	 * @param licenseNum String the license number of the realtor
+	 * @return Realtor The found Realtor
 	 */
-	public Realtor getRealtorByLicense(String licenseNumber) {
-		@SuppressWarnings("unchecked")
-		RealtorNode<Realtor> current = (RealtorNode<Realtor>) this.head;
+	public Realtor find(String licenseNum) {
+		int hashCode = this.getHash(licenseNum);
+		int index = hashCode;
 
-		if (licenseNumber == "" || licenseNumber.equals(null) || current == null) {
-			return null;
+		if (index < 0 || index > this.hashTable.length) {
+			index += this.hashTable.length;
+			hashCode = this.hashTable.length;
 		}
 
-		do {
-			Realtor cRealtor = (Realtor) current.getRealtor();
-			if (cRealtor.getLicenseNum().equals(licenseNumber)) {
-				return cRealtor;
+		while (index < this.hashTable.length) {
+			if (this.hashTable[index] == null) {
+				return null;
 			}
-			current = current.getNext();
+			Realtor realtor = this.hashTable[index];
 
-		} while (current != null);
+			if (realtor.getLicenseNum().equals(licenseNum)) {
+				return realtor;
+			}
+
+			index++;
+			if (index == hashCode) {
+				return null;
+			}
+
+			// wrap back around the array
+			if (index >= this.hashTable.length) {
+				index = 0;
+			}
+		}
 		return null;
 	}
-
+	
 	/**
-	 * Removes a RealtorNode from the log via a realtor license number
-	 * 
-	 * @param license
-	 *            String license number of the Realtor
-	 * @return Boolean true if we found the Realtor and removed them.
+	 *  Displays a message of all the Realtors in the table and at which index
 	 */
-	public boolean remove(String license) {
-		RealtorNode<E> current = this.head;
-		RealtorNode<E> prev = null;
-
-		if (license == null || current == null) {
-			return false;
-		}
-
-		do {
-			Realtor cRealtor = (Realtor) current.getRealtor();
-			if (cRealtor.getLicenseNum().equals(license)) {
-				// if we have 1 element in the list
-				if (this.size == 1) {
-					this.head = null;
-					this.tail = null;
-					// if the element is the last element
-				} else if (current.equals(this.tail)) {
-					prev.setNext(null);
-					this.tail = prev;
-					// if the element is the head element
-				} else if (current.equals(this.head)) {
-					RealtorNode<E> nextRealtor = current.getNext();
-					this.head = nextRealtor;
-				} else {
-					// we slice it out of the list
-					prev.setNext(current.getNext());
-				}
-				this.size--;
-				return true;
+	public void displayHash() {
+		int index = 0;
+		System.out.println("Realtor Set:");
+		for (Realtor realtor : this.hashTable) {
+			if (realtor == null) {
+				System.out.println("\tIndex " + index + " is empty");
 			} else {
-				prev = current;
-				current = current.getNext();
+				System.out.println("\tIndex " + index + " contains Realtor " + realtor.getLicenseNum() + ", "
+						+ realtor.getFirstName() + " " + realtor.getLastName());
 			}
-		} while (current != null);
-
-		return false;
-	}
-
-	/**
-	 * Checks if the Realtor license is in the log or not.
-	 * 
-	 * 
-	 * @param license
-	 *            String license number of the Realtor
-	 * @return Boolean false if Realtor was found.
-	 */
-	public boolean isLicenseUnique(String license) {
-		RealtorNode<E> current = this.head;
-		if (license == null || current == null) {
-			return true;
+			index++;
 		}
-
-		do {
-			Realtor cRealtor = (Realtor) current.getRealtor();
-			if (cRealtor.getLicenseNum().equals(license)) {
-				return false;
-			}
-			current = current.getNext();
-
-		} while (current != null);
-		return true;
-	}
-
-	/**
-	 * displays a header then traverse the list being implemented, using the
-	 * toString() method to display each object in the list.
-	 */
-	public void traverseDisplay() {
-		RealtorNode<E> current = this.head;
-		System.out.println("Realtor Log:");
-		if (this.size <= 0) {
-			return;
-		}
-		do {
-			Realtor cRealtor = (Realtor) current.getRealtor();
-			System.out.println(cRealtor.toString());
-			current = current.getNext();
-		} while (current != null);
-		System.out.println("\n");
-	}
-
-	/**
-	 * validate and clean up the Realtor list, removing Realtor objects with
-	 * invalid Realtor license numbers.
-	 */
-	public void cleanUp() {
-		RealtorNode<E> current = this.head;
-		if (this.size <= 0) {
-			return;
-		}
-		do {
-			Realtor cRealtor = (Realtor) current.getRealtor();
-			if (!cRealtor.isLicenseNumValid(cRealtor.getLicenseNum())) {
-				this.remove(cRealtor.getLicenseNum());
-			}
-			current = current.getNext();
-		} while (current != null);
 	}
 }

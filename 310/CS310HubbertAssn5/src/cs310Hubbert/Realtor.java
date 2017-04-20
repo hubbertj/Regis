@@ -188,7 +188,7 @@ public class Realtor {
 	@Override
 	public boolean equals(Object obj) {
 		Realtor real = (Realtor) obj;
-		if (!real.getLicenseNum().equals(this.licenseNum)) {
+		if (real == null || !real.getLicenseNum().equals(this.licenseNum)) {
 			return false;
 		} else if (!real.getFirstName().equals(this.firstName)) {
 			return false;
