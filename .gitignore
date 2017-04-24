@@ -1,6 +1,9 @@
 #meta
 .metadata
 
+#file system
+.DS_Store
+
 #ide stuff
 .recommenders/
 /310/Week2/nbproject/private/
