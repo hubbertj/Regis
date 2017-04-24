@@ -9,6 +9,7 @@ import java.util.HashSet;
 public class RealtorLogImpl {
 
 	private HashSet<Realtor> realtorSet = new HashSet<Realtor>();
+	private BinaryTree<Realtor> binaryTree;
 	private Realtor[] hashTable;
 	private final int START_CAPACITY = 23;
 	private int size;
@@ -19,17 +20,20 @@ public class RealtorLogImpl {
 	 */
 	public RealtorLogImpl() {
 		this.hashTable = new Realtor[this.START_CAPACITY];
+		this.binaryTree = new BinaryTree<Realtor>();
 	}
-	
-	/** Gets the hashset of all the realtors
+
+	/**
+	 * Gets the hashset of all the realtors
 	 * 
 	 * @return HashSet The hash set of all the realtors
 	 */
 	public HashSet<Realtor> getRealtorSet() {
 		return realtorSet;
 	}
-	
-	/** Gets the capacity of the hash table.
+
+	/**
+	 * Gets the capacity of the hash table.
 	 * 
 	 * @return int Max capacity of the hash table.
 	 */
@@ -45,7 +49,7 @@ public class RealtorLogImpl {
 	public int getSize() {
 		return size;
 	}
-	
+
 	private int insert(int hashCode, Realtor realtor) throws Exception {
 		int index = hashCode;
 
@@ -73,10 +77,12 @@ public class RealtorLogImpl {
 		// never reached but just in case
 		return index;
 	}
-	
-	/**Calculates the hash code using the realtor license number
+
+	/**
+	 * Calculates the hash code using the realtor license number
 	 * 
-	 * @param licenseNum String the license number of the realtor
+	 * @param licenseNum
+	 *            String the license number of the realtor
 	 * @return int The hash code for the license number
 	 */
 	public int getHash(String licenseNum) {
@@ -98,11 +104,12 @@ public class RealtorLogImpl {
 		}
 		return hash;
 	}
-	
+
 	/**
 	 * Calculates the hash code using a Realtor object
 	 * 
-	 * @param realtor Realtor The realtor you want to get a hash for
+	 * @param realtor
+	 *            Realtor The realtor you want to get a hash for
 	 * @return int The hash code for the Realtor object
 	 */
 	public int getHash(Realtor realtor) {
@@ -124,70 +131,53 @@ public class RealtorLogImpl {
 		}
 		return hash;
 	}
-	
+
 	/**
-	 * Places a Realtor into the hash table, if we failed to insert return -1
+	 * Places a Realtor into the log, if we failed to insert return -1
 	 * 
-	 * @param realtor Realtor The realtor you insert into the table
-	 * @return int the index where the Realtor was placed
+	 * @param realtor
+	 *            Realtor The realtor you insert into the log
+	 * @return Realtor the Realtor which was placed in the log, null if Realtor
+	 *         wasn't placed in the log.
 	 */
-	public int add(Realtor realtor) {
-		if(!this.realtorSet.add(realtor)){
-			return -1;
+	public Realtor add(Realtor realtor) {
+		if (!this.realtorSet.add(realtor)) {
+			return null;
 		}
-		int hashCode = this.getHash(realtor);
-		int index = 0;
-		try {
-			index = this.insert(hashCode, realtor);
-			this.size++;
-			return index;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return -1;
+		if (this.binaryTree.add(realtor)) {
+			return realtor;
+		} else {
+			return null;
 		}
 	}
-	
+
 	/**
-	 * Trys to find the Realtor in the hash table using the Realtor license Number
-	 * if not found returns null
+	 * Trys to find the Realtor in the log using the Realtor license Number.
 	 * 
-	 * @param licenseNum String the license number of the realtor
-	 * @return Realtor The found Realtor
+	 * @param licenseNum
+	 *            String the license number of the Realtor
+	 * @return Realtor The found Realtor, null if not found.
 	 */
 	public Realtor find(String licenseNum) {
-		int hashCode = this.getHash(licenseNum);
-		int index = hashCode;
-
-		if (index < 0 || index > this.hashTable.length) {
-			index += this.hashTable.length;
-			hashCode = this.hashTable.length;
+		if (licenseNum == null) {
+			return null;
 		}
 
-		while (index < this.hashTable.length) {
-			if (this.hashTable[index] == null) {
-				return null;
-			}
-			Realtor realtor = this.hashTable[index];
-
-			if (realtor.getLicenseNum().equals(licenseNum)) {
-				return realtor;
-			}
-
-			index++;
-			if (index == hashCode) {
-				return null;
-			}
-
-			// wrap back around the array
-			if (index >= this.hashTable.length) {
-				index = 0;
-			}
-		}
-		return null;
+		Realtor realtor = new Realtor();
+		realtor.setLicenseNum(licenseNum);
+		return this.binaryTree.find(realtor);
 	}
-	
+
 	/**
-	 *  Displays a message of all the Realtors in the table and at which index
+	 * Displays all the data in the tree using preOrder Traverse
+	 */
+	public void traverseDisplay() {
+		System.out.println("Realtor List:");
+		System.out.println(this.binaryTree.toString());
+	}
+
+	/**
+	 * Displays a message of all the Realtors in the table and at which index
 	 */
 	public void displayHash() {
 		int index = 0;

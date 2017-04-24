@@ -12,9 +12,9 @@ import java.util.List;
  */
 public class TreeNode<E> implements Iterable<TreeNode<E>> {
 	
-	private E data;
-	private TreeNode<E> parent;
-	private List<TreeNode<E>> children;
+	protected E data;
+	protected TreeNode<E> left;
+	protected TreeNode<E> right;;
 	
 	/**
 	 * 
@@ -22,7 +22,8 @@ public class TreeNode<E> implements Iterable<TreeNode<E>> {
 	 */
 	public TreeNode(E data) {
         this.data = data;
-        this.children = new LinkedList<TreeNode<E>>();
+        this.right = null;
+        this.left = null;
     }
 	
 	/**
@@ -45,32 +46,38 @@ public class TreeNode<E> implements Iterable<TreeNode<E>> {
 	 * 
 	 * @return
 	 */
-	public TreeNode<E> getParent() {
-		return parent;
+	public TreeNode<E> getLeft() {
+		return this.left;
 	}
 	
 	/**
 	 * 
 	 * @param parent
 	 */
-	public void setParent(TreeNode<E> parent) {
-		this.parent = parent;
+	public void setLeft(TreeNode<E> left) {
+		this.left = left;
 	}
 	
 	/**
 	 * 
 	 * @return
 	 */
-	public List<TreeNode<E>> getChildren() {
-		return children;
+	public TreeNode<E> getRight() {
+		return this.right;
 	}
 	
 	/**
 	 * 
 	 * @param children
 	 */
-	public void setChildren(List<TreeNode<E>> children) {
-		this.children = children;
+	public void setRight(TreeNode<E> right) {
+		this.right = right;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return this.data.toString();
 	}
 
 	@Override

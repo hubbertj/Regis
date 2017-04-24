@@ -17,9 +17,9 @@ public class CS310Hubbert {
 	static RealtorLogImpl realtorLogImpl = new RealtorLogImpl();
 	static PropertyLogImpl propertyLogImpl = new PropertyLogImpl();
 
-	static final String INPUT_FILENAME_OFFICE = "input/assn5input1.txt";
+	static final String INPUT_FILENAME_OFFICE = "input/assn6input1.txt";
 	static final String INPUT_FILENAME_OFFICE_REQUEST = "input/realtorRequests1.txt";
-	static final String OUTPUT_FILENAME_OFFICE_REQUEST = "output/assn5salesReport.txt";
+	static final String OUTPUT_FILENAME_OFFICE_REQUEST = "output/assn6salesReport.txt";
 
 	/**
 	 * Reads the data from the INPUT FILE for office data only
@@ -175,8 +175,9 @@ public class CS310Hubbert {
 	 */
 	public static void main(String[] args) {
 		readOfficeData();
-		realtorLogImpl.displayHash();
-		propertyLogImpl.displayHash();
+		realtorLogImpl.traverseDisplay();
+		System.out.println();
+		propertyLogImpl.traverseDisplay();
 		Vector<MapEntry<Realtor, Vector<Property>>> vData = readOfficeRequestData();
 		PrintImpl printer = new PrintImpl(propertyLogImpl, realtorLogImpl, OUTPUT_FILENAME_OFFICE_REQUEST);
 		System.out.println("");

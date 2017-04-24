@@ -345,6 +345,15 @@ public class Property {
 	public void setAskingPrice(Double askingPrice) {
 		this.askingPrice = askingPrice;
 	}
+	
+	/**
+	 * 
+	 * @param property
+	 * @return
+	 */
+	public int compareTo(Property property){
+		return this.mlsNum.compareTo(property.getMlsNum());
+	}
 
 	/*
 	 * (non-Javadoc)

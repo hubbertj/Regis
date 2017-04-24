@@ -3,6 +3,8 @@ package cs310Hubbert;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.Vector;
 
 /**
@@ -13,6 +15,7 @@ public class PropertyLogImpl {
 	
 	private LinkedList<MapEntry<String, Property>>[] hashTable;
 	private HashMap<String, Property> propertyHashMap = new HashMap<String, Property>();
+	private TreeMap<String, Property> treeMap;
 	private int numKey;
 	private final int START_CAPACITY = 17;
 
@@ -23,6 +26,7 @@ public class PropertyLogImpl {
 	public PropertyLogImpl() {
 		super();
 		this.hashTable = new LinkedList[this.START_CAPACITY];
+		this.treeMap = new TreeMap<String, Property>();
 	}
 
 	/**
@@ -82,7 +86,7 @@ public class PropertyLogImpl {
 	}
 
 	/**
-	 * Adds a property to hash table using a hash code.
+	 * Adds a property to the log.
 	 * 
 	 * 
 	 * @param property
@@ -92,34 +96,22 @@ public class PropertyLogImpl {
 	 *         values if we inserted a new property this returns null
 	 */
 	public Property add(Property property) {
-		this.propertyHashMap.put(property.getMlsNum(), property);
-		int hashCode = this.getHashCode(property.getMlsNum());
-		return this.insert(hashCode, new MapEntry<String, Property>(property.getMlsNum(), property));
+		return this.treeMap.put(property.getMlsNum(), property);
 	}
 
 	/**
-	 * Finds a property in the hash table using a MLS number
+	 * Finds a property in the log using a MLS number
 	 * 
 	 * @param mls
 	 *            String a number which is unique to a property
 	 * @return Property if found returns the property is not returns null
 	 */
 	public Property find(String mls) {
-		int index = this.getHashCode(mls);
-		if (index < 0 || index > this.hashTable.length) {
-			index += this.hashTable.length;
-		}
-
-		if (this.hashTable[index] == null) {
+		if(mls == null){
 			return null;
 		}
 
-		for (MapEntry<String, Property> nextItem : this.hashTable[index]) {
-			if (nextItem.key.equals(mls)) {
-				return nextItem.value;
-			}
-		}
-		return null;
+		return this.treeMap.get(mls);
 	}
 
 	/**
@@ -150,6 +142,16 @@ public class PropertyLogImpl {
 			}
 
 			index++;
+		}
+	}
+	
+	/**
+	 *  Displays all data in the tree map.
+	 */
+	public void traverseDisplay() {
+		System.out.println("Property List:");
+		for (Map.Entry<String, Property> entry : this.treeMap.entrySet()) {
+		     System.out.println(entry.getValue().toString());
 		}
 	}
 

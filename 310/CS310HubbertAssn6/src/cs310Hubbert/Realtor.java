@@ -181,6 +181,16 @@ public class Realtor {
 	public void setCommission(Double commission) {
 		this.commission = commission;
 	}
+	
+	/**
+	 * 
+	 * @param realtor
+	 * @return
+	 */
+	public int compareTo(Realtor realtor){
+		return this.licenseNum.compareTo(realtor.getLicenseNum());
+	}
+
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
