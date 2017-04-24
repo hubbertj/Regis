@@ -13,23 +13,15 @@ import cs310Hubbert.PropertyLogImpl.MapEntry;
 public class PrintImpl {
 
 	private String fileName = null;
-	private PropertyLogImpl propertyLog;
-	private RealtorLogImpl realtorLog;
 
 	/**
 	 * Constructor which creates our data for the list which are passed in.
 	 * 
-	 * @param propertyLogImpl
-	 *            PropertyLogImpl A Log of properties
-	 * @param realtorLogImpl
-	 *            RealtorLogImpl A Log of Realtors
 	 * @param fileName
 	 *            String the name of the file the report will be saved too.
 	 */
-	public PrintImpl(PropertyLogImpl propertyLogImpl, RealtorLogImpl realtorLogImpl, String fileName) {
+	public PrintImpl(String fileName) {
 		this.fileName = fileName;
-		this.propertyLog = propertyLogImpl;
-		this.realtorLog = realtorLogImpl;
 	}
 
 	/**
@@ -55,7 +47,8 @@ public class PrintImpl {
 	 * This method prints a request report for the office This will list
 	 * Realtors and properties they want reported on.
 	 * 
-	 * @param vData Vector of all data need for this report
+	 * @param vData
+	 *            Vector of all data need for this report
 	 */
 	public void printOfficeRequestReport(Vector<MapEntry<Realtor, Vector<Property>>> vData) {
 		try {

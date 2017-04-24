@@ -12,7 +12,7 @@ public class Realtor {
 	private Double commission;
 
 	/**
-	 *  A blank constructor for the Realtor object.
+	 * A blank constructor for the Realtor object.
 	 */
 	public Realtor() {
 		super();
@@ -23,11 +23,16 @@ public class Realtor {
 	 * 
 	 * 
 	 * 
-	 * @param licenseNum String the license number for the Realtor
-	 * @param firstName String the first name of the Realtor
-	 * @param lastName String the last name of the Realtor
-	 * @param phoneNum String office phone of the Realtor
-	 * @param commission Double the amount of money the Realtor makes on sales
+	 * @param licenseNum
+	 *            String the license number for the Realtor
+	 * @param firstName
+	 *            String the first name of the Realtor
+	 * @param lastName
+	 *            String the last name of the Realtor
+	 * @param phoneNum
+	 *            String office phone of the Realtor
+	 * @param commission
+	 *            Double the amount of money the Realtor makes on sales
 	 */
 	public Realtor(String licenseNum, String firstName, String lastName, String phoneNum, Double commission) {
 		super();
@@ -39,14 +44,18 @@ public class Realtor {
 	}
 
 	/**
-	 * @param realtorArr String[] Array which hold all needed values to create a Realtor
+	 * @param realtorArr
+	 *            String[] Array which hold all needed values to create a
+	 *            Realtor
 	 */
 	public Realtor(String[] realtorArr) {
 		this.setRealtorAttributes(realtorArr);
 	}
 
 	/**
-	 * @param arr String[] Array which hold all needed values to create a Realtor
+	 * @param arr
+	 *            String[] Array which hold all needed values to create a
+	 *            Realtor
 	 */
 	private void setRealtorAttributes(String[] arr) {
 		this.setLicenseNum(arr[0]);
@@ -61,7 +70,8 @@ public class Realtor {
 	 * requirements.
 	 * 
 	 * 
-	 * @param licenseNum String the license number for the Realtor
+	 * @param licenseNum
+	 *            String the license number for the Realtor
 	 * @return Boolean true if license number is valid
 	 */
 	public Boolean isLicenseNumValid(String licenseNum) {
@@ -82,11 +92,11 @@ public class Realtor {
 	}
 
 	/**
-	 * This method check to see if the Realtor phone number meets
-	 * requirements.
+	 * This method check to see if the Realtor phone number meets requirements.
 	 * 
 	 * 
-	 * @param phoneNum String office phone of the Realtor
+	 * @param phoneNum
+	 *            String office phone of the Realtor
 	 * @return Boolean true if phone number is valid
 	 */
 	public Boolean isPhoneNumValid(String phoneNum) {
@@ -108,7 +118,8 @@ public class Realtor {
 	/**
 	 * Sets the license number
 	 * 
-	 * @param licenseNum String the license number for the Realtor
+	 * @param licenseNum
+	 *            String the license number for the Realtor
 	 */
 	public void setLicenseNum(String licenseNum) {
 		this.licenseNum = licenseNum;
@@ -117,7 +128,8 @@ public class Realtor {
 	/**
 	 * Sets the phone number
 	 * 
-	 * @param phoneNum String office phone of the Realtor
+	 * @param phoneNum
+	 *            String office phone of the Realtor
 	 */
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
@@ -135,7 +147,8 @@ public class Realtor {
 	/**
 	 * Sets the first name
 	 * 
-	 * @param firstName String first name of Realtor
+	 * @param firstName
+	 *            String first name of Realtor
 	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -151,7 +164,8 @@ public class Realtor {
 	/**
 	 * Sets the last name
 	 * 
-	 * @param lastName String last name of Realtor
+	 * @param lastName
+	 *            String last name of Realtor
 	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
@@ -176,23 +190,31 @@ public class Realtor {
 	/**
 	 * Sets the commission for the Realtor
 	 * 
-	 * @param commission Double The amount a Realtor makes on a sale
+	 * @param commission
+	 *            Double The amount a Realtor makes on a sale
 	 */
 	public void setCommission(Double commission) {
 		this.commission = commission;
 	}
-	
+
 	/**
 	 * 
+	 * The result is a positive integer if this String object lexicographically
+	 * follows the argument string. The result is zero if the strings are equal;
+	 * compareTo returns 0 exactly when the equals(Object) method would return
+	 * true.
+	 * 
 	 * @param realtor
-	 * @return
+	 *            A Realtor object
+	 * @return int A representation of equality
 	 */
-	public int compareTo(Realtor realtor){
+	public int compareTo(Realtor realtor) {
 		return this.licenseNum.compareTo(realtor.getLicenseNum());
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -212,7 +234,9 @@ public class Realtor {
 		return false;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

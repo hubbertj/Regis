@@ -1,35 +1,33 @@
 package cs310Hubbert;
 
-import java.io.Serializable;
-
 /**
  * 
- * @author Jay
+ * @author Jerum Hubbert
  *
  */
-public class BinaryTree<T> implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class BinaryTree<T> {
 
 	private TreeNode<T> root;
 	private Boolean addReturn = false;
 
 	/**
+	 * Constructor that sets the root of the tree
 	 * 
-	 * @param node
+	 * @param node TreeNode The root of the tree
 	 */
 	public BinaryTree(TreeNode<T> node) {
 		this.root = node;
 	}
 
 	/**
+	 * Constructor that sets the root data, leftTree, and rightTree
 	 * 
 	 * @param data
-	 * @param left
-	 * @param right
+	 *            The data The data from the root.
+	 * @param leftTree
+	 *            The left tree to be set.
+	 * @param rightTree
+	 *            The right tree to be set.
 	 */
 	public BinaryTree(T data, BinaryTree<T> leftTree, BinaryTree<T> rightTree) {
 		this.root = new TreeNode<T>(data);
@@ -48,46 +46,29 @@ public class BinaryTree<T> implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Constructor a blank constructor
 	 */
 	public BinaryTree() {
 		this(null);
 	}
 
 	/**
+	 * Gets the tree root
 	 * 
-	 * @return
+	 * @return TreeNode The root of the tree
 	 */
 	public TreeNode<T> getRoot() {
 		return root;
 	}
 
 	/**
+	 * Sets the tree root
 	 * 
 	 * @param root
+	 *            TreeNode The root of the tree
 	 */
 	public void setRoot(TreeNode<T> root) {
 		this.root = root;
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public BinaryTree<T> getLeftSubTree() {
-		if (this.root != null && this.root.getLeft() != null) {
-			return new BinaryTree<T>(this.root.getLeft());
-		} else {
-			return null;
-		}
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public boolean isLeaf() {
-		return (this.root.getLeft() == null && this.root.getRight() == null);
 	}
 
 	@Override
@@ -105,7 +86,7 @@ public class BinaryTree<T> implements Serializable {
 	/**
 	 * Find data using binary search
 	 * 
-	 * @param fTarget
+	 * @param fTarget The target we are trying to find
 	 * @return T The type which BinaryTree class is built for, null is target
 	 *         was not found.
 	 */
@@ -143,10 +124,6 @@ public class BinaryTree<T> implements Serializable {
 	}
 
 	private void preOrderTraverse(TreeNode<T> aNode, int depth, StringBuilder str) {
-		// for (int x = 1; x < depth; x++) {
-		// str.append(" ");
-		// }
-
 		if (aNode != null) {
 			str.append(aNode.toString());
 			str.append("\n");
@@ -156,9 +133,10 @@ public class BinaryTree<T> implements Serializable {
 	}
 
 	/**
+	 * Adds a item to the correct order in the binary tree
 	 * 
-	 * @param item
-	 * @return
+	 * @param  item T The item you want to add to the tree
+	 * @return Boolean True if the item was added, false if it was not.
 	 */
 	public Boolean add(T item) {
 		this.root = add(this.root, item);

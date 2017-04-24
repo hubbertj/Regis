@@ -345,13 +345,19 @@ public class Property {
 	public void setAskingPrice(Double askingPrice) {
 		this.askingPrice = askingPrice;
 	}
-	
+
 	/**
 	 * 
+	 * The result is a positive integer if this String object lexicographically
+	 * follows the argument string. The result is zero if the strings are equal;
+	 * compareTo returns 0 exactly when the equals(Object) method would return
+	 * true.
+	 * 
 	 * @param property
-	 * @return
+	 *            A property object
+	 * @return int A representation of equality 
 	 */
-	public int compareTo(Property property){
+	public int compareTo(Property property) {
 		return this.mlsNum.compareTo(property.getMlsNum());
 	}
 

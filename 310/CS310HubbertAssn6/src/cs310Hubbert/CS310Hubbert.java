@@ -179,7 +179,7 @@ public class CS310Hubbert {
 		System.out.println();
 		propertyLogImpl.traverseDisplay();
 		Vector<MapEntry<Realtor, Vector<Property>>> vData = readOfficeRequestData();
-		PrintImpl printer = new PrintImpl(propertyLogImpl, realtorLogImpl, OUTPUT_FILENAME_OFFICE_REQUEST);
+		PrintImpl printer = new PrintImpl(OUTPUT_FILENAME_OFFICE_REQUEST);
 		System.out.println("");
 		printer.printOfficeRequestReport(vData);
 	}
