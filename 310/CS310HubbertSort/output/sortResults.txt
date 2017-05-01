@@ -1,6 +1,6 @@
 SORTING RESULTS
 ---------------
 				Run 1	Run 2	Run 3	Average
-Bubble Sort		23.0ms	23.0ms	23.0ms	23.0ms	
-Bubble Sort		23.0ms	23.0ms	23.0ms	23.0ms	
-Bubble Sort		23.0ms	23.0ms	23.0ms	23.0ms	
+Bubble Sort		22539641984ms	21453189706ms	24522058693ms	17128722595ms	
+Insertion Sort		6279038359ms	7368455056ms	7309627770ms	5239280296ms	
+Merge Sort		41457301ms	17454801ms	11160886ms	17518247ms	
