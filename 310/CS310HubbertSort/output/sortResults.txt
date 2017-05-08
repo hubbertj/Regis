@@ -1,6 +1,6 @@
 SORTING RESULTS
 ---------------
                     Run 1               Run 2               Run 3               Average             
-Bubble Sort         21493651055ns       21013050765ns       23862948369ns       22123216729ns       
-Insertion Sort      7186478279ns        6016273924ns        6650242327ns        6617664843ns        
-Merge Sort          41263820ns          11651952ns          14955727ns          22623833ns          
+Bubble Sort         26905914409ns       26379859096ns       22869430515ns       25385068006ns       
+Insertion Sort      7049453041ns        5937656367ns        6083283807ns        6356797738ns        
+Merge Sort          42745566ns          13856819ns          18259785ns          24954056ns          
