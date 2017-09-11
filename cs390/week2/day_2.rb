@@ -3,6 +3,7 @@
 
 # Write a simple grep that will print the lines of a file having any occurrences of a 
 # phrase anywhere in that line.  You will need to do a simple, regular expression match and read lines from a file.
+require 'enumerator'
 
 puts "Creating a array for random 16 numbers between 1 - 100"
 $main_arr = Array.new(16) { rand(1...100) }
@@ -18,6 +19,19 @@ $main_arr.each do |i|
    end
    $counter += 1
 end
+
+puts "Printing array of length 16, 4 numbers at a time using “each_slice”"
+$main_arr.each_slice(4).with_index { |(a, b, c, d), i| 
+	if b == nil
+		puts "#{a}"
+	elsif c == nil
+		puts "#{a}, #{b}"
+	elsif d == nil
+		puts "#{a}, #{b}, #{c}"
+	else
+		puts "#{a}, #{b}, #{c}, #{d}"
+	end 
+	}
 
 def grep_file()
 	line_count = 0
