@@ -1,4 +1,4 @@
-# Revision history for week7
+# Revision history for hubbert-week7
 
 ## 0.1.0.0  -- YYYY-mm-dd
 
