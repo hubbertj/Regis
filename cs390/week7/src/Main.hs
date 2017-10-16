@@ -9,10 +9,40 @@ import System.Random
 -- 3. Write a function that takes an argument x and returns a lazy sequence that has every third number, starting with x.  Then, write a function that includes every fifth number, beginning with y.  Combine these functions through composition to return every eighth number, beginning with x+y.
 -- 4. Test this function using a variety of x and y values.
 
+-- reverse my list
+reverse_my_list :: [Int] -> [Int]
+reverse_my_list [] = []
+reverse_my_list (x:xs) = reverse_my_list xs ++ [x]
+
+-- sort a list using merge sort
+doMergeSort :: Ord a => [a] -> [a]
+doMergeSort [] = []
+doMergeSort [x] = [x]
+doMergeSort xs = mergeSort (doMergeSort (appendList xs)) (doMergeSort (prependList xs))
+
+-- Slips a list by x and returns the first part.
+cutList :: Int -> [a] -> [a]
+cutList z xs = take (length xs `div` z) xs
+
+-- Slips a list by 2 and returns the first part.
+appendList :: [a] -> [a]
+appendList xs = take (length xs `div` 2) xs
+
+-- Slips a list by 2 and returns the last part.
+prependList :: [a] -> [a]
+prependList xs = drop (length xs `div` 2) xs
+
+-- bulk work for merge sort
+mergeSort :: Ord a => [a] -> [a] -> [a]
+mergeSort xs [] = xs
+mergeSort [] ys = ys
+mergeSort (x:xs) (y:ys) 
+    | (x <= y)  = x:(mergeSort xs (y:ys)) 
+    | otherwise = y:(mergeSort (x:xs) ys)
+
 -- generates a IO Int 1 - 100
 randomInt :: IO Int
 randomInt = randomRIO (1, 100) :: IO Int
-
 
 
 main :: IO ()
@@ -47,5 +77,5 @@ main = do
     print masterList
 
     putStrLn "Write a sort that takes a list and a function that compares its two arguments and then returns a sorted list"
-    
+
     putStrLn "End"
