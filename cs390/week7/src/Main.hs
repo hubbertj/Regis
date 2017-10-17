@@ -9,6 +9,16 @@ import System.Random
 -- 3. Write a function that takes an argument x and returns a lazy sequence that has every third number, starting with x.  Then, write a function that includes every fifth number, beginning with y.  Combine these functions through composition to return every eighth number, beginning with x+y.
 -- 4. Test this function using a variety of x and y values.
 
+optionalSort :: [a] -> (a -> b) -> [b]
+optionalSort [] _ =  []
+optionalSort (x:xs) fun = fun x : optionalSort xs fun
+
+aCompare :: Int -> Int -> [Int]
+aCompare x y = 
+    if x > y || y == x
+        then [y, x] 
+        else [x, y] 
+
 -- reverse my list
 reverse_my_list :: [Int] -> [Int]
 reverse_my_list [] = []
@@ -77,5 +87,8 @@ main = do
     print masterList
 
     putStrLn "Write a sort that takes a list and a function that compares its two arguments and then returns a sorted list"
+
+    let sortList = optionalSort masterList aCompare
+    -- print sortList
 
     putStrLn "End"
