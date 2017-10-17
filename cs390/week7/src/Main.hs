@@ -9,26 +9,21 @@ import System.Random
 -- 3. Write a function that takes an argument x and returns a lazy sequence that has every third number, starting with x.  Then, write a function that includes every fifth number, beginning with y.  Combine these functions through composition to return every eighth number, beginning with x+y.
 -- 4. Test this function using a variety of x and y values.
 
-optionalSort :: [a] -> (a -> b) -> [b]
-optionalSort [] _ =  []
-optionalSort (x:xs) fun = fun x : optionalSort xs fun
 
-aCompare :: Int -> Int -> [Int]
-aCompare x y = 
-    if x > y || y == x
-        then [y, x] 
-        else [x, y] 
-
--- reverse my list
-reverse_my_list :: [Int] -> [Int]
-reverse_my_list [] = []
-reverse_my_list (x:xs) = reverse_my_list xs ++ [x]
-
--- sort a list using merge sort
+-- Write a sort that takes a list
 doMergeSort :: Ord a => [a] -> [a]
 doMergeSort [] = []
 doMergeSort [x] = [x]
 doMergeSort xs = mergeSort (doMergeSort (appendList xs)) (doMergeSort (prependList xs))
+
+-- a function that compares its two arguments and then returns a sorted list
+mergeSort :: Ord a => [a] -> [a] -> [a]
+mergeSort xs [] = xs
+mergeSort [] ys = ys
+mergeSort (x:xs) (y:ys) 
+    | (x <= y)  = x:(mergeSort xs (y:ys)) 
+    | otherwise = y:(mergeSort (x:xs) ys)
+
 
 -- Slips a list by x and returns the first part.
 cutList :: Int -> [a] -> [a]
@@ -42,17 +37,25 @@ appendList xs = take (length xs `div` 2) xs
 prependList :: [a] -> [a]
 prependList xs = drop (length xs `div` 2) xs
 
--- bulk work for merge sort
-mergeSort :: Ord a => [a] -> [a] -> [a]
-mergeSort xs [] = xs
-mergeSort [] ys = ys
-mergeSort (x:xs) (y:ys) 
-    | (x <= y)  = x:(mergeSort xs (y:ys)) 
-    | otherwise = y:(mergeSort (x:xs) ys)
-
 -- generates a IO Int 1 - 100
 randomInt :: IO Int
 randomInt = randomRIO (1, 100) :: IO Int
+
+-- Write a function that takes an argument x and returns a lazy sequence that has every third number, starting with x.
+--  Then, write a function that includes every fifth number, beginning with y. 
+-- Combine these functions through composition to return every eighth number, beginning with x+y.
+thirdLazySequence :: Int -> [Int] 
+thirdLazySequence x = [x, (3 + x) ..]
+
+fifthLazySequence :: Int -> [Int] 
+fifthLazySequence y = [y, (5 + y) ..]
+
+everyEightNum :: Int -> Int -> [Int]
+everyEightNum x y = zipWith (+) (thirdLazySequence x) $ fifthLazySequence y
+
+
+-- combineStr :: String -> String -> String
+-- combineStr = ("const" ++)
 
 
 main :: IO ()
@@ -85,10 +88,35 @@ main = do
     var23 <- randomInt
     let masterList = var:var1:var2:var3:var4:var5:var6:var7:var8:var9:var10:var11:var12:var13:var14:var15:var16:var17:var18:var19:var20:var21:var22:var23:[]
     print masterList
+    putStrLn(" ")
 
     putStrLn "Write a sort that takes a list and a function that compares its two arguments and then returns a sorted list"
+    let sortList = doMergeSort masterList
+    print sortList
+    putStrLn(" ")
 
-    let sortList = optionalSort masterList aCompare
-    -- print sortList
+    putStrLn "Write a function that takes an argument x and returns a lazy sequence that has every third number, starting with x."
+    randomNumx <- randomInt
+    putStrLn("Starting with " ++(show randomNumx))
+    let threeListSequenceList = thirdLazySequence randomNumx
+    let threeList = take 10 threeListSequenceList
+    print threeList
+    putStrLn(" ")
+
+    putStrLn "Write a function that includes every fifth number, beginning with y."
+    randomNumy <- randomInt
+    putStrLn("Starting with " ++(show randomNumy))
+    let fiveListSequenceList = fifthLazySequence randomNumy
+    let fiveList = take 10 fiveListSequenceList
+    print fiveList
+    putStrLn(" ")
+
+    putStrLn "Combine these functions through composition to return every eighth number, beginning with x + y."
+
+    putStrLn("Using " ++ (show randomNumx) ++ " and " ++ (show randomNumy) ++ " starting with " ++ (show (randomNumx + randomNumy)))
+    let everyEightSequenceList = everyEightNum randomNumx randomNumy
+    let everyEightList = take 10 everyEightSequenceList
+    print everyEightList
+    putStrLn(" ")
 
     putStrLn "End"
