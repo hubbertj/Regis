@@ -54,8 +54,12 @@ everyEightNum :: Int -> Int -> [Int]
 everyEightNum x y = zipWith (+) (thirdLazySequence x) $ fifthLazySequence y
 
 
--- combineStr :: String -> String -> String
--- combineStr = ("const" ++)
+-- Write a sort that takes a list and a function that compares its two arguments and then returns a sorted list.
+sortListBy fun [] = []
+sortListBy fun (h:t) = insert fun h (sortListBy fun t)
+  where
+  insert fun i [] = [i]
+  insert fun i (sh:st) = if (fun i sh) then i:sh:st else sh:(insert fun i st)
 
 
 main :: IO ()
