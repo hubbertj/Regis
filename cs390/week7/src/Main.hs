@@ -13,6 +13,9 @@ import System.Random
 randomInt :: IO Int
 randomInt = randomRIO (1, 100) :: IO Int
 
+randomIntWithInt :: Int -> IO Int
+randomIntWithInt x = randomRIO (1, x) :: IO Int
+
 -- Write a function that takes an argument x and returns a lazy sequence that has every third number, starting with x.
 --  Then, write a function that includes every fifth number, beginning with y. 
 -- Combine these functions through composition to return every eighth number, beginning with x+y.
@@ -78,13 +81,37 @@ main = do
     print masterList
     putStrLn(" ")
 
-    -- putStrLn "Write a sort that takes a list and a function that compares its two arguments and then returns a sorted list"
-    -- let sortList = doMergeSort masterList
-    -- print sortList
-    -- putStrLn(" ")
-
     putStrLn "Write a sort that takes a list and a function that compares its two arguments and then returns a sorted list"
     let sortList = optionalSort aCompare masterList
+    print sortList
+    putStrLn(" ")
+
+    putStrLn "Test the new sort function with various comparisons, different lists, and lengths of lists"
+    putStrLn(" ")
+    size <- randomIntWithInt (length masterList)
+    putStrLn ("New list size = " ++ (show size))
+    let lista = take size masterList
+    print lista
+    putStrLn("sorted")
+    let sortList = optionalSort aCompare lista
+    print sortList
+    putStrLn(" ")
+
+    size <- randomIntWithInt (length masterList)
+    putStrLn ("New list size = " ++ (show size))
+    let lista = take size masterList
+    print lista
+    putStrLn("sorted")
+    let sortList = optionalSort aCompare lista
+    print sortList
+    putStrLn(" ")
+
+    size <- randomIntWithInt (length masterList)
+    putStrLn ("New list size = " ++ (show size))
+    let lista = take size masterList
+    print lista
+    putStrLn("sorted")
+    let sortList = optionalSort aCompare lista
     print sortList
     putStrLn(" ")
 
