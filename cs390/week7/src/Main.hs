@@ -140,7 +140,4 @@ main = do
     print everyEightList
     putStrLn(" ")
 
-
-    putStrLn (show $ aCompare 10 20)
-
     putStrLn "End"
