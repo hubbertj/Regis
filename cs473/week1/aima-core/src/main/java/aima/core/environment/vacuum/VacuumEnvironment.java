@@ -6,6 +6,7 @@ import aima.core.agent.EnvironmentState;
 import aima.core.agent.Percept;
 import aima.core.agent.impl.AbstractEnvironment;
 import aima.core.agent.impl.DynamicAction;
+import aima.core.environment.vacuum.VacuumEnvironment.LocationState;
 import aima.core.search.agent.NondeterministicSearchAgent;
 import aima.core.util.Util;
 
@@ -32,9 +33,17 @@ public class VacuumEnvironment extends AbstractEnvironment {
 	// Allowable Actions within the Vacuum Environment
 	public static final Action ACTION_MOVE_LEFT = new DynamicAction("Left");
 	public static final Action ACTION_MOVE_RIGHT = new DynamicAction("Right");
+	public static final Action ACTION_MOVE_UP= new DynamicAction("Up");
+	public static final Action ACTION_MOVE_DOWN = new DynamicAction("Down");
 	public static final Action ACTION_SUCK = new DynamicAction("Suck");
 	public static final String LOCATION_A = "A";
 	public static final String LOCATION_B = "B";
+	public static final String LOCATION_C = "C";
+	public static final String LOCATION_D = "D";
+	public static final String LOCATION_E = "E";
+	public static final String LOCATION_F = "F";
+	public static final String LOCATION_G = "G";
+	public static final String LOCATION_H = "H";
 
 	public enum LocationState {
 		Clean, Dirty
@@ -66,6 +75,25 @@ public class VacuumEnvironment extends AbstractEnvironment {
 	 */
 	public VacuumEnvironment(LocationState locAState, LocationState locBState) {
 		this(Arrays.asList(LOCATION_A, LOCATION_B), locAState, locBState);
+	}
+	
+	/**
+	 * Used for the house option
+	 * 
+	 * @param locAState
+	 * @param locBState
+	 * @param locCState
+	 * @param locDState
+	 * @param locEState
+	 * @param locFState
+	 * @param locGState
+	 * @param locHState
+	 */
+	public VacuumEnvironment(LocationState locAState, LocationState locBState, LocationState locCState,
+			LocationState locDState, LocationState locEState, LocationState locFState, LocationState locGState,
+			LocationState locHState) {
+		this(Arrays.asList(LOCATION_A, LOCATION_B, LOCATION_C, LOCATION_D, LOCATION_E, LOCATION_F, LOCATION_G,
+				LOCATION_H), locAState, locBState, locCState, locDState, locEState, locFState, locGState, locHState);
 	}
 
 	/**

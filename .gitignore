@@ -30,7 +30,7 @@
 /310/CS310HubbertSort/dist/
 
 #eclipse and java
-.classpath
+*.classpath
 .project
 .settings
 
