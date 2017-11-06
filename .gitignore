@@ -29,6 +29,11 @@
 /310/CS310HubbertSort/build/
 /310/CS310HubbertSort/dist/
 
+#eclipse and java
+.classpath
+.project
+.settings
+
 #haskell
 dist
 dist-*
