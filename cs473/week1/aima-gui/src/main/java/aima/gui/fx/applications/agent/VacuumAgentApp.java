@@ -1,20 +1,3 @@
-
-/** Jerum Hubbert
- *  CS 473 
- *  Topic 2
- *  
- *  The Participation assignment in this Topic listed a number of simplifications made in the design of the Vacuum World Simulator example found in the Reinforcement Activities associated with this Topic. In this Assignment, you must extend the design and implementation of this Vacuum World Simulator to remove one of the following simplifications by:
-
-	Extending the design and implementation so that it handles multiple locations, such as vacuuming the rooms in a house
-	Extending the design and implementation so that the rules are not hard-coded in the agent program.
-	Extending the design and implementation so there is another agent that makes messes (Dirt?) that must be cleaned up.
-	In each case, you must also design the performance measures that should be used to assess whether the agent is behaving rationally.
-	
-	
-	I have decide to take on the task of
-	Extending the design and implementation so that it handles multiple locations, such as vacuuming the rooms in a house
- * 
- */
 package aima.gui.fx.applications.agent;
 
 import aima.core.agent.Action;
@@ -33,12 +16,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
-import java.awt.Color;
-import java.awt.Label;
-import java.awt.Rectangle;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Integrable application which demonstrates how different kinds of vacuum
+ * cleaner agents behave in a two square environment.
+ *
+ * @author Ruediger Lunde
+ */
 public class VacuumAgentApp extends IntegrableApplication {
 
     public static void main(String[] args) {
@@ -67,14 +53,10 @@ public class VacuumAgentApp extends IntegrableApplication {
         BorderPane root = new BorderPane();
 
         StackPane envView = new StackPane();
-        StackPane stack = new StackPane();
-        stack.getChildren().add(new Rectangle(), new Label("Go!"));
-//        stack.getChildren().add(new Rectangle(), new Label("Go!"));
-        
         envViewCtrl = new VacuumEnvironmentViewCtrl(envView);
-//
+
         List<Parameter> params = createParameters();
-//
+
         TaskExecutionPaneBuilder builder = new TaskExecutionPaneBuilder();
         builder.defineParameters(params);
         builder.defineStateView(envView);
@@ -86,7 +68,7 @@ public class VacuumAgentApp extends IntegrableApplication {
     }
 
     protected List<Parameter> createParameters() {
-        Parameter p1 = new Parameter(PARAM_ENV, "A/B Deterministic Environment", "A/B Non-Deterministic Environment", "House Deterministic Environment", "House Non-Deterministic Environment");
+        Parameter p1 = new Parameter(PARAM_ENV, "A/B Deterministic Environment", "A/B Non-Deterministic Environment");
         Parameter p2 = new Parameter(PARAM_AGENT, "TableDrivenVacuumAgent", "ReflexVacuumAgent",
                 "SimpleReflexVacuumAgent", "ModelBasedReflexVacuumAgent", "NondeterministicVacuumAgent");
         return Arrays.asList(p1, p2);
@@ -104,12 +86,6 @@ public class VacuumAgentApp extends IntegrableApplication {
                 break;
             case 1:
                 env = new NondeterministicVacuumEnvironment();
-                break;
-            case 2:
-                env = new NondeterministicHouseVacuumEnvironment();
-                break;
-            case 3:
-                env = new NondeterministicHouseVacuumEnvironment();
                 break;
         }
         agent = null;

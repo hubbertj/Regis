@@ -79,12 +79,6 @@ public class VacuumView extends EmptyEnvironmentView {
 		if (env != null) {
 			result.add(VacuumEnvironment.LOCATION_A);
 			result.add(VacuumEnvironment.LOCATION_B);
-			result.add(VacuumEnvironment.LOCATION_C);
-			result.add(VacuumEnvironment.LOCATION_D);
-			result.add(VacuumEnvironment.LOCATION_E);
-			result.add(VacuumEnvironment.LOCATION_F);
-			result.add(VacuumEnvironment.LOCATION_G);
-			result.add(VacuumEnvironment.LOCATION_H);
 		}
 		return result;
 	}

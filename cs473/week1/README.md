@@ -6,7 +6,7 @@ Java implementation of algorithms from [Russell](http://www.cs.berkeley.edu/~rus
   * [Interested in Contributing](https://github.com/aimacode/aima-java/wiki/AIMAJava-Contributing)
   * [Setting up your own workspace](https://github.com/aimacode/aima-java/wiki/AIMA3e-Workspace-Setup).
   * [Demo Applications that can be run from your browser](http://aimacode.github.io/aima-java/aima3e/aima3ejavademos.html).
-  * [Comments on architecture and design](https://github.com/aimacode/aima-java/wiki/AIMA3e-Architecture-%26-Design).
+  * [Comments on architecture and design](https://github.com/aimacode/aima-java/wiki/AIMA3e-Architecture-and-Design).
   * [Javadoc for the aima-core project](http://aimacode.github.io/aima-java/aima3e/javadoc/aima-core/index.html).
   * [Download the latest official version  = 1.9.1 (Dec 18 2016)](https://github.com/aimacode/aima-java/releases/tag/aima3e-v1.9.1).
   * Latest Maven Information (for integration as a third party library)<br>
@@ -31,7 +31,7 @@ Java implementation of algorithms from [Russell](http://www.cs.berkeley.edu/~rus
 |2.10|49|Simple-Reflex-Agent|[SimpleReflexAgentProgram](/aima-core/src/main/java/aima/core/agent/impl/aprog/SimpleReflexAgentProgram.java)|
 |2.12|51|Model-Based-Reflex-Agent|[ModelBasedReflexAgentProgram](/aima-core/src/main/java/aima/core/agent/impl/aprog/ModelBasedReflexAgentProgram.java)|
 |3|66|Problem|[Problem](/aima-core/src/main/java/aima/core/search/framework/problem/Problem.java)|
-|3.1|67|Simple-Problem-Solving-Agent|[SimpleProblemSolvingAgent](/aima-core/src/main/java/aima/core/search/framework/SimpleProblemSolvingAgent.java)|
+|3.1|67|Simple-Problem-Solving-Agent|[SimpleProblemSolvingAgent](/aima-core/src/main/java/aima/core/search/agent/SimpleProblemSolvingAgent.java)|
 |3.2|68|Romania|[SimplifiedRoadMapOfPartOfRomania](/aima-core/src/main/java/aima/core/environment/map/SimplifiedRoadMapOfPartOfRomania.java)|
 |3.7|77|Tree-Search|[TreeSearch](/aima-core/src/main/java/aima/core/search/framework/qsearch/TreeSearch.java)|
 |3.7|77|Graph-Search|[GraphSearch](/aima-core/src/main/java/aima/core/search/framework/qsearch/GraphSearch.java)|
@@ -120,3 +120,5 @@ Java implementation of algorithms from [Russell](http://www.cs.berkeley.edu/~rus
 |22.1|871|HITS|[HITS](/aima-core/src/main/java/aima/core/nlp/ranking/HITS.java)|
 |23.5|894|CYK-Parse|[CYK](/aima-core/src/main/java/aima/core/nlp/parsing/CYK.java)|
 |25.9|982|Monte-Carlo-Localization|[MonteCarloLocalization](/aima-core/src/main/java/aima/core/robotics/MonteCarloLocalization.java)|
+
+###  "---" indicates algorithms yet to be implemented.
