@@ -35,7 +35,7 @@ public class AndOrSearchTest {
     public void setUp() {
         // create agent and world (init state: both rooms are dirty and the vacuum is in room A)
         agent = new NondeterministicSearchAgent<>(percept -> (VacuumEnvironmentState) percept); // percept == env state!
-        world = new NondeterministicVacuumEnvironment(LocationState.Dirty, LocationState.Dirty);
+        world = new NondeterministicVacuumEnvironment(LocationState.Dirty, LocationState.Dirty, LocationState.Clean, LocationState.Clean);
         world.addAgent(agent, LOCATION_A);
 
         // create problem

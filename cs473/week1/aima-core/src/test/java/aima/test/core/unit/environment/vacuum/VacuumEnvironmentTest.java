@@ -19,13 +19,13 @@ public class VacuumEnvironmentTest {
 	@Before
 	public void setUp() {
 		tve = new VacuumEnvironment(VacuumEnvironment.LocationState.Dirty,
-				VacuumEnvironment.LocationState.Dirty);
+				VacuumEnvironment.LocationState.Dirty,VacuumEnvironment.LocationState.Clean,VacuumEnvironment.LocationState.Clean);
 		tve2 = new VacuumEnvironment(VacuumEnvironment.LocationState.Clean,
-				VacuumEnvironment.LocationState.Clean);
+				VacuumEnvironment.LocationState.Clean,VacuumEnvironment.LocationState.Clean,VacuumEnvironment.LocationState.Clean);
 		tve3 = new VacuumEnvironment(VacuumEnvironment.LocationState.Clean,
-				VacuumEnvironment.LocationState.Dirty);
+				VacuumEnvironment.LocationState.Dirty,VacuumEnvironment.LocationState.Clean,VacuumEnvironment.LocationState.Clean);
 		tve4 = new VacuumEnvironment(VacuumEnvironment.LocationState.Dirty,
-				VacuumEnvironment.LocationState.Clean);
+				VacuumEnvironment.LocationState.Clean,VacuumEnvironment.LocationState.Clean,VacuumEnvironment.LocationState.Clean);
 		a = new ModelBasedReflexVacuumAgent();
 	}
 

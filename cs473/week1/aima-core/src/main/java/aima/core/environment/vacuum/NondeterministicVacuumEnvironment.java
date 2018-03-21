@@ -31,8 +31,8 @@ public class NondeterministicVacuumEnvironment extends VacuumEnvironment {
      * @param locBState the initial state of location B, which is either
      * <em>Clean</em> or <em>Dirty</em>.
      */
-    public NondeterministicVacuumEnvironment(LocationState locAState, LocationState locBState) {
-        super(locAState, locBState);
+    public NondeterministicVacuumEnvironment(LocationState locAState, LocationState locBState, LocationState locCState, LocationState locDState) {
+        super(locAState, locBState, locCState, locDState);
     }
 
     /**

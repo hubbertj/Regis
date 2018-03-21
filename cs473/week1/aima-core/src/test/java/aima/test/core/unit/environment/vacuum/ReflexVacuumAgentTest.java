@@ -27,7 +27,7 @@ public class ReflexVacuumAgentTest {
 	public void testCleanClean() {
 		VacuumEnvironment tve = new VacuumEnvironment(
 				VacuumEnvironment.LocationState.Clean,
-				VacuumEnvironment.LocationState.Clean);
+				VacuumEnvironment.LocationState.Clean,VacuumEnvironment.LocationState.Clean,VacuumEnvironment.LocationState.Clean);
 		tve.addAgent(agent, VacuumEnvironment.LOCATION_A);
 
 		tve.addEnvironmentView(actionTracker);
@@ -43,7 +43,7 @@ public class ReflexVacuumAgentTest {
 	public void testCleanDirty() {
 		VacuumEnvironment tve = new VacuumEnvironment(
 				VacuumEnvironment.LocationState.Clean,
-				VacuumEnvironment.LocationState.Dirty);
+				VacuumEnvironment.LocationState.Dirty,VacuumEnvironment.LocationState.Clean,VacuumEnvironment.LocationState.Clean);
 		tve.addAgent(agent, VacuumEnvironment.LOCATION_A);
 
 		tve.addEnvironmentView(actionTracker);
@@ -59,7 +59,7 @@ public class ReflexVacuumAgentTest {
 	public void testDirtyClean() {
 		VacuumEnvironment tve = new VacuumEnvironment(
 				VacuumEnvironment.LocationState.Dirty,
-				VacuumEnvironment.LocationState.Clean);
+				VacuumEnvironment.LocationState.Clean,VacuumEnvironment.LocationState.Clean,VacuumEnvironment.LocationState.Clean);
 		tve.addAgent(agent, VacuumEnvironment.LOCATION_A);
 
 		tve.addEnvironmentView(actionTracker);
@@ -75,7 +75,7 @@ public class ReflexVacuumAgentTest {
 	public void testDirtyDirty() {
 		VacuumEnvironment tve = new VacuumEnvironment(
 				VacuumEnvironment.LocationState.Dirty,
-				VacuumEnvironment.LocationState.Dirty);
+				VacuumEnvironment.LocationState.Dirty,VacuumEnvironment.LocationState.Clean,VacuumEnvironment.LocationState.Clean);
 		tve.addAgent(agent, VacuumEnvironment.LOCATION_A);
 
 		tve.addEnvironmentView(actionTracker);

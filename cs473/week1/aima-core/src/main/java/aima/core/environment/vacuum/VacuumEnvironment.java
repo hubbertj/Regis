@@ -35,6 +35,8 @@ public class VacuumEnvironment extends AbstractEnvironment {
 	public static final Action ACTION_SUCK = new DynamicAction("Suck");
 	public static final String LOCATION_A = "A";
 	public static final String LOCATION_B = "B";
+	public static final String LOCATION_C = "C";
+	public static final String LOCATION_D = "D";
 
 	public enum LocationState {
 		Clean, Dirty
@@ -50,7 +52,9 @@ public class VacuumEnvironment extends AbstractEnvironment {
 	 */
 	public VacuumEnvironment() {
 		this(Util.randomBoolean() ? LocationState.Clean : LocationState.Dirty,
-				Util.randomBoolean() ? LocationState.Clean : LocationState.Dirty);
+				Util.randomBoolean() ? LocationState.Clean : LocationState.Dirty,
+						Util.randomBoolean() ? LocationState.Clean : LocationState.Dirty, 
+								Util.randomBoolean() ? LocationState.Clean : LocationState.Dirty);
 	}
 
 	/**
@@ -64,8 +68,8 @@ public class VacuumEnvironment extends AbstractEnvironment {
 	 *            the initial state of location B, which is either
 	 *            <em>Clean</em> or <em>Dirty</em>.
 	 */
-	public VacuumEnvironment(LocationState locAState, LocationState locBState) {
-		this(Arrays.asList(LOCATION_A, LOCATION_B), locAState, locBState);
+	public VacuumEnvironment(LocationState locAState, LocationState locBState, LocationState locCState, LocationState locDState) {
+		this(Arrays.asList(LOCATION_A, LOCATION_B, LOCATION_C, LOCATION_D), locAState, locBState, locCState, locDState);
 	}
 
 	/**

@@ -27,7 +27,7 @@ public class NondeterministicVacuumEnvironmentDemo {
         NondeterministicSearchAgent<VacuumEnvironmentState, Action> agent = new NondeterministicSearchAgent<>
                 (percept -> (VacuumEnvironmentState) percept); // percept == env state!
         NondeterministicVacuumEnvironment world = new NondeterministicVacuumEnvironment
-                (VacuumEnvironment.LocationState.Dirty, VacuumEnvironment.LocationState.Dirty);
+                (VacuumEnvironment.LocationState.Dirty, VacuumEnvironment.LocationState.Dirty, VacuumEnvironment.LocationState.Dirty, VacuumEnvironment.LocationState.Dirty);
         world.addAgent(agent, VacuumEnvironment.LOCATION_A);
 
         // provide the agent with a problem formulation so that a contingency plan can be computed.
