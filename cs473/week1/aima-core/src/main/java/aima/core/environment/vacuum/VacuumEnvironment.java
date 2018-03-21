@@ -42,7 +42,7 @@ public class VacuumEnvironment extends AbstractEnvironment {
 		Clean, Dirty
 	}
 
-    private final List<String> locations;
+	private final List<String> locations;
 	protected VacuumEnvironmentState envState = null;
 	protected boolean isDone = false;
 
@@ -53,8 +53,8 @@ public class VacuumEnvironment extends AbstractEnvironment {
 	public VacuumEnvironment() {
 		this(Util.randomBoolean() ? LocationState.Clean : LocationState.Dirty,
 				Util.randomBoolean() ? LocationState.Clean : LocationState.Dirty,
-						Util.randomBoolean() ? LocationState.Clean : LocationState.Dirty, 
-								Util.randomBoolean() ? LocationState.Clean : LocationState.Dirty);
+				Util.randomBoolean() ? LocationState.Clean : LocationState.Dirty,
+				Util.randomBoolean() ? LocationState.Clean : LocationState.Dirty);
 	}
 
 	/**
@@ -62,20 +62,22 @@ public class VacuumEnvironment extends AbstractEnvironment {
 	 * placed as specified.
 	 * 
 	 * @param locAState
-	 *            the initial state of location A, which is either
-	 *            <em>Clean</em> or <em>Dirty</em>.
+	 *            the initial state of location A, which is either <em>Clean</em> or
+	 *            <em>Dirty</em>.
 	 * @param locBState
-	 *            the initial state of location B, which is either
-	 *            <em>Clean</em> or <em>Dirty</em>.
+	 *            the initial state of location B, which is either <em>Clean</em> or
+	 *            <em>Dirty</em>.
 	 */
-	public VacuumEnvironment(LocationState locAState, LocationState locBState, LocationState locCState, LocationState locDState) {
+	public VacuumEnvironment(LocationState locAState, LocationState locBState, LocationState locCState,
+			LocationState locDState) {
 		this(Arrays.asList(LOCATION_A, LOCATION_B, LOCATION_C, LOCATION_D), locAState, locBState, locCState, locDState);
 	}
 
 	/**
-	 * Constructor which allows subclasses to define a vacuum environment with an arbitrary number
-	 * of squares. Two-dimensional grid environments can be defined by additionally overriding
-	 * {@link #getXDimension()} and {@link #getYDimension()}.
+	 * Constructor which allows subclasses to define a vacuum environment with an
+	 * arbitrary number of squares. Two-dimensional grid environments can be defined
+	 * by additionally overriding {@link #getXDimension()} and
+	 * {@link #getYDimension()}.
 	 */
 	protected VacuumEnvironment(List<String> locations, LocationState... locStates) {
 		this.locations = locations;
@@ -118,7 +120,8 @@ public class VacuumEnvironment extends AbstractEnvironment {
 	@Override
 	public Percept getPerceptSeenBy(Agent anAgent) {
 		if (anAgent instanceof NondeterministicSearchAgent) {
-			// This agent expects a fully observable environment. It gets a clone of the environment state.
+			// This agent expects a fully observable environment. It gets a clone of the
+			// environment state.
 			return envState.clone();
 		}
 		// Other agents get a local percept.
@@ -131,19 +134,21 @@ public class VacuumEnvironment extends AbstractEnvironment {
 		String loc = getAgentLocation(a);
 		if (ACTION_MOVE_RIGHT == action) {
 			int x = getX(loc);
-			if (x < getXDimension())
+			if (x < getXDimension()) {
 				envState.setAgentLocation(a, getLocation(x + 1, getY(loc)));
+			}
+
 			updatePerformanceMeasure(a, -1);
 		} else if (ACTION_MOVE_LEFT == action) {
 			int x = getX(loc);
-			if (x > 1)
+			if (x > 1) {
 				envState.setAgentLocation(a, getLocation(x - 1, getY(loc)));
+			}
+
 			updatePerformanceMeasure(a, -1);
 		} else if (ACTION_SUCK == action) {
-			if (LocationState.Dirty == envState.getLocationState(envState
-					.getAgentLocation(a))) {
-				envState.setLocationState(envState.getAgentLocation(a),
-						LocationState.Clean);
+			if (LocationState.Dirty == envState.getLocationState(envState.getAgentLocation(a))) {
+				envState.setLocationState(envState.getAgentLocation(a), LocationState.Clean);
 				updatePerformanceMeasure(a, 10);
 			}
 		} else if (action.isNoOp()) {
@@ -157,7 +162,6 @@ public class VacuumEnvironment extends AbstractEnvironment {
 	public boolean isDone() {
 		return super.isDone() || isDone;
 	}
-
 
 	// Information for grid views...
 
