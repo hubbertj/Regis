@@ -1,3 +1,6 @@
 ### My Homework Aissgnments from Regis Univeristy
+![alt text][logo]
 
-https://www.regis.edu/~/media/Images/Logos/RU-logo-official_rev.ashx?la=en
+
+[logo]: https://www.regis.edu/~/media/Images/Logos/RU-logo-official_rev.ashx?la=en "Logo Title Text 2"
+
