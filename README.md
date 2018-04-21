@@ -7,8 +7,8 @@ A lot can be found in this repo from how to implement many famuose sorting algor
 
 .. and my favorite ..
 + Merge Sort
----
 
+---
 I also have great exmaple of using programming lanaguages such as:
 + Java
 + Ruby
@@ -17,6 +17,16 @@ I also have great exmaple of using programming lanaguages such as:
 and a few more ...
 
 ---
+#### Machine Learning
+I have really started to get into Machine Learning and have take a few classes on the subject so their should be great exmaples of the follow algorithms:
+
++ Breadth-first search
++ Depth-first search
+
+There also should be exmaple of how to implement a simple AI for cleaning locations.
+
+---
+### This is a collection that is always growing so if you like what you see checkout this repo periodically.. 
 
 
 
