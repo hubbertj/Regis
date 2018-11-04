@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #define STRMAX 100
+typedef enum { false, true } bool;
 
 void copy(char _source[STRMAX], char _destination[STRMAX])
 {
@@ -13,7 +14,7 @@ void copy(char _source[STRMAX], char _destination[STRMAX])
 
     if (!source)
     {
-        printf("Failed to open file\n");
+        printf("could not open file %s:  No such file or directory\n", _source);
         exit(EXIT_FAILURE);
     }
 
@@ -36,6 +37,7 @@ int main(int argc, char *argv[])
     int i;
     char source[STRMAX];
     char destination[STRMAX];
+    bool extra = false;
 
     for(i = 1; i < argc; i++)
     {
@@ -46,12 +48,14 @@ int main(int argc, char *argv[])
         else if(i == 2)
         {
             strncpy(destination, argv[i], STRMAX);
+        }else if(i > 2){
+            extra = true;
         }
     }
 
-    if (strlen(source) == 0 || strlen(destination) == 0)
+    if (strlen(source) == 0 || strlen(destination) == 0 || extra)
     {
-        printf("Error: Missing argument\n");
+        printf("usage:  mycopy <sourcefile> <destinationfile>\n");
         exit(EXIT_FAILURE);
     }
     else
