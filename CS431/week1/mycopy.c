@@ -4,9 +4,10 @@
 #define STRMAX 100
 typedef enum { false, true } bool;
 
-void copy(char _source[STRMAX], char _destination[STRMAX])
+void file_copy(char _source[STRMAX], char _destination[STRMAX])
 {
     char ch;
+    int size;
     FILE *source, *target;
 
     source = fopen(_source, "r");
@@ -18,6 +19,11 @@ void copy(char _source[STRMAX], char _destination[STRMAX])
         exit(EXIT_FAILURE);
     }
 
+    // gets file size
+    fseek(source, 0, SEEK_END);
+    size = ftell(source);
+    fseek(source, 0, SEEK_SET);
+  
     printf("copying %s to %s\n", _source, _destination);
 
     while ((ch = fgetc(source)) != EOF)
@@ -25,7 +31,7 @@ void copy(char _source[STRMAX], char _destination[STRMAX])
         fputc(ch, target);
     }
 
-    printf("file copied.\n");
+    printf("copied %d bytes from file %s to %s.\n", size, _source, _destination);
 
     fclose(source);
     fclose(target);
@@ -48,7 +54,9 @@ int main(int argc, char *argv[])
         else if(i == 2)
         {
             strncpy(destination, argv[i], STRMAX);
-        }else if(i > 2){
+        }
+        else if(i > 2)
+        {
             extra = true;
         }
     }
@@ -57,10 +65,13 @@ int main(int argc, char *argv[])
     {
         printf("usage:  mycopy <sourcefile> <destinationfile>\n");
         exit(EXIT_FAILURE);
+        return -1;
     }
     else
     {
-        copy(source, destination);
+        file_copy(source, destination);
     }
+    // if we make it here we have an error
     exit(EXIT_FAILURE);
+    return -1;
 }
