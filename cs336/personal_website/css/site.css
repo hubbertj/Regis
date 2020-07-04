@@ -1,3 +1,7 @@
+@import url("footer.css");
+@import url("header.css");
+@import url("icons.css");
+
 body {
     color: #202121;
     margin: 0;
@@ -22,9 +26,7 @@ h6,
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
 }
 
-/* ----------------------------------
- * icons
- * ---------------------------------- */
+/*icons*/
 @font-face {
     font-family: "angularicons";
     src: url("../fonts/angularicons.eot");
@@ -1462,4 +1464,37 @@ h6,
 
 .list-unstyled a {
     text-decoration: none;
+}
+
+/*flex box*/
+.d-flex {
+    display: flex !important;
+}
+
+.d-inline-flex {
+    display: inline-flex !important;
+}
+
+.flex-wrap {
+    flex-wrap: wrap !important;
+}
+
+.flex-nowrap {
+    flex-wrap: nowrap !important;
+}
+
+.flex-row {
+    flex-direction: row !important;
+}
+
+.flex-column {
+    flex-direction: column !important;
+}
+
+.flex-row-reverse {
+    flex-direction: row-reverse !important;
+}
+
+.flex-column-reverse {
+    flex-direction: column-reverse !important;
 }
