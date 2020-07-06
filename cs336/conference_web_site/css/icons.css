@@ -1,0 +1,20 @@
+i[class$="icon"] {
+    font-family: "angularicons";
+    opacity: 1;
+    color: inherit;
+}
+
+.icon-btn a:hover,
+.icon-btn .btn:hover {
+    text-decoration: none !important;
+}
+
+.icon-btn {
+    background-color: white;
+    border-radius: 29px;
+    text-shadow: 3px 4px 3px rgba(227,227,227,0.33);
+}
+
+.full-back-icon::before {
+    content: "\E0EB";
+}
