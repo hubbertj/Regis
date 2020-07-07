@@ -1,5 +1,13 @@
 (function(window) {
-  // set something to the global object
-  window.conferance = {};
-  
+    window.conference = {};
+
+    /**
+     * global object
+     */
+    class Conference {
+        constructor() {}
+    }
+
+    window.conference = new Conference();
+
 })(window);

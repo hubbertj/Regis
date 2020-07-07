@@ -1,14 +1,23 @@
-(function(conferance) {
+(function(conference) {
 
-    if (!conferance) {
+    if (!conference) {
         return false;
     }
 
     class ActiviteController {
         constructor() {}
+        
+        /**
+         * init the controller with any data from frontend
+         * @return {[type]}
+         */
+        init(data) {
+
+        }
+
 
     }
 
-    conferance.controller = new ActiviteController(10, 10);
+    conference.controller = new ActiviteController(10, 10);
 
-})(window.conferance);
+})(window.conference);

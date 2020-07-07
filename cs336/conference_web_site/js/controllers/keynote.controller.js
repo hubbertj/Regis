@@ -1,14 +1,23 @@
-(function(conferance) {
+(function(conference) {
 
-    if (!conferance) {
+    if (!conference) {
         return false;
     }
 
     class KeynoteController {
         constructor() {}
 
+        /**
+         * init the controller with any data from frontend
+         * @return {[type]}
+         */
+        init(data) {
+
+        }
+
+
     }
 
-    conferance.controller = new KeynoteController();
+    conference.controller = new KeynoteController();
 
-})(window.conferance);
+})(window.conference);

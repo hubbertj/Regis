@@ -1,14 +1,23 @@
-(function(conferance) {
+(function(conference) {
 
-    if (!conferance) {
+    if (!conference) {
         return false;
     }
 
     class WorkshopscheduleController {
         constructor() {}
+        
+        /**
+         * init the controller with any data from frontend
+         * @return {[type]}
+         */
+        init(data) {
+
+        }
+
 
     }
 
-    conferance.controller = new WorkshopscheduleController();
+    conference.controller = new WorkshopscheduleController();
 
-})(window.conferance);
+})(window.conference);
