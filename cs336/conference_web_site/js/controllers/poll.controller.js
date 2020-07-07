@@ -1,4 +1,4 @@
-(function(conferance) {
+(function(conference) {
 
     if (!conferance) {
         return false;
@@ -7,8 +7,17 @@
     class PollController {
         constructor() {}
 
+        /**
+         * init the controller with any data from frontend
+         * @return {[type]}
+         */
+        init(data) {
+
+        }
+
+
     }
 
-    conferance.controller = new PollController();
+    conference.controller = new PollController();
 
-})(window.conferance);
+})(window.conference);

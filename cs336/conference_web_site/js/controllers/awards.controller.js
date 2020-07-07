@@ -1,14 +1,23 @@
-(function(conferance) {
+(function(conference) {
 
-    if (!conferance) {
+    if (!conference) {
         return false;
     }
 
     class AwardsController {
         constructor() {}
 
+        /**
+         * init the controller with any data from frontend
+         * @return {[type]}
+         */
+        init(data) {
+
+        }
+
+
     }
 
-    conferance.controller = new AwardsController();
+    conference.controller = new AwardsController();
 
-})(window.conferance);
+})(window.conference);
