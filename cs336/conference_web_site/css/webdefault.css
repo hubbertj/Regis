@@ -125,9 +125,43 @@ p {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon:hover{
+  cursor: pointer;
+}
+
+.icon.lg{
+  font-size:2rem;
+}
+
+.icon.md{
+  font-size:1rem;
+}
+
+
 .icon[data-icon]:before {
     content: attr(data-icon);
     speak: none;
+}
+
+
+
+.icon-btn a:hover,
+.icon-btn .btn:hover {
+    text-decoration: none !important;
+}
+
+.icon-btn {
+    background-color: white;
+    border-radius: 29px;
+    text-shadow: 3px 4px 3px rgba(227, 227, 227, 0.33);
+}
+
+.full-back-icon::before {
+    content: "\E0EB";
+}
+
+.full-map-icon::before {
+    content: "\E097";
 }
 
 
@@ -4182,32 +4216,14 @@ nav.p-header li.active a::before {
     opacity: 1;
 }
 
-/*icons*/
-i[class$="icon"] {
-    font-family: "angularicons";
-    opacity: 1;
-    color: inherit;
-}
-
-.icon-btn a:hover,
-.icon-btn .btn:hover {
-    text-decoration: none !important;
-}
-
-.icon-btn {
-    background-color: white;
-    border-radius: 29px;
-    text-shadow: 3px 4px 3px rgba(227, 227, 227, 0.33);
-}
-
-.full-back-icon::before {
-    content: "\E0EB";
-}
-
 /*general*/
 .carousel-container {
     background: #ffffff url("https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;w=1000&amp;q=80") no-repeat center center;
     height: 500px;
     background-size: cover;
     color: white;
+}
+
+.d-inline{
+  display: inline !important;
 }
