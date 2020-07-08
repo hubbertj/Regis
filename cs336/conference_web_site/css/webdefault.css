@@ -5195,8 +5195,9 @@ nav.p-header {
 }
 
 nav.p-header a {
-    color: #CCCC00;
+    color:  inherit;
     opacity: 0.6;
+    transition: 0.3s;
 }
 
 nav.p-header .navbar-brand-container * {
@@ -5205,22 +5206,18 @@ nav.p-header .navbar-brand-container * {
 }
 
 nav.p-header a:hover {
-    color: yellow;
-    text-decoration: underline;
     opacity: 1;
-    transition: 0.3s;
 }
 
 nav.p-header li:not(:last-child)::after {
     content: " |";
-    color: #CCCC00;
 }
 
-nav.p-header li.active a::before {
-    font-family: "angularicons";
-    content: "\E0BD";
-    opacity: 1;
+nav.p-header li.active a{
+  opacity: 1;
+  font-weight: bold;
 }
+
 
 .btn {
     display: inline-block;
