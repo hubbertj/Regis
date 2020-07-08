@@ -12,7 +12,7 @@
          * @return {[type]}
          */
         init(data) {
-
+            console.log(`MealsController has been init with ${JSON.stringify(data)}`);
         }
 
 

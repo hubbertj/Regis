@@ -12,7 +12,7 @@
          * @return {[type]}
          */
         init(data) {
-
+            console.log(`PollController has been init with ${JSON.stringify(data)}`);
         }
 
 
