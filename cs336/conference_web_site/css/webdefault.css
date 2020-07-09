@@ -249,6 +249,10 @@ p {
     box-shadow: -2px 4px 6px 2px rgba(0, 0, 0, 0.75);
 }
 
+.meal-list li:not(:last-child)::after {
+    content: ", ";
+}
+
 
 /*grid system*/
 .container,
@@ -5228,6 +5232,30 @@ p {
 
 .flex-column-reverse {
     flex-direction: column-reverse !important;
+}
+
+.justify-content-start {
+  justify-content: flex-start !important;
+}
+
+.justify-content-end {
+  justify-content: flex-end !important;
+}
+
+.justify-content-center {
+  justify-content: center !important;
+}
+
+.justify-content-between {
+  justify-content: space-between !important;
+}
+
+.justify-content-around {
+  justify-content: space-around !important;
+}
+
+.justify-content-evenly {
+  justify-content: space-evenly !important;
 }
 
 
