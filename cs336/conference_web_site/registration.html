@@ -50,9 +50,41 @@
         <div class="row">
             <div class="col-12">&nbsp;</div>
             <div class="col-12">
-                Using a form, create a registration page for the conference. It should contain a
-                section for basic registration information, a section for workshop selection, and a
-                section for billing information. Include the following information:
+                <div class="container">
+                    <form id="registration-form" class="form">
+                        <div class="form-group">
+                            <select class="form-control" id="titleSelect">
+                                <option value="" disabled selected>title</option>
+                                <option>Mr</option>
+                                <option>Mrs</option>
+                                <option>Ms</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="firstName" placeholder="First Name" required="" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                            <input type="text" class="form-control" id="lastName" placeholder="Last Name" required="" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="addressLine1" placeholder="address line 1" required="" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                            <input type="text" class="form-control" id="addressLine2" placeholder="address line 2" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                            <input type="text" class="form-control" id="city" placeholder="city" required="" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                            <input type="text" class="form-control" id="state" placeholder="State" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                            <select class="form-control" id="stateSelect">
+                                <option value="" disabled selected>state</option>
+                                <option>Mr</option>
+                                <option>Mrs</option>
+                                <option>Ms</option>
+                            </select>
+                            <input type="text" class="form-control" id="state" placeholder="zip code" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                            <input type="text" class="form-control" id="phone" placeholder="telephone" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                        </div>
+                        <div class="form-group">
+                        </div>
+                        <div class="btn-container">
+                            <button type="submit" class="btn btn-primary float-right">Register&nbsp;Now</button>
+                        </div>
+                    </form>
+                </div>
             </div>
             <div class="col-12">&nbsp;</div>
         </div>
