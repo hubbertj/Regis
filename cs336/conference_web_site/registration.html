@@ -51,12 +51,13 @@
             <div class="col-12">&nbsp;</div>
             <div class="col-12">
                 <div class="container">
-                    <form id="registration-form" class="form">
-                        <fieldset>
+                    <form id="registration-form" name="registrationForm" class="form">
+                        <fieldset class="fieldset">
+                            <legend>User&nbsp;Information</legend>
                             <div class="form-group row pb-2">
                                 <div class="col-sm-2">
                                     <select class="form-control" id="titleSelect">
-                                        <option value="" disabled selected>title</option>
+                                        <option value="" disabled selected>Title</option>
                                         <option>Mr</option>
                                         <option>Mrs</option>
                                         <option>Ms</option>
@@ -71,13 +72,13 @@
                             </div>
                             <div class="form-group row pb-2">
                                 <div class="col-sm-12 col-md-6">
-                                    <input type="text" class="form-control" id="addressLine1" placeholder="address line 1" required="" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
-                                    <input type="text" class="form-control" id="addressLine2" placeholder="address line 2" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                                    <input type="text" class="form-control" id="addressLine1" placeholder="Address Line 1" required="" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                                    <input type="text" class="form-control" id="addressLine2" placeholder="Address Line 2" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
                                 </div>
                                 <div class="col-sm-12 col-md-6">
-                                    <input type="text" class="form-control" id="city" placeholder="city" required="" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                                    <input type="text" class="form-control" id="city" placeholder="City" required="" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
                                     <select class="form-control" id="stateSelect">
-                                        <option value="" disabled selected>state</option>
+                                        <option value="" disabled selected>State</option>
                                         <option>Mr</option>
                                         <option>Mrs</option>
                                         <option>Ms</option>
@@ -86,60 +87,120 @@
                             </div>
                             <div class="form-group row pb-2">
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="zipCode" placeholder="zip code" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                                    <input type="text" class="form-control" id="zipCode" placeholder="Zip Code" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
                                 </div>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="phone" placeholder="telephone" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                                    <input type="text" class="form-control" id="phone" placeholder="Telephone" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
                                 </div>
                             </div>
                             <div class="form-group row pb-2">
                                 <div class="col-12">
-                                    <input type="email" class="form-control" id="emailAddress" placeholder="email address" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                                    <input type="email" class="form-control" id="emailAddress" placeholder="Email Address" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
                                 </div>
-                            </div>
-                            <div class="form-group row pb-2">
-                                <div class="col-12">
-                                    <input type="text" class="form-control" id="companyName" placeholder="company name" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
-                                </div>
-                                <div class="col-12">
-                                    <input type="text" class="form-control" id="companyWebsite" placeholder="company website" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
-                                </div>
-                                <div class="col-12">
-                                    <input type="text" class="form-control" id="position" placeholder="position with company" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
-                                </div>
-                            </div>
-                            <div class="form-group row pb-2">
-                                <div class="col-12">
-                                    <div class="form-check">
-                                        Purchase meal pack or just the Day 2 Dinner? <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row pb-2">
-                                <div class="col-6">
-                                    <input type="text" class="form-control" id="billFirstName" placeholder="first name" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
-                                </div>
-                                <div class="col-6">
-                                    <input type="text" class="form-control" id="billLastName" placeholder="last name" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
-                                </div>
-                                <div class="col-12">
-                                    <div class="col-6">
-                                        &nbsp;
-                                    </div>
-                                    <div class="col-6">
-                                        <input type="text" class="form-control" id="cardNumber" placeholder="number" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="btn-container">
-                                <button type="submit" class="btn btn-primary float-right">Register&nbsp;Now</button>
                             </div>
                         </fieldset>
+                        <fieldset class="fieldset">
+                            <legend>Company</legend>
+                            <div class="form-group row pb-2">
+                                <div class="col-12">
+                                    <input type="text" class="form-control" id="companyName" placeholder="Name" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="form-control" id="companyWebsite" placeholder="Website" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="form-control" id="position" placeholder="Your Position" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="fieldset">
+                            <legend>Billing</legend>
+                            <div class="form-group row pb-2">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" id="billFirstName" placeholder="First Name" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" id="billLastName" placeholder="Last Name" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <fieldset class="fieldset">
+                                        <legend>Card&nbsp;Information</legend>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="radio d-flex flex-wrap">
+                                                    <label class="radio"><input type="radio" value="visa" name="cardRadio">Visa</label>
+                                                    <label class="radio"><input type="radio" value="mastercard" name="cardRadio">Mastercard</label>
+                                                    <label class="radio"><input type="radio" value="american_express" name="cardRadio">American&nbsp;Express</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input type="text" class="form-control" id="cardNumber" placeholder="Card Number" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" id="CSV" placeholder="CVS" pattern="[A-Za-z-0-9]+\s[A-Za-z-'0-9]+" />
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="form-group row pb-2">
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            Purchase meal pack or just the Day 2 Dinner? <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="fieldset">
+                            <legend>Workshops</legend>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <fieldset class="fieldset">
+                                            <legend>Morning</legend>
+                                            <div class="radio d-flex flex-wrap">
+                                                <label class="radio-inline"><input type="radio" value="leadership" name="morningRadio">Leadership</label>
+                                                <label class="radio-inline"><input type="radio" value="discovery" name="morningRadio">Discovery</label>
+                                                <label class="radio-inline"><input type="radio" value="mentorship" name="morningRadio">Mentorship</label>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <fieldset class="fieldset">
+                                            <legend>Afternoon</legend>
+                                            <div class="radio d-flex flex-wrap">
+                                                <label class="radio"><input type="radio" value="pitching" name="afternoonRadio">Pitching</label>
+                                                <label class="radio"><input type="radio" value="simulation" name="afternoonRadio">Power&nbsp;Company&nbsp;Simulation</label>
+                                                <label class="radio"><input type="radio" value="exitStrateg" name="afternoonRadio">Exit&nbsp;Strategy</label>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <fieldset class="fieldset">
+                                            <legend>Evening</legend>
+                                            <div class="radio d-flex flex-wrap">
+                                                <label class="radio"><input type="radio" value="networking" name="eveningRadio">Networking</label>
+                                                <label class="radio"><input type="radio" value="sales" name="eveningRadio">Sales</label>
+                                                <label class="radio"><input type="radio" value="moneyManagement" name="eveningRadio">Money&nbsp;Management</label>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="btn-container">
+                            <button type="submit" class="btn btn-primary float-right">Register&nbsp;Now</button>
+                        </div>
                     </form>
                 </div>
             </div>
             <div class="col-12">&nbsp;</div>
         </div>
+    </div>
     </div>
     <footer id="footer" class="container-fluid">
         <div class="row">
