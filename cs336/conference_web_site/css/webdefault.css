@@ -308,7 +308,6 @@ legend {
 }
 
 
-
 /*grid system*/
 .container,
 .container-fluid,
@@ -5406,12 +5405,17 @@ nav.p-header li.active a {
 /*table*/
 .table {
     border-radius: 3px;
+    border-collapse: collapse;
 }
 
 .table-dark {
     background-color: #212529;
     color: #fff;
-    border-color: #32383e;
+    border: 1px solid #32383e;
+}
+
+.table-dark th, .table-dark td{
+    border: 1px solid #32383e;
 }
 
 .table-dark thead th {
