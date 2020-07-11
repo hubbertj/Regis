@@ -21,18 +21,11 @@
          * @return {[type]} [description]
          */
         onSubmit(e) {
-            const radioValues = $(this).serializeArray();
-            let radioData = {};
-            $(radioValues).each(function(index, obj){
-                radioData[obj.name] = obj.value;
+            let data = {};
+            $($(this).serializeArray()).each(function(index, obj) {
+                data[obj.name] = obj.value;
             });
-
-            var data = $(e.currentTarget).data();
-
             console.log(data);
-
-            console.log(radioData);
-            console.log(e);
             return false;
         }
     }
