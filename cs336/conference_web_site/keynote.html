@@ -73,8 +73,8 @@
             <div class="col-sm-12 col-md-9">&nbsp;</div>
             <div class="col-sm-12 col-md-3 pt-3 mb-2">
                 <address>
-                    <small><a class="full-map-icon icon lg" target="_blank" href="http://maps.google.com/?q=3150 Paradise Rd, Las Vegas, Nevada, 89109">&nbsp;</a>
-                        <div class="d-inline" style="line-height: 4em;">Las&nbsp;Vegas&nbsp;Convention&nbsp;Center</div><br>
+                    <small><a class="full-map-icon icon lg" target="_blank" href="http://maps.google.com/?q=3150+Paradise+Rd,+Las+Vegas,+Nevada,+89109">&nbsp;</a>
+                        <span class="d-inline" style="line-height: 4em;">Las&nbsp;Vegas&nbsp;Convention&nbsp;Center</span><br>
                         3150 Paradise Rd<br>
                         Las Vegas, Nevada, 89109<br>
                         United States<br>
@@ -95,13 +95,13 @@
             <div class="col-sm-4">&nbsp;</div>
         </div>
     </footer>
+    <script src="js/conference.js" type="text/javascript"></script>
+    <script src="js/controllers/keynote.controller.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        if ('controller' in conference) {
+            conference.controller.init();
+        }
+    </script>
 </body>
-<script src="js/conference.js" type="text/javascript"></script>
-<script src="js/controllers/keynote.controller.js" type="text/javascript"></script>
-<script type="text/javascript" async>
-if ('controller' in conference) {
-    conference.controller.init();
-}
-</script>
 
 </html>
