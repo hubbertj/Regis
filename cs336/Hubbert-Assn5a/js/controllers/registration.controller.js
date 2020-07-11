@@ -13,13 +13,16 @@
          */
         init(data) {
             console.log(`RegistrationController has been init with ${JSON.stringify(data)}`);
+            $('#registration-form').on("submit", this.onSubmit);
         }
 
         /**
          * Handles the submittion
          * @return {[type]} [description]
          */
-        onSubmit() {
+        onSubmit(event) {
+            const data = $(this).serializeArray();
+            console.log(data);
             return false;
         }
     }
