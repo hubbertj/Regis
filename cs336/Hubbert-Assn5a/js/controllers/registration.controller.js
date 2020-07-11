@@ -20,9 +20,19 @@
          * Handles the submittion
          * @return {[type]} [description]
          */
-        onSubmit(event) {
-            const data = $(this).serializeArray();
+        onSubmit(e) {
+            const radioValues = $(this).serializeArray();
+            let radioData = {};
+            $(radioValues).each(function(index, obj){
+                radioData[obj.name] = obj.value;
+            });
+
+            var data = $(e.currentTarget).data();
+
             console.log(data);
+
+            console.log(radioData);
+            console.log(e);
             return false;
         }
     }
