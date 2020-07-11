@@ -35,8 +35,6 @@
 .settings
 
 #haskell
-dist
-dist-*
 cabal-dev
 *.o
 *.hi
