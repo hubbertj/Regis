@@ -303,8 +303,17 @@ legend {
     right: -3px;
 }
 
-.slash-container .slash-icon::after{
+.slash-container .slash-icon::after {
     content: "\002F";
+}
+
+.wd-50 {
+    width: 50%;
+}
+
+.coming-soon-img {
+    width: 35%;
+    height: auto;
 }
 
 
@@ -5414,7 +5423,8 @@ nav.p-header li.active a {
     border: 1px solid #32383e;
 }
 
-.table-dark th, .table-dark td{
+.table-dark th,
+.table-dark td {
     border: 1px solid #32383e;
 }
 
