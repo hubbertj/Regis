@@ -56,7 +56,7 @@
                             <legend>Personal&nbsp;Information</legend>
                             <div class="form-group row pb-2">
                                 <div class="col-sm-2">
-                                    <select class="form-control" id="titleSelect">
+                                    <select class="form-control" id="titleSelect" name="title">
                                         <option value="" disabled selected>Title</option>
                                         <option>Mr</option>
                                         <option>Mrs</option>
@@ -65,23 +65,23 @@
                                     <div class="dialog-bg"></div>
                                 </div>
                                 <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="firstName" placeholder="First Name" pattern="[a-zA-Z]+" required="" />
+                                    <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" pattern="[a-zA-Z]+" required="" />
                                     <div class="dialog-bg"></div>
                                 </div>
                                 <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="lastName" placeholder="Last Name" pattern="[a-zA-Z\-]+" required="" />
+                                    <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name" pattern="[a-zA-Z\-]+" required="" />
                                     <div class="dialog-bg"></div>
                                 </div>
                             </div>
                             <div class="form-group row pb-2">
                                 <div class="col-sm-12 col-md-6">
-                                    <input type="text" class="form-control" id="addressLine1" placeholder="Address Line 1" pattern="[a-zA-Z0-9\ \#]+" required="" />
-                                    <input type="text" class="form-control" id="addressLine2" placeholder="Address Line 2" pattern="[a-zA-Z0-9\ \#]+" />
+                                    <input type="text" class="form-control" name="addressLine1" id="addressLine1" placeholder="Address Line 1" pattern="[a-zA-Z0-9\ \#]+" required="" />
+                                    <input type="text" class="form-control" name="addressLine2" id="addressLine2" placeholder="Address Line 2" pattern="[a-zA-Z0-9\ \#]+" />
                                     <div class="dialog-bg"></div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
-                                    <input type="text" class="form-control" id="city" placeholder="City" pattern="[a-zA-Z\s]+" required="" />
-                                    <select class="form-control" id="stateSelect" required="">
+                                    <input type="text" class="form-control" name="city" id="city" placeholder="City" pattern="[a-zA-Z\s]+" required="" />
+                                    <select class="form-control" id="stateSelect" name="state" required="">
                                         <option value="" disabled selected>State</option>
                                         <option value="AL">Alabama</option>
                                         <option value="AK">Alaska</option>
@@ -140,17 +140,17 @@
                             </div>
                             <div class="form-group row pb-2">
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="zipCode" placeholder="Zip Code" pattern="[0-9]{5}" required="" />
+                                    <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip Code" pattern="[0-9]{5}" required="" />
                                     <div class="dialog-bg"></div>
                                 </div>
                                 <div class="col-sm-4">
-                                    <input type="tel" class="form-control" id="phone" placeholder="Telphone (123-123-1234)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required="" />
+                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Telphone (123-123-1234)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required="" />
                                     <div class="dialog-bg"></div>
                                 </div>
                             </div>
                             <div class="form-group row pb-2">
                                 <div class="col-12">
-                                    <input type="email" class="form-control" id="emailAddress" placeholder="Email Address" required="" />
+                                    <input type="email" class="form-control" id="emailAddress" name="emailAddress" placeholder="Email Address" required="" />
                                     <div class="dialog-bg"></div>
                                 </div>
                             </div>
@@ -159,15 +159,15 @@
                             <legend>Company&nbsp;Information</legend>
                             <div class="form-group row pb-2">
                                 <div class="col-12">
-                                    <input type="text" class="form-control" id="companyName" placeholder="Name" pattern="[a-zA-Z0-9\s]+" required="" />
+                                    <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Name" pattern="[a-zA-Z0-9\s]+" required="" />
                                     <div class="dialog-bg"></div>
                                 </div>
                                 <div class="col-12">
-                                    <input type="url" class="form-control" id="companyWebsite" placeholder="Website" />
+                                    <input type="url" class="form-control" id="companyWebsite" name="companyWebsite" placeholder="Website" />
                                     <div class="dialog-bg"></div>
                                 </div>
                                 <div class="col-12">
-                                    <input type="text" class="form-control" id="position" placeholder="Your Position" pattern="[a-zA-Z0-9\s]+" required="" />
+                                    <input type="text" class="form-control" id="position" name="position" placeholder="Your Position" pattern="[a-zA-Z0-9\s]+" required="" />
                                     <div class="dialog-bg"></div>
                                 </div>
                             </div>
@@ -244,11 +244,11 @@
                                 <div class="col-12">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control" id="billFirstName" placeholder="First Name" pattern="[a-zA-Z]+" required="" />
+                                            <input type="text" class="form-control" id="billFirstName" name="billFirstName" placeholder="First Name" pattern="[a-zA-Z]+" required="" />
                                             <div class="dialog-bg"></div>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control" id="billLastName" placeholder="Last Name" pattern="[a-zA-Z-]+" required="" />
+                                            <input type="text" class="form-control" id="billLastName" name="billLastName" placeholder="Last Name" pattern="[a-zA-Z-]+" required="" />
                                             <div class="dialog-bg"></div>
                                         </div>
                                     </div>
@@ -265,20 +265,20 @@
                                         <div class="col-md-8">
                                             <div class="row">
                                                 <div class="col-md-8">
-                                                    <input type="text" class="form-control" id="cardNumber" placeholder="Card Number" minlength="16" maxlength="16" pattern="[0-9]{16}" required="" />
+                                                    <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="Card Number" minlength="16" maxlength="16" pattern="[0-9]{16}" required="" />
                                                     <div class="dialog-bg"></div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input type="text" class="form-control" id="CSV" placeholder="CVS" minlength="4" maxlength="4" pattern="[0-9]{4}" required="" />
+                                                    <input type="text" class="form-control" id="CSV" name="cvs" placeholder="CVS" minlength="4" maxlength="4" pattern="[0-9]{4}" required="" />
                                                     <div class="dialog-bg"></div>
                                                 </div>
                                                 <div class="col-4">
-                                                    <input type="text" class="form-control" id="expirationMonth" minlength="2" maxlength="2" placeholder="Month" pattern="(0[1-9]|1[0-2])" required="" />
+                                                    <input type="text" class="form-control" id="expirationMonth" name="expirationMonth" minlength="2" maxlength="2" placeholder="Month" pattern="(0[1-9]|1[0-2])" required="" />
                                                     <div class="dialog-bg"></div>
                                                 </div>
                                                 /
                                                 <div class="col-4">
-                                                    <input type="text" class="form-control" id="expirationYear" minlength="4" maxlength="4" placeholder="Year" pattern="[2][0]([1-2][0-9])" required="" />
+                                                    <input type="text" class="form-control" id="expirationYear" name="expirationYear" minlength="4" maxlength="4" placeholder="Year" pattern="[2][0]([1-2][0-9])" required="" />
                                                     <div class="dialog-bg"></div>
                                                 </div>
                                             </div>
