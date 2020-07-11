@@ -292,6 +292,21 @@ legend {
     font-weight: bold;
 }
 
+.slash-container {
+    position: relative;
+}
+
+.slash-container .slash-icon {
+    font-size: 2em;
+    position: absolute;
+    top: -5px;
+    right: -3px;
+}
+
+.slash-container .slash-icon::after{
+    content: "\002F";
+}
+
 
 
 /*grid system*/
