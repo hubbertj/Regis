@@ -19,12 +19,9 @@
          * Handles the submittion
          * @return {[type]} [description]
          */
-        onSubmit(){
-            window.location.href = 'thankyou.html';
+        onSubmit() {
             return false;
         }
-
-
     }
 
     conference.controller = new RegistrationController();
