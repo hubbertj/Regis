@@ -17,6 +17,50 @@
         },
 
         /**
+         * Set Cookies 
+         * @param  {[type]} name  [description]
+         * @param  {[type]} value [description]
+         * @param  {[type]} days  [description]
+         * @return {[type]}       [description]
+         */
+        setCookie: (name, value, days) => {
+            let expires = "";
+            if (days) {
+                let date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = `; expires=${date.toUTCString()}`;
+            }
+            document.cookie = `${name}=${(value || "")}${expires}; path=/`;
+            return false;
+        },
+
+        /**
+         * Gets a cookies value
+         * @param  {[type]} name [description]
+         * @return {[type]}      [description]
+         */
+        getCookie: (name) => {
+            let nameEQ = `${name}=`;
+            const ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return false;
+        },
+
+        /**
+         * Expires a cookie
+         * @param  {[type]} name [description]
+         * @return {[type]}      [description]
+         */
+        eraseCookie: (name) => {
+            document.cookie = `${name}=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+            return false;
+        },
+
+        /**
          * Used to throw a alert
          * @param  {[type]} message [description]
          * @param  {[type]} type    [description]
