@@ -5830,10 +5830,10 @@ nav.p-header li.active a {
 }
 
 .alert.hide{
-    height: 0px;
+    display: none
 }
 .alert.show{
-    height: auto;
+    display: block;
 }
 
 
