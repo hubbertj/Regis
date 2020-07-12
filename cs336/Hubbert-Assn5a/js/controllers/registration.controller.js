@@ -25,7 +25,18 @@
             $($(this).serializeArray()).each(function(index, obj) {
                 data[obj.name] = obj.value;
             });
+            const error = RegistrationController.validateWorkshops(data);
+
+            if(error){
+                alert(error.message);
+                return false;
+            }
             console.log(data);
+            window.location.href = 'thankyou.html';
+            return false;
+        }
+
+        static validateWorkshops(data){
             return false;
         }
     }
