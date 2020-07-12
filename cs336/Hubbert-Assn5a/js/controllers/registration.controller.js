@@ -27,8 +27,8 @@
             });
             const error = RegistrationController.validateWorkshops(data);
 
-            if(error){
-                alert(error.message);
+            if (error) {
+                conference.alert(error.message, 'danger');
                 return false;
             }
             console.log(data);
@@ -36,8 +36,8 @@
             return false;
         }
 
-        static validateWorkshops(data){
-            return false;
+        static validateWorkshops(data) {
+            return { message: 'issue with stuff' };
         }
     }
 
