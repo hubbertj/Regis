@@ -23,6 +23,28 @@
             });
 
             $('.popup-overlay .cls').on('click', jQuery.proxy(this, 'onCloseRegistrationFailedModal'));
+            $('form#registration-form :input').change(jQuery.proxy(this, 'onChange'));
+        }
+
+        /**
+         * Handles all field change events.
+         * @param  {[type]} event [description]
+         * @return {[type]}       [description]
+         */
+        onChange(evt) {
+            let name = '';
+            if ('currentTarget' in evt) {
+                name = $(evt.currentTarget).attr('name');
+                console.log(`${name} has triggered a event`);
+            };
+            switch (name) {
+                case 'x':
+                    break;
+                case 'y':
+                    break;
+                default:
+            }
+            return false;
         }
 
         /**
@@ -30,11 +52,11 @@
          * @param  {[type]} event [description]
          * @return {[type]}       [description]
          */
-        onCloseRegistrationFailedModal(event){
+        onCloseRegistrationFailedModal(event) {
             $('.popup-overlay, .popup-content').removeClass("active");
             $('.popup-overlay .message').text('');
             return false;
-        }    
+        }
 
         /**
          * Opens our failed modal
