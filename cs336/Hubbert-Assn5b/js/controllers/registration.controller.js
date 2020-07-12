@@ -38,11 +38,11 @@
                 console.log(`${name} has triggered a event`);
             };
             switch (name) {
-                case 'x':
-                    break;
-                case 'y':
+                case 'conferenceId':
+                // TODO: look up conferenceId in cookies and update the model
                     break;
                 default:
+                // do nothing as for right now.
             }
             return false;
         }
