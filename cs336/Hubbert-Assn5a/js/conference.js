@@ -51,6 +51,9 @@
             alertElement.attr('class', '').addClass('hide alert');;
             $('.alert span').text(message)
             alertElement.addClass(`show ${addClass}`);
+            $([document.documentElement, document.body]).animate({
+                scrollTop: alertElement.offset().top
+            }, 1000);
             return false;
         },
     };
