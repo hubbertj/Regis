@@ -39,6 +39,8 @@
             };
             switch (name) {
                 case 'conferenceId':
+                    const savedCookie = conference.getCookie(conferenceId);
+                    console.log(savedCookie);
                     // TODO: look up conferenceId in cookies and update the model
                     break;
                 default:
@@ -103,8 +105,7 @@
                 return false;
             }
             if (conferenceId) {
-                console.log(conference.getCookie(conferenceId));
-                conference.setCookie(conferenceId, JSON.stringify(data), 30);
+                conference.setCookie(conferenceId, data, 30);
             }
             window.location.href = 'thankyou.html';
             return false;
