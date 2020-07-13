@@ -39,10 +39,10 @@
             };
             switch (name) {
                 case 'conferenceId':
-                // TODO: look up conferenceId in cookies and update the model
+                    // TODO: look up conferenceId in cookies and update the model
                     break;
                 default:
-                // do nothing as for right now.
+                    // do nothing as for right now.
             }
             return false;
         }
@@ -81,7 +81,14 @@
             $($(e.currentTarget).serializeArray()).each(function(index, obj) {
                 data[obj.name] = obj.value;
             });
-            const { morningRadio, afternoonRadio, eveningRadio, mealPackRadio, mealPackDay2Radio } = data;
+            const {
+                morningRadio,
+                afternoonRadio,
+                eveningRadio,
+                mealPackRadio,
+                mealPackDay2Radio,
+                conferenceId
+            } = data;
             const error = RegistrationController.validateWorkshops({
                 morningRadio,
                 afternoonRadio,
@@ -91,12 +98,14 @@
             });
 
             if (error) {
-                //TODO: this may need to be a modal rather then a alert
                 this.showRegistrationFailedModal(error);
                 // conference.alert(error.message, 'danger');
                 return false;
             }
-
+            if (conferenceId) {
+                console.log(conference.getCookie(conferenceId));
+                conference.setCookie(conferenceId, JSON.stringify(data), 30);
+            }
             window.location.href = 'thankyou.html';
             return false;
         }
