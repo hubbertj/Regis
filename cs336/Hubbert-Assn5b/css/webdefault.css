@@ -140,7 +140,7 @@ p {
 
 .icon {
     display: inline-block;
-    font-family: "angularicons";
+    font-family: "angularicons" !important;
     font-weight: normal;
     font-style: normal;
     text-decoration: none;
@@ -187,6 +187,10 @@ p {
 }
 
 .full-vote-icon::before {
+    content: "\E059";
+}
+
+.full-vote-icon-1::after {
     content: "\E059";
 }
 
@@ -341,6 +345,18 @@ fieldset.fieldset-highlight div.dialog-bg {
     left: 0;
     top: 10px;
     z-index: -1;
+}
+
+.font-blue {
+    color: #0d6efd;
+}
+
+.font-lg {
+    font-size: 2em;
+}
+
+.no-pointer:hover{
+    cursor: default !important;
 }
 
 
