@@ -8,11 +8,13 @@
         constructor() {}
 
         /**
-         * init the controller with any data from frontend
+         * Init the controller with any data from frontend
          * @return {[type]}
          */
         init(data) {
+            const conferanceId = 123456;
             console.log(`RegistrationController has been init with ${JSON.stringify(data)}`);
+
             $('#registration-form').on("submit", jQuery.proxy(this, "onSubmit"));
 
             $('input[type=radio][name="afternoonRadio"] ').click(function() {
@@ -27,21 +29,79 @@
         }
 
         /**
+         * Updates registration form from data model
+         * @param  {[type]} data
+         * @return {[type]}  
+         */
+        updateForm(data) {
+            const form = $('form#registration-form');
+            this.clearForm();
+
+            form.find('input[name="addressLine1"]').val(data.addressLine1);
+            form.find('input[name="addressLine2"]').val(data.addressLine2);
+            form.find('input[name="city"]').val(data.city);
+            form.find('input[name="companyName"]').val(data.companyName);
+            form.find('input[name="companyWebsite"]').val(data.companyWebsite);
+            form.find('input[name="conferenceId"]').val(data.conferenceId);
+            form.find('input[name="emailAddress"]').val(data.emailAddress);
+            form.find('input[name="firstName"]').val(data.firstName);
+            form.find('input[name="lastName"]').val(data.lastName);
+            form.find('input[name="phone"]').val(data.phone);
+            form.find('input[name="position"]').val(data.position);
+            form.find('input[name="zipCode"]').val(data.zipCode);
+            form.find('select[name="state"]').val(data.state);
+            form.find('select[name="title"]').val(data.title);
+
+            if (data.morningRadio) {
+                form.find(`input[type="radio"][value="${data.morningRadio}"]`).prop('checked', true);
+            }
+            if (data.afternoonRadio) {
+                form.find(`input[type="radio"][value="${data.afternoonRadio}"]`).prop('checked', true);
+            }
+            if (data.eveningRadio) {
+                form.find(`input[type="radio"][value="${data.eveningRadio}"]`).prop('checked', true);
+            }
+            return false;
+        }
+
+        /**
+         * Resets form
+         * @return {[type]}
+         */
+        clearForm() {
+            const formElem = $('#registration-form');
+            formElem.find('input:not([type=checkbox]):not([type=radio]), textarea, select').val('');
+            formElem.find('input[type=radio]').prop('checked', false);
+        }
+
+        /**
          * Handles all field change events.
          * @param  {[type]} event [description]
          * @return {[type]}       [description]
          */
         onChange(evt) {
-            let name = '';
-            if ('currentTarget' in evt) {
-                name = $(evt.currentTarget).attr('name');
-                console.log(`${name} has triggered a event`);
+            let changed = {
+                name: '',
+                value: ''
             };
-            switch (name) {
+            if ('currentTarget' in evt) {
+                changed.name = $(evt.currentTarget).attr('name');
+                changed.value = $(evt.currentTarget).val();
+            };
+            switch (changed.name) {
                 case 'conferenceId':
-                    const savedCookie = conference.getCookie(conferenceId);
-                    console.log(savedCookie);
-                    // TODO: look up conferenceId in cookies and update the model
+                    if ('value' in changed && changed.value && changed.value !== '') {
+                        const savedCookie = conference.getCookie(changed.value);
+                        if (savedCookie) {
+                            this.registrationModel = JSON.parse(savedCookie);
+                            this.updateForm(this.registrationModel);
+                        } else {
+                            // clear the form
+                            this.clearForm();
+                            $('input[name="conferenceId"]').val(changed.value);
+                        }
+                    }
+
                     break;
                 default:
                     // do nothing as for right now.
@@ -79,6 +139,7 @@
          * @return {[type]} [description]
          */
         onSubmit(e) {
+            const defaultConferanceId = 123456;
             let data = {};
             $($(e.currentTarget).serializeArray()).each(function(index, obj) {
                 data[obj.name] = obj.value;
@@ -89,7 +150,6 @@
                 eveningRadio,
                 mealPackRadio,
                 mealPackDay2Radio,
-                conferenceId
             } = data;
             const error = RegistrationController.validateWorkshops({
                 morningRadio,
@@ -99,14 +159,16 @@
                 mealPackDay2Radio,
             });
 
+            data.conferenceId = data.conferenceId || defaultConferanceId;
+
             if (error) {
                 this.showRegistrationFailedModal(error);
                 // conference.alert(error.message, 'danger');
                 return false;
             }
-            if (conferenceId) {
-                conference.setCookie(conferenceId, data, 30);
-            }
+
+            conference.setCookie(data.conferenceId, JSON.stringify(data), 30);
+
             window.location.href = 'thankyou.html';
             return false;
         }
