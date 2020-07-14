@@ -1,5 +1,6 @@
-/*reset*/
+@import '../node_modules/jquery-ui-dist/themes/jquery-ui.min.css';
 
+/*reset*/
 *,
 *::before,
 *::after {
