@@ -41,10 +41,11 @@
 
         /**
          * Resets form
-         * @return {[type]}
+         * @return {[type]} [description]
          */
         reset() {
             $('input[type=radio]').prop('checked', false);
+            return false;
         }
 
         /**
