@@ -16,6 +16,27 @@
             return false;
         },
 
+
+        /**
+         * Saves to local storage
+         * @param  {[type]} name
+         * @param  {[type]} obj
+         * @return {[type]}
+         */
+        setLocalStorage: (name, obj) => {
+            localStorage.setItem(name, JSON.stringify(obj));
+            return false;
+        },
+
+        /**
+         * Gets from local storage
+         * @param  {[type]} name
+         * @return {[type]}
+         */
+        getLocalStorage: (name) => {
+            return JSON.parse(localStorage.getItem(name)) || false;
+        },
+
         /**
          * Set Cookies 
          * @param  {[type]} name  [description]
