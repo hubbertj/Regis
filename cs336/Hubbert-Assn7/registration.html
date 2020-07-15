@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<!--    Name: Jerum Hubbert
+        AssignmentL CS336 Assignment #5B
+        Created: 07/11/2020
+        Description: Registration for the conference site. -->
+<html lang="en">
+
+<head>
+    <title>Entrepreneur&nbsp;Workshop&nbsp;|&nbsp;Registration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="keywords" content="Entrepreneur, Business development, Entrepreneur">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Entrepreneur Workshop, your one stop to the year entrepreneur conferance.">
+    <meta name="author" content="Jerum Hubbert">
+    <meta name="robots" content="noindex">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/webdefault.css" type="text/css">
+    <link rel="stylesheet" href="node_modules/jquery-ui-dist/jquery-ui.min.css" type="text/css">
+    <style></style>
+</head>
+
+<body>
+    <header>
+        <nav id="navigate" class="p-header container-fluid">
+            <div class="d-flex flex-wrap">
+                <div class="navbar-brand-container p-2">
+                    <a class="navbar-brand" href="index.html"><img src="imgs/conference_logo.png" alt="conference_logo" width="50" height="50" /></a>
+                </div>
+                <ul class="navlinks list-unstyled d-flex flex-wrap">
+                    <li class="p-2"><a href="awards.html">Member&nbsp;Choice&nbsp;Awards</a></li>
+                    <li class="p-2"><a href="activites.html">Local&nbsp;Activities</a></li>
+                    <li class="p-2"><a href="meals.html">Meals</a></li>
+                    <li class="p-2"><a href="keynote.html">Keynote&nbsp;Speakers</a></li>
+                    <li class="p-2"><a href="workshopschedule.html">Workshop&nbsp;Schedule</a></li>
+                    <li class="p-2 active"><a href="registration.html">Registration&nbsp;Form</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div id="main" class="container-fluid">
+        <div class="carousel-container row">
+            <div class="col-12">
+                <h1 class="col mb-0">Entrepreneur&nbsp;Conference</h1>
+                <small class="col">August&nbsp;24&nbsp;-&nbsp;August&nbsp;28</small>
+            </div>
+        </div>
+        <div class="row" style="position: relative;">
+            <div class="col-12">&nbsp;</div>
+            <div class="col-12">
+                <div class="container">
+                    <form id="registration-form" name="registrationForm" class="form">
+                        <div class="alert hide" role="alert">
+                            <span class="lead"></span>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+                        </div>
+                        <fieldset class="fieldset fieldset-highlight">
+                            <legend>Personal&nbsp;Information</legend>
+                            <div class="form-group row pb-2">
+                                <div class="col-sm-12 col-md-7">
+                                    <input type="number" class="form-control" name="conferenceId" id="conferenceId" placeholder="Conference Id" minlength="6" maxlength="6" />
+                                    <div class="dialog-bg"></div>
+                                </div>
+                            </div>
+                            <div class="form-group row pb-2">
+                                <div class="col-sm-2">
+                                    <select class="form-control" id="titleSelect" name="title">
+                                        <option value="" disabled selected>Title</option>
+                                        <option>Mr</option>
+                                        <option>Mrs</option>
+                                        <option>Ms</option>
+                                    </select>
+                                    <div class="dialog-bg"></div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" pattern="[a-zA-Z]+" required="" />
+                                    <div class="dialog-bg"></div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name" pattern="[a-zA-Z\-]+" required="" />
+                                    <div class="dialog-bg"></div>
+                                </div>
+                            </div>
+                            <div class="form-group row pb-2">
+                                <div class="col-sm-12 col-md-6">
+                                    <input type="text" class="form-control" name="addressLine1" id="addressLine1" placeholder="Address Line 1" pattern="[a-zA-Z0-9 \\#]+" required="" />
+                                    <input type="text" class="form-control" name="addressLine2" id="addressLine2" placeholder="Address Line 2" pattern="[a-zA-Z0-9 \\#]+" />
+                                    <div class="dialog-bg"></div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <input type="text" class="form-control" name="city" id="city" placeholder="City" pattern="[a-zA-Z\s]+" required="" />
+                                    <select class="form-control" id="stateSelect" name="state" required="">
+                                        <option value="" disabled selected>State</option>
+                                        <option value="AL">Alabama</option>
+                                        <option value="AK">Alaska</option>
+                                        <option value="AZ">Arizona</option>
+                                        <option value="AR">Arkansas</option>
+                                        <option value="CA">California</option>
+                                        <option value="CO">Colorado</option>
+                                        <option value="CT">Connecticut</option>
+                                        <option value="DE">Delaware</option>
+                                        <option value="DC">District Of Columbia</option>
+                                        <option value="FL">Florida</option>
+                                        <option value="GA">Georgia</option>
+                                        <option value="HI">Hawaii</option>
+                                        <option value="ID">Idaho</option>
+                                        <option value="IL">Illinois</option>
+                                        <option value="IN">Indiana</option>
+                                        <option value="IA">Iowa</option>
+                                        <option value="KS">Kansas</option>
+                                        <option value="KY">Kentucky</option>
+                                        <option value="LA">Louisiana</option>
+                                        <option value="ME">Maine</option>
+                                        <option value="MD">Maryland</option>
+                                        <option value="MA">Massachusetts</option>
+                                        <option value="MI">Michigan</option>
+                                        <option value="MN">Minnesota</option>
+                                        <option value="MS">Mississippi</option>
+                                        <option value="MO">Missouri</option>
+                                        <option value="MT">Montana</option>
+                                        <option value="NE">Nebraska</option>
+                                        <option value="NV">Nevada</option>
+                                        <option value="NH">New Hampshire</option>
+                                        <option value="NJ">New Jersey</option>
+                                        <option value="NM">New Mexico</option>
+                                        <option value="NY">New York</option>
+                                        <option value="NC">North Carolina</option>
+                                        <option value="ND">North Dakota</option>
+                                        <option value="OH">Ohio</option>
+                                        <option value="OK">Oklahoma</option>
+                                        <option value="OR">Oregon</option>
+                                        <option value="PA">Pennsylvania</option>
+                                        <option value="RI">Rhode Island</option>
+                                        <option value="SC">South Carolina</option>
+                                        <option value="SD">South Dakota</option>
+                                        <option value="TN">Tennessee</option>
+                                        <option value="TX">Texas</option>
+                                        <option value="UT">Utah</option>
+                                        <option value="VT">Vermont</option>
+                                        <option value="VA">Virginia</option>
+                                        <option value="WA">Washington</option>
+                                        <option value="WV">West Virginia</option>
+                                        <option value="WI">Wisconsin</option>
+                                        <option value="WY">Wyoming</option>
+                                    </select>
+                                    <div class="dialog-bg"></div>
+                                </div>
+                            </div>
+                            <div class="form-group row pb-2">
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip Code" pattern="[0-9]{5}" required="" />
+                                    <div class="dialog-bg"></div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Telphone (123-123-1234)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required="" />
+                                    <div class="dialog-bg"></div>
+                                </div>
+                            </div>
+                            <div class="form-group row pb-2">
+                                <div class="col-12">
+                                    <input type="email" class="form-control" id="emailAddress" name="emailAddress" placeholder="Email Address" required="" />
+                                    <div class="dialog-bg"></div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="fieldset fieldset-highlight">
+                            <legend>Company&nbsp;Information</legend>
+                            <div class="form-group row pb-2">
+                                <div class="col-12">
+                                    <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Name" pattern="[a-zA-Z0-9\s]+" required="" />
+                                    <div class="dialog-bg"></div>
+                                </div>
+                                <div class="col-12">
+                                    <input type="url" class="form-control" id="companyWebsite" name="companyWebsite" placeholder="Website" />
+                                    <div class="dialog-bg"></div>
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="form-control" id="position" name="position" placeholder="Your Position" pattern="[a-zA-Z0-9\s]+" required="" />
+                                    <div class="dialog-bg"></div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="fieldset fieldset-highlight">
+                            <legend>Workshop&nbsp;Information</legend>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <fieldset class="fieldset">
+                                            <legend>Morning</legend>
+                                            <div class="d-flex flex-column">
+                                                <div class="p-2">
+                                                    <label for="leadership">Leadership</label>
+                                                    <input type="radio" id="leadership" value="leadership" name="morningRadio" required/>
+                                                    <div class="dialog-bg"></div>
+                                                </div>
+                                                <div class="p-2">
+                                                    <label for="discovery">Discovery</label>
+                                                    <input type="radio"  id="discovery" value="discovery" name="morningRadio"/>
+                                                    <div class="dialog-bg"></div>
+                                                </div>
+                                                <div class="p-2">
+                                                    <label for="mentorship">Mentorship</label>
+                                                    <input type="radio"  id="mentorship" value="mentorship" name="morningRadio"/>
+                                                    <div class="dialog-bg"></div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <fieldset class="fieldset">
+                                            <legend>Afternoon</legend>
+                                            <div class="d-flex flex-column">
+                                                <div class="p-2">
+                                                    <label for="pitching">Pitching</label>
+                                                    <input type="radio" id="pitching" value="pitching" name="afternoonRadio" />
+                                                    <div class="dialog-bg"></div>
+                                                </div>
+                                                <div class="p-2">
+                                                    <label for="simulation">Power&nbsp;Company&nbsp;Simulation</label>
+                                                    <input type="radio" id="simulation" value="simulation" name="afternoonRadio"/>
+                                                    <div class="dialog-bg"></div>
+                                                </div>
+                                                <div class="p-2">
+                                                    <label for="exitStrategy">Exit&nbsp;Strategy</label>
+                                                    <input type="radio" id="exitStrategy" value="exitStrategy" name="afternoonRadio">
+                                                    <div class="dialog-bg"></div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <fieldset class="fieldset">
+                                            <legend>Evening</legend>
+                                            <div class="d-flex flex-column">
+                                                <div class="p-2">
+                                                    <label for="networking">Networking</label>
+                                                    <input type="radio" id="networking" value="networking" name="eveningRadio" required>
+                                                    <div class="dialog-bg"></div>
+                                                </div>
+                                                <div class="p-2">
+                                                    <label for="sales">Sales</label>
+                                                    <input type="radio" id="sales" value="sales" name="eveningRadio">
+                                                    <div class="dialog-bg"></div>
+                                                </div>
+                                                <div class="p-2">
+                                                    <label for="moneyManagement">Money&nbsp;Management</label>
+                                                    <input type="radio" id="moneyManagement" value="moneyManagement" name="eveningRadio">
+                                                    <div class="dialog-bg"></div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="btn-container">
+                            <button type="submit" class="btn btn-primary float-right">Register&nbsp;Now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-12">&nbsp;</div>
+            <div class="alert alert-danger popup-overlay">
+                <div class="popup-content row">
+                    <div class="col-12">
+                        <p class="message"></p>
+                    </div>
+                    <div class="col-12 button-container">
+                        <button class="btn btn-danger cls">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer" class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-9">&nbsp;</div>
+            <div class="col-sm-12 col-md-3 pt-3 mb-2">
+                <address>
+                    <small><a class="full-map-icon icon lg" target="_blank" href="http://maps.google.com/?q=3150+Paradise+Rd,+Las+Vegas,+Nevada,+89109">&nbsp;</a>
+                        <span class="d-inline" style="line-height: 4em;">Las&nbsp;Vegas&nbsp;Convention&nbsp;Center</span><br>
+                        3150 Paradise Rd<br>
+                        Las Vegas, Nevada, 89109<br>
+                        United States<br>
+                        (702) 892-0711
+                    </small>
+                </address>
+            </div>
+        </div>
+        <div class="row lower-footer py-3">
+            <div class="col-sm-4">&nbsp;</div>
+            <small class="col-sm-12 col-md-4 text-center">
+                While this web site was created to satisfy the requirement of
+                building a web site for an academic course at Regis University, the
+                views and opinions expressed on this web site are solely those of
+                the original author and do not necessarily represent the views and
+                opinions of Regis University.
+            </small>
+            <div class="col-sm-4">&nbsp;</div>
+        </div>
+    </footer>
+    <script src="./node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="./node_modules/jquery-ui-dist/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="js/conference.js" type="text/javascript"></script>
+    <script src="js/controllers/registration.controller.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    if ('controller' in conference) {
+        conference.controller.init();
+    }
+    </script>
+</body>
+
+</html>
