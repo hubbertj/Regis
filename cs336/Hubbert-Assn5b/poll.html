@@ -2,7 +2,7 @@
 <!--    Name: Jerum Hubbert
         AssignmentL CS336 Assignment #5B 
         Created: 07/06/2020
-        Description: Poll for the conferance site. -->
+        Description: Poll for the conference site. -->
 <html lang="en">
 
 <head>
@@ -19,6 +19,7 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="css/webdefault.css" type="text/css">
+    <link rel="stylesheet" href="node_modules/jquery-ui-dist/jquery-ui.min.css" type="text/css">
     <style></style>
 </head>
 
@@ -47,8 +48,8 @@
                 <small class="col">August&nbsp;24&nbsp;-&nbsp;August&nbsp;28</small>
             </div>
         </div>
+        <div class="col-12">&nbsp;</div>
         <div class="row" style="position: relative;">
-            <div class="col-12">&nbsp;</div>
             <div class="col-12">
                 <div class="container">
                     <form id="poll-form" name="pollForm" class="form">
@@ -63,19 +64,22 @@
                                         <legend>Nominees</legend>
                                         <div class="radio d-flex flex-wrap justify-content-between">
                                             <div>
-                                                <input type="radio" value="dario_enriquez" name="nomineeRadio" required>Dario&nbsp;Enriquez
+                                                <label for="dario_enriquez">Dario&nbsp;Enriquez</label>
+                                                <input type="radio" id="dario_enriquez" value="dario_enriquez" name="nomineeRadio" required>
                                                 <div class="p-2 font-blue font-lg">
                                                     <span class="votes">0</span><i class="icon full-vote-icon-1 no-pointer">&nbsp;</i>
                                                 </div>
                                             </div>
                                             <div>
-                                                <input type="radio" value="lilly-May_parrish" name="nomineeRadio">Lilly-May&nbsp;Parrish
+                                                <label for="lilly-May_parrish">Lilly-May&nbsp;Parrish</label>
+                                                <input type="radio" id="lilly-May_parrish" value="lilly-May_parrish" name="nomineeRadio">
                                                 <div class="p-2 font-blue font-lg">
                                                     <span class="votes">0</span><i class="icon full-vote-icon-1 no-pointer">&nbsp;</i>
                                                 </div>
                                             </div>
                                             <div>
-                                                <input type="radio" value="charlene_buxton" name="nomineeRadio">Charlene&nbsp;Buxton
+                                                <label for="charlene_buxton">Charlene&nbsp;Buxton</label>
+                                                <input type="radio" id="charlene_buxton" value="charlene_buxton" name="nomineeRadio">
                                                 <div class="p-2 font-blue font-lg">
                                                     <span class="votes">0</span><i class="icon full-vote-icon-1 no-pointer">&nbsp;</i>
                                                 </div>
@@ -131,13 +135,14 @@
             <div class="col-sm-4">&nbsp;</div>
         </div>
     </footer>
-    <script src="node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="./node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="./node_modules/jquery-ui-dist/jquery-ui.min.js" type="text/javascript"></script>
     <script src="js/conference.js" type="text/javascript"></script>
     <script src="js/controllers/poll.controller.js" type="text/javascript"></script>
     <script type="text/javascript">
-    if ('controller' in conference) {
-        conference.controller.init();
-    }
+        if ('controller' in conference) {
+            conference.controller.init();
+        }
     </script>
 </body>
 

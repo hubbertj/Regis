@@ -5,24 +5,29 @@
     }
 
     class RegistrationController {
-        constructor() {}
+
+        constructor() {
+            this.defaultConferenceId = 123456;
+        }
 
         /**
          * Init the controller with any data from frontend
-         * @return {[type]}
+         * @return {null}
          */
         init(data) {
-            const conferanceId = 123456;
             console.log(`RegistrationController has been init with ${JSON.stringify(data)}`);
 
             $('#registration-form').on("submit", jQuery.proxy(this, "onSubmit"));
 
-            $('input[type=radio][name="afternoonRadio"] ').click(function() {
+            $('input[type=radio][name="afternoonRadio"]').click(function() {
                 if (this.previous) {
                     this.checked = false;
                 }
                 this.previous = this.checked;
+                $(this).checkboxradio('refresh');
             });
+
+            $('input[name="morningRadio"], input[name="afternoonRadio"], input[name="eveningRadio"]').checkboxradio();
 
             $('.popup-overlay .cls').on('click', jQuery.proxy(this, 'onCloseRegistrationFailedModal'));
             $('form#registration-form :input').change(jQuery.proxy(this, 'onChange'));
@@ -30,8 +35,8 @@
 
         /**
          * Updates registration form from data model
-         * @param  {[type]} data
-         * @return {[type]}  
+         * @param  {Object} data
+         * @return {boolean}
          */
         updateForm(data) {
             const form = $('form#registration-form');
@@ -53,31 +58,31 @@
             form.find('select[name="title"]').val(data.title);
 
             if (data.morningRadio) {
-                form.find(`input[type="radio"][value="${data.morningRadio}"]`).prop('checked', true);
+                form.find(`input[type="radio"][value="${data.morningRadio}"]`).prop('checked', true).checkboxradio('refresh');
             }
             if (data.afternoonRadio) {
-                form.find(`input[type="radio"][value="${data.afternoonRadio}"]`).prop('checked', true);
+                form.find(`input[type="radio"][value="${data.afternoonRadio}"]`).prop('checked', true).checkboxradio('refresh');
             }
             if (data.eveningRadio) {
-                form.find(`input[type="radio"][value="${data.eveningRadio}"]`).prop('checked', true);
+                form.find(`input[type="radio"][value="${data.eveningRadio}"]`).prop('checked', true).checkboxradio('refresh');
             }
             return false;
         }
 
         /**
          * Resets form
-         * @return {[type]}
+         * @return {null}
          */
         clearForm() {
             const formElem = $('#registration-form');
             formElem.find('input:not([type=checkbox]):not([type=radio]), textarea, select').val('');
-            formElem.find('input[type=radio]').prop('checked', false);
+            formElem.find('input[type=radio]').prop('checked', false).checkboxradio('refresh');
         }
 
         /**
          * Handles all field change events.
-         * @param  {[type]} event [description]
-         * @return {[type]}       [description]
+         * @param  {Object} event
+         * @return {boolean}
          */
         onChange(evt) {
             let changed = {
@@ -111,8 +116,8 @@
 
         /**
          * Closes our failed modal
-         * @param  {[type]} event [description]
-         * @return {[type]}       [description]
+         * @param  {Object} event
+         * @return {boolean}
          */
         onCloseRegistrationFailedModal(event) {
             $('.popup-overlay, .popup-content').removeClass("active");
@@ -122,8 +127,8 @@
 
         /**
          * Opens our failed modal
-         * @param  {[type]} error [description]
-         * @return {[type]}       [description]
+         * @param  {Object} error
+         * @return {null}
          */
         showRegistrationFailedModal(error) {
             $('.popup-overlay .message').text(error.message);
@@ -135,11 +140,11 @@
         }
 
         /**
-         * Handles the submittion
-         * @return {[type]} [description]
+         * Handles the submission
+         * @param e
+         * @returns {boolean}
          */
         onSubmit(e) {
-            const defaultConferanceId = 123456;
             let data = {};
             $($(e.currentTarget).serializeArray()).each(function(index, obj) {
                 data[obj.name] = obj.value;
@@ -159,7 +164,7 @@
                 mealPackDay2Radio,
             });
 
-            data.conferenceId = data.conferenceId || defaultConferanceId;
+            data.conferenceId = data.conferenceId || this.defaultConferenceId;
 
             if (error) {
                 this.showRegistrationFailedModal(error);
@@ -175,16 +180,16 @@
 
         /**
          * Private for checking if workshop selection is valid.
-         * @param  {[type]} selections 
-         * @return {[type]}
+         * @param selections
+         * @returns {boolean}
          */
         static validateWorkshops(selections) {
             let error = false;
             if (selections.morningRadio === 'discovery' && selections.afternoonRadio) {
                 error = { message: 'Discovery includes all afternoon workshops: pitching, power company simulation, and exit strategy.' }
-            } else if (selections.afternoonRadio && selections.afternoonRadio === 'exitStrateg' && selections.eveningRadio !== 'sales') {
+            } else if (selections.afternoonRadio && selections.afternoonRadio === 'exitStrategy' && selections.eveningRadio !== 'sales') {
                 error = { message: 'Attendees who select Exit Strategy for their afternoon workshops must also choose Sales for the Evening workshops.' }
-            } else if (selections.eveningRadio === 'sales' && selections.afternoonRadio !== 'exitStrateg') {
+            } else if (selections.eveningRadio === 'sales' && selections.afternoonRadio !== 'exitStrategy') {
                 error = { message: 'Attendees who select Evening session workshop Sales must also take afternoon session workshop Exit Strategy.' }
             } else if (selections.morningRadio === 'discovery' && selections.eveningRadio === 'sales') {
                 error = { message: 'Discovery includes all Evening workshops: Sales.' }
