@@ -2,7 +2,7 @@
 <!--    Name: Jerum Hubbert
         AssignmentL CS336 Assignment #5B
         Created: 07/11/2020
-        Description: Registration for the conferance site. -->
+        Description: Registration for the conference site. -->
 <html lang="en">
 
 <head>
@@ -19,6 +19,7 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="css/webdefault.css" type="text/css">
+    <link rel="stylesheet" href="node_modules/jquery-ui-dist/jquery-ui.min.css" type="text/css">
     <style></style>
 </head>
 
@@ -189,14 +190,20 @@
                                     <div class="col-md-4">
                                         <fieldset class="fieldset">
                                             <legend>Morning</legend>
-                                            <div class="radio d-flex flex-column">
-                                                <div class=""><span class="p-2">Leadership</span><input type="radio" class="float-right" value="leadership" name="morningRadio" required>
+                                            <div class="d-flex flex-column">
+                                                <div class="p-2">
+                                                    <label for="leadership">Leadership</label>
+                                                    <input type="radio" id="leadership" value="leadership" name="morningRadio" required/>
                                                     <div class="dialog-bg"></div>
                                                 </div>
-                                                <div class=""><span class="p-2">Discovery</span><input type="radio" class="float-right" value="discovery" name="morningRadio">
+                                                <div class="p-2">
+                                                    <label for="discovery">Discovery</label>
+                                                    <input type="radio"  id="discovery" value="discovery" name="morningRadio"/>
                                                     <div class="dialog-bg"></div>
                                                 </div>
-                                                <div class=""><span class="p-2">Mentorship</span><input type="radio" class="float-right" value="mentorship" name="morningRadio">
+                                                <div class="p-2">
+                                                    <label for="mentorship">Mentorship</label>
+                                                    <input type="radio"  id="mentorship" value="mentorship" name="morningRadio"/>
                                                     <div class="dialog-bg"></div>
                                                 </div>
                                             </div>
@@ -205,14 +212,20 @@
                                     <div class="col-md-4">
                                         <fieldset class="fieldset">
                                             <legend>Afternoon</legend>
-                                            <div class="radio d-flex flex-column">
-                                                <div class=""><span class="p-2">Pitching</span><input type="radio" class="float-right" value="pitching" name="afternoonRadio">
+                                            <div class="d-flex flex-column">
+                                                <div class="p-2">
+                                                    <label for="pitching">Pitching</label>
+                                                    <input type="radio" id="pitching" value="pitching" name="afternoonRadio" />
                                                     <div class="dialog-bg"></div>
                                                 </div>
-                                                <div class=""><span class="p-2">Power&nbsp;Company&nbsp;Simulation</span><input type="radio" class="float-right" value="simulation" name="afternoonRadio">
+                                                <div class="p-2">
+                                                    <label for="simulation">Power&nbsp;Company&nbsp;Simulation</label>
+                                                    <input type="radio" id="simulation" value="simulation" name="afternoonRadio"/>
                                                     <div class="dialog-bg"></div>
                                                 </div>
-                                                <div class=""><span class="p-2">Exit&nbsp;Strategy</span><input type="radio" class="float-right" value="exitStrateg" name="afternoonRadio">
+                                                <div class="p-2">
+                                                    <label for="exitStrategy">Exit&nbsp;Strategy</label>
+                                                    <input type="radio" id="exitStrategy" value="exitStrategy" name="afternoonRadio">
                                                     <div class="dialog-bg"></div>
                                                 </div>
                                             </div>
@@ -221,14 +234,20 @@
                                     <div class="col-md-4">
                                         <fieldset class="fieldset">
                                             <legend>Evening</legend>
-                                            <div class="radio d-flex flex-column">
-                                                <div class=""><span class="p-2">Networking</span><input type="radio" class="float-right" value="networking" name="eveningRadio" required>
+                                            <div class="d-flex flex-column">
+                                                <div class="p-2">
+                                                    <label for="networking">Networking</label>
+                                                    <input type="radio" id="networking" value="networking" name="eveningRadio" required>
                                                     <div class="dialog-bg"></div>
                                                 </div>
-                                                <div class=""><span class="p-2">Sales</span><input type="radio" class="float-right" value="sales" name="eveningRadio">
+                                                <div class="p-2">
+                                                    <label for="sales">Sales</label>
+                                                    <input type="radio" id="sales" value="sales" name="eveningRadio">
                                                     <div class="dialog-bg"></div>
                                                 </div>
-                                                <div class=""><span class="p-2">Money&nbsp;Management</span><input type="radio" class="float-right" value="moneyManagement" name="eveningRadio">
+                                                <div class="p-2">
+                                                    <label for="moneyManagement">Money&nbsp;Management</label>
+                                                    <input type="radio" id="moneyManagement" value="moneyManagement" name="eveningRadio">
                                                     <div class="dialog-bg"></div>
                                                 </div>
                                             </div>
@@ -283,7 +302,8 @@
             <div class="col-sm-4">&nbsp;</div>
         </div>
     </footer>
-    <script src="node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="./node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="./node_modules/jquery-ui-dist/jquery-ui.min.js" type="text/javascript"></script>
     <script src="js/conference.js" type="text/javascript"></script>
     <script src="js/controllers/registration.controller.js" type="text/javascript"></script>
     <script type="text/javascript">

@@ -7,18 +7,21 @@
     class PollController {
         constructor() {
             $('#poll-form').on("submit", jQuery.proxy(this, "onSubmit"));
-            $('input[type=radio]').click(function() {
+            $('input[type="radio"]').click(function() {
                 if (this.previous) {
                     this.checked = false;
                 }
                 this.previous = this.checked;
+                $(this).checkboxradio('refresh');
             });
+
+            $('input[name="nomineeRadio"]').checkboxradio();
             this.updateVotes();
         }
 
         /**
          * Init the controller with any data from frontend
-         * @return {[type]}
+         * @return {null}
          */
         init(data) {
             console.log(`PollController has been init with ${JSON.stringify(data)}`);
@@ -41,10 +44,10 @@
 
         /**
          * Resets form
-         * @return {[type]} [description]
+         * @return {boolean} [description]
          */
         reset() {
-            $('input[type=radio]').prop('checked', false);
+            $('input[type="radio"]').prop('checked', false).checkboxradio('refresh');
             return false;
         }
 

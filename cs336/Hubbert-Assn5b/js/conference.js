@@ -7,8 +7,8 @@
     window.conference = {
         /**
          * Closes a boostrap alert
-         * @param  {[type]} event [description]
-         * @return {[type]}       [description]
+         * @param  {object} event
+         * @return {boolean}
          */
         onAlertClose: (event) => {
             $('.alert span').text('');
@@ -19,9 +19,9 @@
 
         /**
          * Saves to local storage
-         * @param  {[type]} name
-         * @param  {[type]} obj
-         * @return {[type]}
+         * @param  {string} name
+         * @param  {string} obj
+         * @return {boolean}
          */
         setLocalStorage: (name, obj) => {
             localStorage.setItem(name, JSON.stringify(obj));
@@ -30,8 +30,8 @@
 
         /**
          * Gets from local storage
-         * @param  {[type]} name
-         * @return {[type]}
+         * @param  {string} name
+         * @return {Object}
          */
         getLocalStorage: (name) => {
             return JSON.parse(localStorage.getItem(name)) || false;
@@ -39,10 +39,10 @@
 
         /**
          * Set Cookies 
-         * @param  {[type]} name  [description]
-         * @param  {[type]} value [description]
-         * @param  {[type]} days  [description]
-         * @return {[type]}       [description]
+         * @param  {string} name
+         * @param  {string} value
+         * @param  {number} days
+         * @return {Object}
          */
         setCookie: (name, value, days) => {
             let expires = "";
@@ -57,8 +57,8 @@
 
         /**
          * Gets a cookies value
-         * @param  {[type]} name [description]
-         * @return {[type]}      [description]
+         * @param  {string} name
+         * @return {boolean}
          */
         getCookie: (name) => {
             let nameEQ = `${name}=`;
@@ -75,8 +75,8 @@
 
         /**
          * Expires a cookie
-         * @param  {[type]} name [description]
-         * @return {[type]}      [description]
+         * @param  {string} name
+         * @return {boolean}
          */
         eraseCookie: (name) => {
             document.cookie = `${name}=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
@@ -85,9 +85,9 @@
 
         /**
          * Used to throw a alert
-         * @param  {[type]} message [description]
-         * @param  {[type]} type    [description]
-         * @return {[type]}         [description]
+         * @param  {string} message
+         * @param  {string} type
+         * @return {boolean}
          */
         alert: (message, type) => {
             let addClass = 'info';
