@@ -5731,10 +5731,6 @@ nav.p-header li.active a {
     padding: 0.375rem;
 }
 
-.form-control-color::-moz-color-swatch {
-    border-radius: 0.25rem;
-}
-
 .form-control-color::-webkit-color-swatch {
     border-radius: 0.25rem;
 }
