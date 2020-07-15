@@ -34,6 +34,9 @@
 .project
 .settings
 
+#ide
+.idea
+
 #haskell
 cabal-dev
 *.o
