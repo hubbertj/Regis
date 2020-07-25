@@ -1,12 +1,11 @@
 (function(window) {
 
-
     /**
      * global object
      */
     window.conference = {
         /**
-         * Closes a boostrap alert
+         * Closes a bootstrap alert
          * @param  {object} event
          * @return {boolean}
          */
@@ -125,7 +124,7 @@
         },
     };
 
-    //init stuff
+    // init stuff
     $('.alert .close').on('click', conference.onAlertClose);
 
 
