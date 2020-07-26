@@ -17,21 +17,15 @@ pip install pipenv
 Once installed you need to connect pipenv to your PyCharm by adding a new
 python interpreter.
 
+Use the following instructions to do so [install pipenv into Pycharm](https://www.jetbrains.com/help/pycharm/pipenv.html)
 
 ## Usage
-
-```python
-import foobar
-
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
-```
+1. Create run configuration for scripts/name_tags.py
+2. Run script name_tags.py using run configuration
+3. generated HTML file should be at the root dir
 
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
+Jerum (Jay) Hubbert
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
