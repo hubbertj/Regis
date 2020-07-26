@@ -10,11 +10,13 @@ will have links to those pages.
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install pipenv.
 ```bash
-pip install foobar
+pip install pipenv
 ```
+Once installed you need to connect pipenv to your PyCharm by adding a new
+python interpreter.
+
 
 ## Usage
 
