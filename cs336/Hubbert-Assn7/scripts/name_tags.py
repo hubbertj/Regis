@@ -32,7 +32,6 @@ def generate_context():
 def generate_html(title_name, template_name, ctx):
     ctx['title'] = title_name
     template = render_to_string(template_name, ctx)
-    print(template)
     return template
 
 
@@ -46,7 +45,7 @@ init()
 context = generate_context()
 
 tag_8_context = generate_html('nametags8', 'nametags8.html', context)
-save_to_html('nametag8gen', tag_8_context)
+save_to_html('nametags8gen', tag_8_context)
 
 tag_10_context = generate_html('nametags10', 'nametags10.html', context)
 save_to_html('nametags10gen', tag_10_context)
