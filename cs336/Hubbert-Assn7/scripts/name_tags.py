@@ -4,30 +4,49 @@
 # Description: Python script for reading name tags
 
 import django
-from django.template import Template, Context
 from django.conf import settings
-from django.template.loader import get_template, render_to_string
-from django.template import Context
+from string import Template
+from django.template.loader import render_to_string
 
-TEMPLATES = [
+DEFAULT_DIR = '..'
+TEMPLATE = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['../'],
+        'DIRS': [DEFAULT_DIR],
         'APP_DIRS': True,
-        'OPTIONS': {
-            # ... some options here ...
-        },
+        'OPTIONS': {},
     }
 ]
 
-settings.configure(TEMPLATES=TEMPLATES)  # We have to do this to use django templates standalone - see
-# http://stackoverflow.com/questions/98135/how-do-i-use-django-templates-without-the-rest-of-django
 
-django.setup()
+def init():
+    settings.configure(TEMPLATES=TEMPLATE)
+    django.setup()
 
-name_tags8_template = get_template('nametags8.html')
 
-c = {'name': 'world'}
+def generate_context():
+    return {
+        'name': 'world', }
 
-print(name_tags8_template.render(c))
 
+def generate_html(title_name, template_name, ctx):
+    ctx['title'] = title_name
+    template = render_to_string(template_name, ctx)
+    print(template)
+    return template
+
+
+def save_to_html(name, ctx):
+    with open(Template('$dir/$file_name.html').substitute(file_name=name, dir=DEFAULT_DIR), "w") as file:
+        file.write(ctx)
+    return None
+
+
+init()
+context = generate_context()
+
+tag_8_context = generate_html('nametags8', 'nametags8.html', context)
+save_to_html('nametag8gen', tag_8_context)
+
+tag_10_context = generate_html('nametags10', 'nametags10.html', context)
+save_to_html('nametags10gen', tag_10_context)
