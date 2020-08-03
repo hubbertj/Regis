@@ -5,11 +5,19 @@ Created: 07/06/2020
 Description: css file for tags 8 html page.*/
 
 /* fonts */
-.f-name {
+
+[class^="font-"] {
+    font-size: 12px;
 }
-.f-position {
+.font-first-name {
+    font-size: 22px;
+    font-weight: bold;
 }
-.f-company {
+
+.font-position {
+    font-weight: bold;
 }
-.f-location {
+.font-company {
+}
+.font-location {
 }

@@ -5,11 +5,12 @@ Created: 07/06/2020
 Description: css file for tags 10 html page.*/
 
 /* fonts */
-.f-name {
+.font-name {
+   font-size: 22px;
+   color: green;
+   font-weight: bold;
 }
-.f-position {
-}
-.f-company {
-}
-.f-location {
+.font-position {
+   color: red;
+   font-weight: bold;
 }
