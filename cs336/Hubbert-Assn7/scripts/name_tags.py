@@ -30,7 +30,6 @@ def generate_context(file_name):
     with open(DEFAULT_DATA_DIR + file_name, 'r', encoding='utf-8') as f:
         reader = csv.reader(f)
         guest_list = list(reader)
-        print(guest_list)
     return {
         'guests': guest_list, }
 
@@ -49,8 +48,6 @@ def save_to_html(name, ctx):
 
 init()
 context = generate_context('registrant_data.csv')
-
-print(context)
 
 tag_8_context = generate_html('nametags8', 'nametags8.html', context)
 save_to_html('nametags8gen', tag_8_context)
