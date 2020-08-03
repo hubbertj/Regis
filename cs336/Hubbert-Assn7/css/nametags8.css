@@ -9,6 +9,7 @@ Description: css file for tags 8 html page.*/
 [class^="font-"] {
     font-size: 12px;
 }
+
 .font-first-name {
     font-size: 22px;
     font-weight: bold;
@@ -17,7 +18,4 @@ Description: css file for tags 8 html page.*/
 .font-position {
     font-weight: bold;
 }
-.font-company {
-}
-.font-location {
-}
+
