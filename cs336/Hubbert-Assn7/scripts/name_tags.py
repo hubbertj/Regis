@@ -41,7 +41,7 @@ def generate_html(title_name, template_name, ctx):
 
 
 def save_to_html(name, ctx):
-    with open(Template('$dir/$file_name.html').substitute(file_name=name, dir=DEFAULT_DIR), "w") as file:
+    with open(Template('$dir/$file_name.html').substitute(file_name=name, dir='../nametags'), "w") as file:
         file.write(ctx)
     return None
 
