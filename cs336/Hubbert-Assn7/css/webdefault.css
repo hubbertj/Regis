@@ -6065,19 +6065,19 @@ button.close {
     visibility: visible;
 }
 
-/*card*/
-.card {
-
+.page-break {
+    display: none;
 }
 
-.card .card-header {
-
-}
-
-.card .card-body {
-
-}
-
-.card .card-footer {
-
+@media print {
+    .page-break {
+        display: block;
+        page-break-before: always;
+    }
+    .fieldset{
+        border: none;
+    }
+    footer {
+       display: none;
+    }
 }

@@ -3,9 +3,12 @@
 # Created: 07/15/2020
 # Description: Python script for reading name tags
 
+import sys
 import django
 from django.conf import settings
 from string import Template
+
+from django.template.defaultfilters import register
 from django.template.loader import render_to_string
 import csv
 
@@ -21,15 +24,24 @@ TEMPLATE = [
 ]
 
 
+@register.filter
+def modulo(num, val):
+    return num % val
+
+
 def init():
     settings.configure(TEMPLATES=TEMPLATE)
     django.setup()
 
 
 def generate_context(file_name):
-    with open(DEFAULT_DATA_DIR + file_name, 'r', encoding='utf-8') as f:
-        reader = csv.reader(f)
-        guest_list = list(reader)
+    try:
+        with open(DEFAULT_DATA_DIR + file_name, 'r', encoding='utf-8') as file:
+            reader = csv.reader(file)
+            guest_list = list(reader)
+    except FileNotFoundError:
+        print(file_name + " wasn’t found!")
+        sys.exit(1)
     return {
         'guests': guest_list, }
 
