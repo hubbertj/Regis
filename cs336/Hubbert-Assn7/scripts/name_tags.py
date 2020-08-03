@@ -7,7 +7,9 @@ import django
 from django.conf import settings
 from string import Template
 from django.template.loader import render_to_string
+import csv
 
+DEFAULT_DATA_DIR = '../data/'
 DEFAULT_DIR = '..'
 TEMPLATE = [
     {
@@ -24,9 +26,13 @@ def init():
     django.setup()
 
 
-def generate_context():
+def generate_context(file_name):
+    with open(DEFAULT_DATA_DIR + file_name, 'r', encoding='utf-8') as f:
+        reader = csv.reader(f)
+        guest_list = list(reader)
+        print(guest_list)
     return {
-        'name': 'world', }
+        'guests': guest_list, }
 
 
 def generate_html(title_name, template_name, ctx):
@@ -42,7 +48,9 @@ def save_to_html(name, ctx):
 
 
 init()
-context = generate_context()
+context = generate_context('registrant_data.csv')
+
+print(context)
 
 tag_8_context = generate_html('nametags8', 'nametags8.html', context)
 save_to_html('nametags8gen', tag_8_context)
