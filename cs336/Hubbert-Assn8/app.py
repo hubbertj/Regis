@@ -43,9 +43,21 @@ def add_routes(app):
     def meals():
         return render_template('meals.html')
 
-    @app.route('/poll')
+    @app.route('/poll', methods=['GET', 'POST', 'PUT', 'DELETE'])
     def poll():
-        return render_template('poll.html')
+        if request.method == 'GET':
+            return render_template('poll.html')
+        elif request.method == 'POST':
+            print(request.form)
+            return jsonify(process=True, message='')
+        elif request.method == 'PUT':
+            print(request.form)
+            return jsonify(process=True, message='')
+        elif request.method == 'DELETE':
+            print(request.form)
+            return jsonify(process=True, message='')
+        else:
+            abort(401)
 
     @app.route('/registration', methods=['GET', 'POST', 'PUT', 'DELETE'])
     def registration():

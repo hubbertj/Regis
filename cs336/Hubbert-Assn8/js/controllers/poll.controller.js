@@ -65,11 +65,24 @@
                 .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
                 .join(' ');
             if (vote) {
-                const voteCount = conference.getLocalStorage(nomineeRadio) + 1;
-                conference.setLocalStorage(nomineeRadio, voteCount);
-                this.updateVotes();
-                this.reset();
-                alert(`Thank you for voting for: ${vote}`);
+                $.ajax({
+                    url: `/poll`,
+                    type: "PUT",
+                    data: JSON.stringify({nominee: nomineeRadio}),
+                    success: (response) => {
+                        const voteCount = conference.getLocalStorage(nomineeRadio) + 1;
+                        conference.setLocalStorage(nomineeRadio, voteCount);
+                        this.updateVotes();
+                        this.reset();
+                        alert(`Thank you for voting for: ${vote}`);
+                    },
+                    error: (err) => {
+                        console.error(err);
+                        if (err && 'responseText' in err) {
+                            alert(err.responseText);
+                        }
+                    },
+                });
             }
             return false;
         }
