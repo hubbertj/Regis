@@ -1,12 +1,8 @@
-# Hubbert-Assn7
+# Hubbert-Assn8
 
-Every conference attendee must have a nametag. Creating the nametags is an
-administrative task, so we will need to add a page for administration tasks to the site. For
-your conference, at this stage of development, the data for the nametags will be read
-from a .csv text file. The data file is provided in the online assignment page.
-Using this data, a Python program should create pages of html that display the
-nametags. These nametag pages will be stored in the website. The administrative page
-will have links to those pages.
+We will now move the site into Flask. In this assignment, we will shift the site’s HTML
+pages into Flask and convert them to templates. Additionally, we will slightly reorganize
+the site so that images, javascript, and css reside in the static directory.
 
 ## Installation
 
@@ -20,9 +16,10 @@ python interpreter.
 Use the following instructions to do so [install pipenv into Pycharm](https://www.jetbrains.com/help/pycharm/pipenv.html)
 
 ## Usage
-1. Create run configuration for scripts/name_tags.py
-2. Run script name_tags.py using run configuration
-3. generated HTML file should be at the root dir
+1. Create run configuration for app.py.
+2. Create a .env file in the root.
+3. Copy a one of the environment variable sets from .env.template into .env (development | production)
+4. Run script app.py using run configuration.
 
 ## Contributing
 Jerum (Jay) Hubbert

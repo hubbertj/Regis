@@ -14,33 +14,42 @@ def create_app():
 
 
 def add_routes(app):
+
     @app.route('/')
     def index():
         return render_template('index.html')
 
-    @app.route('/activities')
+    @app.route('/activates')
     def activities():
-        return render_template('activities.html')
+        return render_template('activates.html')
 
-    @app.route('/workshopschedule')
-    def workshop_schedule():
-        return render_template('workshopschedule.html')
-
-    @app.route('/meals')
-    def meals():
-        return render_template('meals.html')
+    @app.route('/awards')
+    def awards():
+        return render_template('awards.html')
 
     @app.route('/keynote')
     def keynote():
         return render_template('keynote.html')
 
-    @app.route('/awards', methods=['GET'])
-    def awards():
-        return render_template('awards.html')
+    @app.route('/meals')
+    def meals():
+        return render_template('meals.html')
 
-    @app.route('/admin')
-    def admin():
-        return render_template('admin.html')
+    @app.route('/poll')
+    def poll():
+        return render_template('poll.html')
+
+    @app.route('/registration')
+    def registration():
+        return render_template('registration.html')
+
+    @app.route('/thankyou')
+    def thank_you():
+        return render_template('thankyou.html')
+
+    @app.route('/workshopschedule')
+    def workshop_schedule():
+        return render_template('workshopschedule.html')
 
     @app.route('/nametags8')
     def name_tags_8():

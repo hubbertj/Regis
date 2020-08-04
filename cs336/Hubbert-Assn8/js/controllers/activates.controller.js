@@ -4,7 +4,7 @@
         return false;
     }
 
-    class ActivitiesController {
+    class ActivatesController {
         constructor() {}
         
         /**
@@ -12,12 +12,12 @@
          * @return {[type]}
          */
         init(data) {
-            console.log(`ActivitiesController has been init with ${JSON.stringify(data)}`);
+            console.log(`ActivatesController has been init with ${JSON.stringify(data)}`);
         }
 
 
     }
 
-    conference.controller = new ActivitiesController(10, 10);
+    conference.controller = new ActivatesController(10, 10);
 
 })(window.conference);
