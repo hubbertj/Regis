@@ -4,3 +4,6 @@ nametags
 
 # node
 node_module
+
+#enviroment 
+.env
