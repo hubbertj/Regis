@@ -6080,4 +6080,12 @@ button.close {
     footer {
        display: none;
     }
+    .card {
+        width: 50% !important;
+    }
+}
+
+/*cards*/
+.card {
+    overflow: hidden;
 }
