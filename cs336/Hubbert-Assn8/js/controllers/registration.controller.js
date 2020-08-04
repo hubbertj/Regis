@@ -174,7 +174,21 @@
 
             conference.setCookie(data.conferenceId, JSON.stringify(data), 30);
 
-            window.location.href = 'thankyou.html';
+            $.ajax({
+                url: `/registration`,
+                type: "POST",
+                data: JSON.stringify(data),
+                success: (response) => {
+                    window.location.href = '/thankyou';
+                },
+                error: (err) => {
+                    console.error(err);
+                    if (err && 'responseText' in err) {
+                        this.showRegistrationFailedModal({ message: err.responseText });
+                    }
+                },
+            });
+
             return false;
         }
 
