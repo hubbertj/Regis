@@ -40,7 +40,7 @@ def init():
 
 def generate_context(file_name):
     try:
-        with open( DEFAULT_DATA_DIR + '\\' + file_name, 'r', encoding='utf-8') as file:
+        with open(DEFAULT_DATA_DIR + '\\' + file_name, 'r', encoding='utf-8') as file:
             reader = csv.reader(file)
             guest_list = list(reader)
     except FileNotFoundError:

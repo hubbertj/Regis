@@ -12,11 +12,11 @@ def create_app():
     app = Flask(__name__)
 
     @app.errorhandler(404)
-    def page_not_found(error):
+    def page_not_found():
         return render_template('404.html')
 
     @app.errorhandler(401)
-    def unauthorized_request(error):
+    def unauthorized_request():
         return 'User cannot perform this action', 401
 
     return app
