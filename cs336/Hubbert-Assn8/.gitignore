@@ -1,3 +1,6 @@
 # gen files
 *gen.html
 nametags
+
+# node
+node_module

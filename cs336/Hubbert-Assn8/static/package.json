@@ -1,0 +1,15 @@
+{
+  "name": "hubbert-assn8",
+  "version": "1.0.0",
+  "description": "Every conference attendee must have a nametag. Creating the nametags is an\r administrative task, so we will need to add a page for administration tasks to the site. For\r your conference, at this stage of development, the data for the nametags will be read\r from a .csv text file. The data file is provided in the online assignment page.\r Using this data, a Python program should create pages of html that display the\r nametags. These nametag pages will be stored in the website. The administrative page\r will have links to those pages.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.5.1",
+    "jquery-ui-dist": "^1.12.1"
+  }
+}
