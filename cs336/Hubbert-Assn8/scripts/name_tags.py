@@ -3,21 +3,25 @@
 # Created: 07/15/2020
 # Description: Python script for reading name tags
 
+import csv
+import os
 import sys
-import django
-from django.conf import settings
 from string import Template
 
+import django
+from django.conf import settings
 from django.template.defaultfilters import register
 from django.template.loader import render_to_string
-import csv
 
-DEFAULT_DATA_DIR = '../data/'
-DEFAULT_DIR = '../templates'
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DEFAULT_DIR = os.path.join(BASE_DIR, "templates")
+DEFAULT_DATA_DIR = os.path.join(BASE_DIR, "data")
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+
 TEMPLATE = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [DEFAULT_DIR],
+        'DIRS': [DEFAULT_DIR, DEFAULT_DATA_DIR, STATIC_DIR],
         'APP_DIRS': True,
         'OPTIONS': {},
     }
@@ -36,7 +40,7 @@ def init():
 
 def generate_context(file_name):
     try:
-        with open(DEFAULT_DATA_DIR + file_name, 'r', encoding='utf-8') as file:
+        with open( DEFAULT_DATA_DIR + '\\' + file_name, 'r', encoding='utf-8') as file:
             reader = csv.reader(file)
             guest_list = list(reader)
     except FileNotFoundError:
@@ -53,7 +57,10 @@ def generate_html(title_name, template_name, ctx):
 
 
 def save_to_html(name, ctx):
-    with open(Template('$dir/$file_name.html').substitute(file_name=name, dir='../nametags'), "w") as file:
+    save_dir = DEFAULT_DIR + '/nametags'
+    if not os.path.exists(save_dir):
+        os.makedirs(save_dir)
+    with open(Template('$dir/$file_name.html').substitute(file_name=name, dir=save_dir), "w") as file:
         file.write(ctx)
     return None
 

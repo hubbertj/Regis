@@ -51,11 +51,11 @@ def add_routes(app):
     def workshop_schedule():
         return render_template('workshopschedule.html')
 
-    @app.route('/nametags8gen')
+    @app.route('/nametags/nametags8gen')
     def name_tags_8():
         return render_template('nametags/nametags8gen.html')
 
-    @app.route('/nametags10gen')
+    @app.route('/nametags/nametags10gen')
     def name_tags_10():
         return render_template('nametags/nametags10gen.html')
 
@@ -87,6 +87,10 @@ def add_static(app):
     @app.route('/fonts/<path:path>')
     def send_fonts(path):
         return send_from_directory('fonts', path)
+
+    @app.route('/static/<path:path>')
+    def send_static(path):
+        return send_from_directory('static', path)
 
     return app
 
