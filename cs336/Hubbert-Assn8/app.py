@@ -51,13 +51,17 @@ def add_routes(app):
     def workshop_schedule():
         return render_template('workshopschedule.html')
 
-    @app.route('/nametags8')
+    @app.route('/nametags8gen')
     def name_tags_8():
-        return render_template('nametags8.html')
+        return render_template('nametags/nametags8gen.html')
 
-    @app.route('/nametags10')
+    @app.route('/nametags10gen')
     def name_tags_10():
-        return render_template('nametags10.html')
+        return render_template('nametags/nametags10gen.html')
+
+    @app.route('/admin')
+    def admin():
+        return render_template('admin.html')
 
     @app.route('/test')
     def test():
