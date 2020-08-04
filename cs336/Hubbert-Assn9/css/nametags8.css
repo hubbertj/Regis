@@ -1,0 +1,21 @@
+/*
+Name: Jerum Hubbert
+AssignmentL CS336 Assignment #7
+Created: 07/06/2020
+Description: css file for tags 8 html page.*/
+
+/* fonts */
+
+[class^="font-"] {
+    font-size: 12px;
+}
+
+.font-first-name {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.font-position {
+    font-weight: bold;
+}
+
