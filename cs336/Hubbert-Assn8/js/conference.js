@@ -17,6 +17,20 @@
 
 
         /**
+         * Actives the current link in nav element
+         * @return {boolean}
+         */
+        loadNavLocation: () => {
+            const currentRoute = $(location).attr('href').split('/').pop();
+            $('#site-nav-links li').removeClass('active');
+            if(currentRoute){
+                $(`a[href*=${currentRoute}]`).parent().addClass('active');
+            }
+            return false
+        },
+
+
+        /**
          * Saves to local storage
          * @param  {string} name
          * @param  {string} obj

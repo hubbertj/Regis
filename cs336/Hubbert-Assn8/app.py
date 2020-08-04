@@ -19,9 +19,9 @@ def add_routes(app):
     def index():
         return render_template('index.html')
 
-    @app.route('/activates')
+    @app.route('/activities')
     def activities():
-        return render_template('activates.html')
+        return render_template('activities.html')
 
     @app.route('/awards')
     def awards():

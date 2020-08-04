@@ -1,14 +1,14 @@
 <!--    Name: Jerum Hubbert
         AssignmentL CS336 Assignment #8
         Created: 08/04/2020
-        Description: activates for the conference site. -->
+        Description: activities for the conference site. -->
 
 {% extends 'base.html' %}
 {% block title %}|&nbsp;Activates{% endblock %}
 {% block main_content %}
 <div class="col-12">&nbsp;</div>
 <div class="col-12 pl-5">
-    <p class="lead">Checkout our local Activates.</p>
+    <p class="lead">Checkout our local Activities.</p>
 </div>
 <ul class="row list-unstyled">
     <li class="col-sm-12 col-md-6">
@@ -37,10 +37,13 @@
 </ul>
 <div class="col-12">&nbsp;</div>
 {% endblock %}
-<script src="js/controllers/activates.controller.js" type="text/javascript"></script>
+{% block js_block %}
+<script src="/js/controllers/activities.controller.js" type="text/javascript"></script>
 <script type="text/javascript">
         if ('controller' in conference) {
             conference.controller.init();
         }
 
 </script>
+{% endblock %}
+
