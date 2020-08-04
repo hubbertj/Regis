@@ -3,18 +3,26 @@
 # Created: 08/03/2020
 # Description: Server file for management of flask server
 
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, request, abort, jsonify, render_template, send_from_directory
 from dotenv import load_dotenv
 from os import environ
 
 
 def create_app():
     app = Flask(__name__)
+
+    @app.errorhandler(404)
+    def page_not_found(error):
+        return render_template('404.html')
+
+    @app.errorhandler(401)
+    def unauthorized_request(error):
+        return 'User cannot perform this action', 401
+
     return app
 
 
 def add_routes(app):
-
     @app.route('/')
     def index():
         return render_template('index.html')
@@ -39,9 +47,21 @@ def add_routes(app):
     def poll():
         return render_template('poll.html')
 
-    @app.route('/registration')
+    @app.route('/registration', methods=['GET', 'POST', 'PUT', 'DELETE'])
     def registration():
-        return render_template('registration.html')
+        if request.method == 'GET':
+            return render_template('registration.html')
+        elif request.method == 'POST':
+            print(request.form)
+            return jsonify(process=True, message='')
+        elif request.method == 'PUT':
+            print(request.form)
+            return jsonify(process=True, message='')
+        elif request.method == 'DELETE':
+            print(request.form)
+            return jsonify(process=True, message='')
+        else:
+            abort(401)
 
     @app.route('/thankyou')
     def thank_you():
@@ -62,11 +82,6 @@ def add_routes(app):
     @app.route('/admin')
     def admin():
         return render_template('admin.html')
-
-    @app.route('/test')
-    def test():
-        animal_list = ['dog', 'cat', 'mouse']
-        return render_template('test.html', animallist=animal_list)
 
     return app
 
