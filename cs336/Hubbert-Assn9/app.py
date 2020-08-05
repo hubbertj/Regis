@@ -3,65 +3,55 @@
 # Created: 08/03/2020
 # Description: Server file for management of flask server
 
-from flask import Flask, send_from_directory
+from flask import Flask, render_template
 from dotenv import load_dotenv
 from os import environ
-from models.shared.models import db
+from routes import route_all, route_static, route_error
+from models import registrationtable, user, workshoptable, awardtable
 
 
 def create_app():
     app = Flask(__name__)
 
-    @app.errorhandler(404)
-    def page_not_found():
-        return render_template('404.html')
+    if environ.get('SQLALCHEMY_DATABASE_URI'):
+        app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('SQLALCHEMY_DATABASE_URI')
+    if environ.get('SQLALCHEMY_TRACK_MODIFICATIONS'):
+        app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = environ.get('SQLALCHEMY_TRACK_MODIFICATIONS')
 
-    @app.errorhandler(401)
-    def unauthorized_request():
-        return 'User cannot perform this action', 401
+    registrationtable.db.init_app(app)
+    user.db.init_app(app)
+    workshoptable.db.init_app(app)
+    awardtable.db.init_app(app)
 
+    with app.app_context():
+        registrationtable.db.create_all()
+        user.db.create_all()
+        workshoptable.db.create_all()
+        awardtable.db.create_all()
+
+    app.register_blueprint(route_all)
+    app.register_blueprint(route_static)
     return app
 
 
-def add_static(app):
-    @app.route('/js/<path:path>')
-    def send_js(path):
-        return send_from_directory('js', path)
+def add_error_handlers(app):
+    @app.errorhandler(404)
+    def page_not_found(error):
+        return render_template('404.html')
 
-    @app.route('/images/<path:path>')
-    def send_images(path):
-        return send_from_directory('images', path)
-
-    @app.route('/css/<path:path>')
-    def send_css(path):
-        return send_from_directory('css', path)
-
-    @app.route('/fonts/<path:path>')
-    def send_fonts(path):
-        return send_from_directory('fonts', path)
-
-    @app.route('/static/<path:path>')
-    def send_static(path):
-        return send_from_directory('static', path)
+    @app.errorhandler(401)
+    def unauthorized_request(error):
+        return 'User cannot perform this action', 401
 
     return app
 
 
 load_dotenv('.env')
 application = create_app()
-application = add_static(application)
-application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///conference.sqlite'
-application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db.init_app(application)
-
-with application.test_request_context():
-
-    db.create_all()
+application = add_error_handlers(application)
 
 if environ.get('FLASK_ENV'):
-    print('Running in ' + environ.get('FLASK_ENV') + ' environment')
+    print(' * Running in ' + environ.get('FLASK_ENV') + ' environment')
 
 if __name__ == '__main__':
-    from routes import *
-
     application.run(port=environ.get('PORT'))
