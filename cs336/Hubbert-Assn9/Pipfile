@@ -10,6 +10,8 @@ flask = "*"
 python-dotenv = "*"
 django = "*"
 flask-sqlalchemy = "*"
+flask-wtf = "*"
+flask-admin = "*"
 
 [requires]
 python_version = "3.8"

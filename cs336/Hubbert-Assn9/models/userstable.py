@@ -1,4 +1,5 @@
-from models.shared.models import db
+from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy()
 
 
 class Users(db.Model):
@@ -8,3 +9,4 @@ class Users(db.Model):
 
     def __repr__(self):
         return '<Users %r>' % self.username
+

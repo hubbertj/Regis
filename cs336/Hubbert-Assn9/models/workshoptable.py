@@ -1,4 +1,5 @@
-from models.shared.models import db
+from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy()
 
 
 class Workshops(db.Model):
