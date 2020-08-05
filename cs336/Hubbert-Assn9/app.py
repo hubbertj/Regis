@@ -15,6 +15,7 @@ def create_app():
 
     if environ.get('SQLALCHEMY_DATABASE_URI'):
         app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('SQLALCHEMY_DATABASE_URI')
+
     if environ.get('SQLALCHEMY_TRACK_MODIFICATIONS'):
         app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = environ.get('SQLALCHEMY_TRACK_MODIFICATIONS')
 
@@ -46,9 +47,17 @@ def add_error_handlers(app):
     return app
 
 
+def seed_db():
+    registrationtable.Registrant().seed()
+    userstable.User().seed()
+    workshoptable.Workshop().seed()
+    awardtable.Nominee().seed()
+
+
 load_dotenv('.env')
 application = create_app()
 application = add_error_handlers(application)
+seed_db()
 
 if environ.get('FLASK_ENV'):
     print(' * Running in ' + environ.get('FLASK_ENV') + ' environment')

@@ -1,10 +1,18 @@
+# Name: Jerum Lee Hubbert
+# AssignmentL CS336 Assignment #8
+# Created: 08/03/2020
+# Description: Model for Nominees Registrants
+
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from . import environ
+import csv
 
 db = SQLAlchemy()
 
 
-class Registrants(db.Model):
+class Registrant(db.Model):
+    __tablename__ = 'registrants'
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     title = db.Column(db.String(80), unique=False, nullable=False)
@@ -33,12 +41,21 @@ class Registrants(db.Model):
     session3 = db.Column(db.String(80), unique=False, nullable=True)
 
     def __init__(self, **kwargs):
-        super(Registrants, self).__init__(**kwargs)
+        super(Registrant, self).__init__(**kwargs)
         # do custom initialization here
 
     def __repr__(self):
         return '<Registrants %r>' % self.id
 
     def seed(self):
-        # seeds table with data from csv
-        pass
+        seed_file = self.__class__.__name__.lower() + '_data.csv'
+        seed_list = None
+        try:
+            with open(environ.get('SEED_DIR') + '\\' + seed_file, 'r', encoding='utf-8') as file:
+                reader = csv.reader(file)
+                seed_list = list(reader)
+        except FileNotFoundError:
+            print(seed_file + " seed file wasn't found")
+
+        if seed_list is not None:
+            print(len(seed_list))
