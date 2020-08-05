@@ -7,7 +7,7 @@ from flask import Flask, render_template
 from dotenv import load_dotenv
 from os import environ
 from routes import route_all, route_static, route_error
-from models import registrationtable, user, workshoptable, awardtable
+from models import registrationtable, userstable, workshoptable, awardtable
 
 
 def create_app():
@@ -19,13 +19,13 @@ def create_app():
         app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = environ.get('SQLALCHEMY_TRACK_MODIFICATIONS')
 
     registrationtable.db.init_app(app)
-    user.db.init_app(app)
+    userstable.db.init_app(app)
     workshoptable.db.init_app(app)
     awardtable.db.init_app(app)
 
     with app.app_context():
         registrationtable.db.create_all()
-        user.db.create_all()
+        userstable.db.create_all()
         workshoptable.db.create_all()
         awardtable.db.create_all()
 
