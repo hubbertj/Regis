@@ -6,7 +6,7 @@
 from flask import Flask, render_template
 from dotenv import load_dotenv
 from os import environ
-from routes import route_all, route_static, route_error
+from routes import route_all, route_static
 from models import registrationtable, userstable, workshoptable, awardtable
 
 
