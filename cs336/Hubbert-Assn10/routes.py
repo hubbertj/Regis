@@ -4,6 +4,7 @@
 # Description: Routes file for management of flask server
 
 from flask import request, abort, jsonify, render_template, Blueprint, send_from_directory
+from flask_login import login_required, current_user
 
 route_all = Blueprint('route_all', __name__)
 route_static = Blueprint('route_static', __name__)
@@ -89,8 +90,30 @@ def name_tags_10():
 
 
 @route_all.route('/admin')
+@login_required
 def admin():
-    return render_template('admin.html')
+    c_user = {
+        'user_id': current_user.id,
+        'username': current_user.username,
+    }
+    return render_template('admin.html', user=c_user)
+
+
+@route_all.route('/user/<user_id>')
+def user(user_id):
+    if request.method == 'GET':
+        return jsonify(process=True, message='')
+    elif request.method == 'POST':
+        # creates a user
+        return jsonify(process=True, message='')
+    elif request.method == 'PUT':
+        # updates a user
+        return jsonify(process=True, message='')
+    elif request.method == 'DELETE':
+        # deletes a user
+        return jsonify(process=True, message='')
+    else:
+        abort(401)
 
 
 @route_static.route('/js/<path:path>')
@@ -116,4 +139,3 @@ def send_fonts(path):
 @route_static.route('/static/<path:path>')
 def send_static(path):
     return send_from_directory('static', path)
-
