@@ -24,11 +24,11 @@ class Registrant(db.Model):
     state = db.Column(db.String(80), unique=False, nullable=False)
     zipcode = db.Column(db.String(25), unique=False, nullable=False)
     phone = db.Column(db.String(25), unique=False, nullable=False)
-    email = db.Column(db.String(120), unique=False, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
     web = db.Column(db.String(120), unique=False, nullable=False)
     job_title = db.Column(db.String(80), unique=False, nullable=False)
     company = db.Column(db.String(120), unique=False, nullable=False)
-    meal_pack = db.Column(db.Boolean, default=False, nullable=False)
+    meal_pack = db.Column(db.String(80), default=False, nullable=False)
     billing_firstname = db.Column(db.String(80), unique=False, nullable=False)
     billing_lastname = db.Column(db.String(80), unique=False, nullable=False)
     card_type = db.Column(db.String(25), unique=False, nullable=False)
@@ -58,4 +58,36 @@ class Registrant(db.Model):
             print(seed_file + " seed file wasn't found")
 
         if seed_list is not None:
-            print(len(seed_list))
+            for row in seed_list:
+                if row and len(row) >= 10:
+                    registrant = Registrant.query.filter_by(email=row[10]).first()
+                    if registrant is None:
+                        registrant = Registrant(
+                            date=datetime.strptime(row[0], '%Y-%m-%d'),
+                            title=row[1],
+                            firstname=row[2],
+                            lastname=row[3],
+                            address1=row[4],
+                            address2=row[5],
+                            city=row[6],
+                            state=row[7],
+                            zipcode=row[8],
+                            phone=row[9],
+                            email=row[10],
+                            web=row[11],
+                            job_title=row[12],
+                            company=row[13],
+                            meal_pack=row[14],
+                            billing_firstname=row[15],
+                            billing_lastname=row[16],
+                            card_type=row[17],
+                            card_number=row[18],
+                            sid=row[19],
+                            exp_year=row[20],
+                            exp_month=row[21],
+                            session1=row[22],
+                            session2=row[23],
+                            session3=row[24],
+                        )
+                        db.session.add(registrant)
+                        db.session.commit()

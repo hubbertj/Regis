@@ -10,6 +10,13 @@ from routes import route_all, route_static
 from models import registrationtable, userstable, workshoptable, awardtable
 
 
+def seed_db():
+    registrationtable.Registrant().seed()
+    userstable.User().seed()
+    workshoptable.Workshop().seed()
+    awardtable.Nominee().seed()
+
+
 def create_app():
     app = Flask(__name__)
 
@@ -23,12 +30,6 @@ def create_app():
     userstable.db.init_app(app)
     workshoptable.db.init_app(app)
     awardtable.db.init_app(app)
-
-    with app.app_context():
-        registrationtable.db.create_all()
-        userstable.db.create_all()
-        workshoptable.db.create_all()
-        awardtable.db.create_all()
 
     app.register_blueprint(route_all)
     app.register_blueprint(route_static)
@@ -47,17 +48,18 @@ def add_error_handlers(app):
     return app
 
 
-def seed_db():
-    registrationtable.Registrant().seed()
-    userstable.User().seed()
-    workshoptable.Workshop().seed()
-    awardtable.Nominee().seed()
-
-
 load_dotenv('.env')
 application = create_app()
 application = add_error_handlers(application)
-seed_db()
+
+with application.app_context():
+    registrationtable.db.create_all()
+    userstable.db.create_all()
+    workshoptable.db.create_all()
+    awardtable.db.create_all()
+    if environ.get('SEED') == '1':
+        seed_db()
+
 
 if environ.get('FLASK_ENV'):
     print(' * Running in ' + environ.get('FLASK_ENV') + ' environment')
