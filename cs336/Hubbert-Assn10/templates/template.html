@@ -1,0 +1,18 @@
+<!--    Name: Jerum Hubbert
+        AssignmentL CS336 Assignment #8
+        Created: 08/04/2020
+        Description: templates for the conference site. -->
+{% extends 'base.html' %}
+{% block title %}Registration{% endblock %}
+{% block main_content %}
+{% endblock %}
+{% block js_block %}
+<script src="/js/controllers/home.controller.js" type="text/javascript"></script>
+<script type="text/javascript">
+        if ('controller' in conference) {
+            conference.controller.init();
+        }
+
+
+</script>
+{% endblock %}
