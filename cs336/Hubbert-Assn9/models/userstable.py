@@ -6,14 +6,9 @@
 from flask_sqlalchemy import SQLAlchemy
 from . import environ
 import csv
+from werkzeug.security import generate_password_hash
 
 db = SQLAlchemy()
-
-
-def seed():
-    print(environ.get('SEED_DIR') + ' from Users Table')
-    # seeds table with data from csv
-    pass
 
 
 class User(db.Model):
@@ -32,7 +27,7 @@ class User(db.Model):
         return '<Users %r>' % self.username
 
     def seed(self):
-        seed_file = self.__class__.__name__.lower() + '_data.csv'
+        seed_file = self.__class__.__name__.lower() + 's.csv'
         seed_list = None
         try:
             with open(environ.get('SEED_DIR') + '\\' + seed_file, 'r', encoding='utf-8') as file:
@@ -42,5 +37,12 @@ class User(db.Model):
             print(seed_file + " seed file wasn't found")
 
         if seed_list is not None:
+            db.session.query(User).delete()
+            db.session.commit()
             for row in seed_list:
-                pass
+                user = User(username=row[0],
+                            firstname=row[1],
+                            lastname=row[2],
+                            password=generate_password_hash(row[3]),)
+                db.session.add(user)
+                db.session.commit()

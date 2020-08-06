@@ -12,6 +12,7 @@ django = "*"
 flask-sqlalchemy = "*"
 flask-wtf = "*"
 flask-admin = "*"
+werkzeug = "*"
 
 [requires]
 python_version = "3.8"
