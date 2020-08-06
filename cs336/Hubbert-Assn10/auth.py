@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, abort, url_for, redirect
+from flask import Blueprint, render_template, request, abort, url_for, redirect, jsonify
 from flask_login import login_user, login_required, logout_user
 
 auth = Blueprint('auth', __name__)
@@ -10,8 +10,8 @@ def login():
         return render_template('login.html')
     elif request.method == 'POST':
         # login_user(user, remember=remember)
-        return redirect(url_for('route_all.admin'))
-        pass
+        print(request.form)
+        return jsonify(process=True, message='')
     else:
         abort(401)
 
