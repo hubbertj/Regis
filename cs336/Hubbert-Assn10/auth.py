@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, request, abort, url_for, redirect, jsonify
-from flask_login import login_user, login_required, logout_user
+from flask_login import login_user, login_required, logout_user, current_user
+from models.userstable import User
+from werkzeug.security import check_password_hash
 
 auth = Blueprint('auth', __name__)
 
@@ -9,9 +11,18 @@ def login():
     if request.method == 'GET':
         return render_template('login.html')
     elif request.method == 'POST':
-        # login_user(user, remember=remember)
-        print(request.form)
-        return jsonify(process=True, message='')
+        username = request.form.get('username')
+        password = request.form.get('password')
+        remember = True if request.form.get('remember') else False
+        user = User.query.filter_by(username=username).first()
+
+        if not user or not check_password_hash(user.password, password):
+            response = jsonify(message='username & password combination are incorrect')
+            return response, 401
+
+        login_user(user, remember=True)
+        return jsonify(process=True, message='login successful',
+                       user={"id": current_user.id, "username": current_user.username})
     else:
         abort(401)
 

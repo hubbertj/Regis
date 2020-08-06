@@ -34,7 +34,7 @@
                 $.ajax({
                     url: `/login`,
                     type: "POST",
-                    data: JSON.stringify(data),
+                    data: data,
                     success: (response) => {
                         return resolve(response);
                     },
@@ -49,8 +49,10 @@
                     window.location.href = '/admin';
                 }
             }).catch((err) => {
-                if (err) {
-                    conference.alert(err, 'danger');
+                if (err && 'responseJSON' in err && err.responseJSON && 'message' in err.responseJSON) {
+                    conference.alert(err.responseJSON.message, 'danger');
+                } else {
+                    console.error(err);
                 }
             });
 
