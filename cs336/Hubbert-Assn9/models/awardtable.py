@@ -26,7 +26,8 @@ class Nominee(db.Model):
         return '<Nominees %r>' % self.name
 
     def seed(self):
-        seed_file = self.__class__.__name__.lower() + '_data.csv'
+        class_name = self.__class__.__name__
+        seed_file = 'awards.csv'
         seed_list = None
         try:
             with open(environ.get('SEED_DIR') + '\\' + seed_file, 'r', encoding='utf-8') as file:
@@ -36,5 +37,12 @@ class Nominee(db.Model):
             print(seed_file + " seed file wasn't found")
 
         if seed_list is not None:
+            db.session.query(Nominee).delete()
+            db.session.commit()
             for row in seed_list:
-                pass
+                nominee = Nominee(name=row[0],
+                                  description=row[1],
+                                  image_name=row[2],
+                                  vote_count=row[3], )
+                db.session.add(nominee)
+                db.session.commit()

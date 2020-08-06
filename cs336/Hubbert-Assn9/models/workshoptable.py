@@ -14,7 +14,7 @@ db = SQLAlchemy()
 class Workshop(db.Model):
     __tablename__ = 'workshops'
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(80), unique=True, nullable=False)
+    title = db.Column(db.String(80), nullable=False)
     session_number = db.Column(db.Integer, nullable=False)
     room_number = db.Column(db.String(80), unique=False, nullable=False)
     start_time = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
@@ -28,7 +28,8 @@ class Workshop(db.Model):
         return '<Workshops %r>' % self.title
 
     def seed(self):
-        seed_file = self.__class__.__name__.lower() + '_data.csv'
+        class_name = self.__class__.__name__.lower()
+        seed_file = 'workshops.csv'
         seed_list = None
         try:
             with open(environ.get('SEED_DIR') + '\\' + seed_file, 'r', encoding='utf-8') as file:
@@ -38,6 +39,15 @@ class Workshop(db.Model):
             print(seed_file + " seed file wasn't found")
 
         if seed_list is not None:
+            db.session.query(Workshop).delete()
+            db.session.commit()
             for row in seed_list:
-                pass
-
+                workshop = Workshop(
+                    title=row[0],
+                    session_number=row[1],
+                    room_number=row[2],
+                    start_time=datetime.strptime(row[3], '%m-%d-%Y %H:%M%p'),
+                    end_time=datetime.strptime(row[4], '%m-%d-%Y %H:%M%p'),
+                )
+                db.session.add(workshop)
+                db.session.commit()
