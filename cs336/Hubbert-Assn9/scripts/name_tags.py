@@ -15,7 +15,7 @@ from django.template.loader import render_to_string
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_DIR = os.path.join(BASE_DIR, "templates")
-DEFAULT_DATA_DIR = os.path.join(BASE_DIR, "data")
+DEFAULT_DATA_DIR = os.path.join(BASE_DIR, "database_code")
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 
 TEMPLATE = [
