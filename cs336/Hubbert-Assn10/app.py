@@ -3,7 +3,7 @@
 # Created: 08/03/2020
 # Description: Server file for management of flask server
 
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from dotenv import load_dotenv
 from os import environ
 from routes import route_all, route_static
@@ -48,6 +48,10 @@ def create_app():
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
+
+    @login_manager.unauthorized_handler
+    def unauthorized_callback():
+        return redirect(url_for('auth.login'))
 
     return app
 
