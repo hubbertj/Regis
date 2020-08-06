@@ -7,7 +7,6 @@ from flask import request, abort, jsonify, render_template, Blueprint, send_from
 
 route_all = Blueprint('route_all', __name__)
 route_static = Blueprint('route_static', __name__)
-route_error = Blueprint('route_error', __name__)
 
 
 @route_all.route('/')

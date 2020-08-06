@@ -42,4 +42,5 @@ class User(db.Model):
             print(seed_file + " seed file wasn't found")
 
         if seed_list is not None:
-            print(len(seed_list))
+            for row in seed_list:
+                pass
