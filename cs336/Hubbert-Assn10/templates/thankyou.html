@@ -23,14 +23,40 @@ if ('controller' in conference) {
 }
 </script>
 <script id="registrationInfoTemplate" type="text/x-jQuery-tmpl">
-    <div class="col-md-9 col-sm-12">
+    <div class="col-md-10 col-sm-12">
         <p class="lead">Thank you for registering, ${title} ${firstname}&nbsp;${lastname}, we are excited host you. Shortly you should recieve your registration confirmation @ ${email}. Please check your span or filter if you don't recieve it. Present this email to the clerks to completed your registation check-in, prior to attending the conferance.</p>
     </div>
-    <div class="col-12">
+    <div class="col-md-3">&nbsp;</div>
+    <div class="col-md-6 col-sm-12">
+        <div>Date of registration ${date}</div>
         <fieldset class="fieldset">
             <legend>Registration&nbsp;Summary</legend>
+            <h5>Personal</h5>
+            <hr>
+            <label>Name:</label><span> ${title} ${firstname} ${lastname}</span><br>
+            <span>${address1} <br>${address2}</span>
+            <span>${city}, ${state} ${zipCode}</span><br>
+            <label>phone:</label><span> ${phone}</span><br>
+            <label>email address:</label><span> ${email}</span><br>
+            <label>website:</label><span> ${web}</span><br>
+            <label>job title:</label><span> ${job_title}</span><br>
+            <label>company:</label><span> ${company}</span><br><br>
+            <h5>Meals Selection</h5>
+            <hr>
+            <span>${meal_pack}</span><br><br>
+            <h5>Billing</h5>
+            <hr>
+            <label>Name on card:</label><span> ${billing_firstname} ${billing_lastname}</span><br>
+            <span>${card_type}</span>
+            <span>${card_number} ${exp_month}/${exp_year} ${sid}</span><br><br>
+            <h5>Sessions</h5>
+            <hr>
+            <span>${session1}, ${session2}, ${session3}</span>
         </fieldset>
     </div>
+    <div class="col-md-3">&nbsp;</div>
     <div class="col-12">&nbsp;</div>
 </script>
 {% endblock %}
+
+
