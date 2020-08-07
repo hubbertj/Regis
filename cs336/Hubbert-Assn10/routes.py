@@ -66,41 +66,41 @@ def registration():
             meal_pack = 'dinnerday2'
         elif request.form.get('mealPackRadio') == 'yes':
             meal_pack = 'mealpack'
-        new_registrant = Registrant(
-            date=datetime.datetime.now(),
-            title=request.form.get('title'),
-            firstname=request.form.get('firstName'),
-            lastname=request.form.get('lastName'),
-            address1=request.form.get('addressLine1'),
-            address2=request.form.get('addressLine2'),
-            city=request.form.get('city'),
-            state=request.form.get('state'),
-            zipcode=request.form.get('zipCode'),
-            phone=request.form.get('phone'),
-            email=request.form.get('emailAddress'),
-            web=request.form.get('companyWebsite'),
-            job_title=request.form.get('position'),
-            company=request.form.get('companyName'),
-            meal_pack=meal_pack,
-            billing_firstname=request.form.get('billFirstName'),
-            billing_lastname=request.form.get('billLastName'),
-            card_type=request.form.get('cardRadio'),
-            card_number=request.form.get('cardNumber'),
-            sid=request.form.get('cvs'),
-            exp_year=request.form.get('expirationYear'),
-            exp_month=request.form.get('expirationMonth'),
-            session1=request.form.get('morningRadio'),
-            session2=request.form.get('afternoonRadio'),
-            session3=request.form.get('eveningRadio'),
-        )
-        db.session.add(new_registrant)
-        db.session.commit()
-        return jsonify(process=True, message='registration successful', registrant=new_registrant.serialized)
 
-    elif request.method == 'PUT':
-        return jsonify(process=True, message='')
-    elif request.method == 'DELETE':
-        return jsonify(process=True, message='')
+        try:
+            new_registrant = Registrant(
+                date=datetime.datetime.now(),
+                title=request.form.get('title'),
+                firstname=request.form.get('firstName'),
+                lastname=request.form.get('lastName'),
+                address1=request.form.get('addressLine1'),
+                address2=request.form.get('addressLine2'),
+                city=request.form.get('city'),
+                state=request.form.get('state'),
+                zipcode=request.form.get('zipCode'),
+                phone=request.form.get('phone'),
+                email=request.form.get('emailAddress'),
+                web=request.form.get('companyWebsite'),
+                job_title=request.form.get('position'),
+                company=request.form.get('companyName'),
+                meal_pack=meal_pack,
+                billing_firstname=request.form.get('billFirstName'),
+                billing_lastname=request.form.get('billLastName'),
+                card_type=request.form.get('cardRadio'),
+                card_number=request.form.get('cardNumber'),
+                sid=request.form.get('cvs'),
+                exp_year=request.form.get('expirationYear'),
+                exp_month=request.form.get('expirationMonth'),
+                session1=request.form.get('morningRadio'),
+                session2=request.form.get('afternoonRadio'),
+                session3=request.form.get('eveningRadio'),
+            )
+            db.session.add(new_registrant)
+            db.session.commit()
+            return jsonify(process=True, message='registration successful', registrant=new_registrant.serialized)
+        except Exception as e:
+            response = jsonify(message='registration failed', error=str(e))
+            return response, 500
     else:
         abort(401)
 
@@ -141,11 +141,12 @@ def admin():
 @api_crud.route('/registrant/<registrant_id>', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def registrant(registrant_id):
     if request.method == 'GET':
-        f_registrant = Registrant.get(registrant_id)
+        f_registrant = Registrant.query.get(registrant_id)
         if f_registrant is not None:
             return jsonify(process=True, registrant=f_registrant.serialized)
         else:
-            return jsonify(process=True, message=registrant_id + ' not found')
+            response = jsonify(process=True, message='id=' + registrant_id + ' not found')
+            return response, 404
     else:
         abort(401)
 
@@ -153,11 +154,12 @@ def registrant(registrant_id):
 @api_crud.route('/user/<user_id>', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def user(user_id):
     if request.method == 'GET':
-        f_user = User.get(user_id)
+        f_user = User.query.get(user_id)
         if f_user is not None:
             return jsonify(process=True, registrant=f_user.serialized)
         else:
-            return jsonify(process=True, message=user_id + ' not found')
+            response = jsonify(process=True, message='id=' + user_id + ' not found')
+            return response, 404
     else:
         abort(401)
 

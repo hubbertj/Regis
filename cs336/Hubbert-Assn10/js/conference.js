@@ -23,8 +23,9 @@
         loadNavLocation: () => {
             const currentRoute = $(location).attr('href').split('/').pop();
             $('#site-nav-links li').removeClass('active');
-            if (currentRoute) {
-                $(`a[href*=${currentRoute}]`).parent().addClass('active');
+            const elem = $(`a[href*="${currentRoute}"]`);
+            if (elem) {
+                elem.parent().addClass('active');
             }
             return false
         },
@@ -160,6 +161,13 @@
 
     // init stuff
     $('.alert .close').on('click', conference.onAlertClose);
+    $.urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null) {
+           return null;
+        }
+        return decodeURI(results[1]) || 0;
+    }
 
 
 })(window);
