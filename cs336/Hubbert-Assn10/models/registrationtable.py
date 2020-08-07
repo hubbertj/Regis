@@ -45,7 +45,14 @@ class Registrant(db.Model):
         # do custom initialization here
 
     def __repr__(self):
-        return '<Registrants %r>' % self.id
+        return '<Registrant %r>' % self.id
+
+    @property
+    def serialized(self):
+        return {
+            'id': self.id,
+            'date': self.date,
+        }
 
     def seed(self):
         seed_file = self.__class__.__name__.lower() + '_data.csv'
