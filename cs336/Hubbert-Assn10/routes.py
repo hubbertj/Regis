@@ -6,6 +6,7 @@
 from flask import request, abort, jsonify, render_template, Blueprint, send_from_directory
 from flask_login import current_user, login_required
 from models.registrationtable import Registrant, db
+from models.userstable import User
 import datetime
 
 route_all = Blueprint('route_all', __name__)
@@ -60,7 +61,12 @@ def registration():
     if request.method == 'GET':
         return render_template('registration.html')
     elif request.method == 'POST':
-        registrant = Registrant(
+        meal_pack = None
+        if request.form.get('mealPackDay2Radio') == 'yes':
+            meal_pack = 'dinnerday2'
+        elif request.form.get('mealPackRadio') == 'yes':
+            meal_pack = 'mealpack'
+        new_registrant = Registrant(
             date=datetime.datetime.now(),
             title=request.form.get('title'),
             firstname=request.form.get('firstName'),
@@ -75,21 +81,21 @@ def registration():
             web=request.form.get('companyWebsite'),
             job_title=request.form.get('position'),
             company=request.form.get('companyName'),
-            meal_pack='',
-            billing_firstname=request.form.get('firstName'),
-            billing_lastname=request.form.get('lastName'),
-            card_type='mc',
-            card_number='1234123123',
-            sid='1232',
-            exp_year='2020',
-            exp_month='12',
+            meal_pack=meal_pack,
+            billing_firstname=request.form.get('billFirstName'),
+            billing_lastname=request.form.get('billLastName'),
+            card_type=request.form.get('cardRadio'),
+            card_number=request.form.get('cardNumber'),
+            sid=request.form.get('cvs'),
+            exp_year=request.form.get('expirationYear'),
+            exp_month=request.form.get('expirationMonth'),
             session1=request.form.get('morningRadio'),
             session2=request.form.get('afternoonRadio'),
             session3=request.form.get('eveningRadio'),
         )
-        db.session.add(registrant)
+        db.session.add(new_registrant)
         db.session.commit()
-        return jsonify(process=True, message='registration successful', registrant=registrant.serialized)
+        return jsonify(process=True, message='registration successful', registrant=new_registrant.serialized)
 
     elif request.method == 'PUT':
         return jsonify(process=True, message='')
@@ -135,17 +141,11 @@ def admin():
 @api_crud.route('/registrant/<registrant_id>', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def registrant(registrant_id):
     if request.method == 'GET':
-        # gets a registrant
-        return jsonify(process=True, registrant='')
-    elif request.method == 'POST':
-        # creates a registrant
-        return jsonify(process=True, message='')
-    elif request.method == 'PUT':
-        # updates a registrant
-        return jsonify(process=True, message='')
-    elif request.method == 'DELETE':
-        # deletes a registrant
-        return jsonify(process=True, message='')
+        f_registrant = Registrant.get(registrant_id)
+        if f_registrant is not None:
+            return jsonify(process=True, registrant=f_registrant.serialized)
+        else:
+            return jsonify(process=True, message=registrant_id + ' not found')
     else:
         abort(401)
 
@@ -153,20 +153,16 @@ def registrant(registrant_id):
 @api_crud.route('/user/<user_id>', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def user(user_id):
     if request.method == 'GET':
-        return jsonify(process=True, message='')
-    elif request.method == 'POST':
-        # creates a user
-        return jsonify(process=True, message='')
-    elif request.method == 'PUT':
-        # updates a user
-        return jsonify(process=True, message='')
-    elif request.method == 'DELETE':
-        # deletes a user
-        return jsonify(process=True, message='')
+        f_user = User.get(user_id)
+        if f_user is not None:
+            return jsonify(process=True, registrant=f_user.serialized)
+        else:
+            return jsonify(process=True, message=user_id + ' not found')
     else:
         abort(401)
 
 
+# STATIC ROUTES
 @route_static.route('/js/<path:path>')
 def send_js(path):
     return send_from_directory('js', path)

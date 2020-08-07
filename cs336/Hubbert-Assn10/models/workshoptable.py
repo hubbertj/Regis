@@ -28,6 +28,11 @@ class Workshop(db.Model):
     def serialized(self):
         return {
             'id': self.id,
+            'title': self.title,
+            'session_number': self.session_number,
+            'room_number': self.room_number,
+            'start_time': self.start_time,
+            'end_time': self.end_time,
         }
 
     def __repr__(self):

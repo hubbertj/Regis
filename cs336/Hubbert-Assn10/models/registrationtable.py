@@ -40,19 +40,41 @@ class Registrant(db.Model):
     session2 = db.Column(db.String(80), unique=False, nullable=True)
     session3 = db.Column(db.String(80), unique=False, nullable=True)
 
+    @property
+    def serialized(self):
+        return {
+            'id': self.id,
+            'date': self.date,
+            'title': self.title,
+            'firstname': self.firstname,
+            'lastname': self.lastname,
+            'address1': self.address1,
+            'address2': self.address2,
+            'city': self.city,
+            'state': self.state,
+            'zipcode': self.zipcode,
+            'phone': self.phone,
+            'web': self.web,
+            'job_title': self.job_title,
+            'meal_pack': self.meal_pack,
+            'billing_firstname': self.billing_firstname,
+            'billing_lastname': self.billing_lastname,
+            'card_type': self.card_type,
+            'card_number': self.card_number[-4:].rjust(len(self.card_number), "*"),
+            'sid': 'xxx',
+            'exp_year': self.exp_year,
+            'exp_month': self.exp_month,
+            'session1': self.session1,
+            'session2': self.session2,
+            'session3': self.session3,
+        }
+
     def __init__(self, **kwargs):
         super(Registrant, self).__init__(**kwargs)
         # do custom initialization here
 
     def __repr__(self):
         return '<Registrant %r>' % self.id
-
-    @property
-    def serialized(self):
-        return {
-            'id': self.id,
-            'date': self.date,
-        }
 
     def seed(self):
         seed_file = self.__class__.__name__.lower() + '_data.csv'

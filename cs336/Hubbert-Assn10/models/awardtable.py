@@ -26,6 +26,10 @@ class Nominee(db.Model):
     def serialized(self):
         return {
             'id': self.id,
+            'name': self.name,
+            'description': self.description,
+            'image_name': self.image_name,
+            'vote_count': self.vote_count,
         }
 
     def __repr__(self):
