@@ -6,8 +6,18 @@ from werkzeug.security import check_password_hash
 auth = Blueprint('auth', __name__)
 
 
+@auth.route('/login/check', methods=['GET'])
+def login_check():
+    if current_user.is_authenticated:
+        return jsonify(process=True, status=True)
+    else:
+        return jsonify(process=True, status=False)
+
+
 @auth.route('/login', methods=['POST', 'GET'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('route_all.admin'))
     if request.method == 'GET':
         return render_template('login.html')
     elif request.method == 'POST':
