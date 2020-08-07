@@ -10,6 +10,7 @@ import datetime
 
 route_all = Blueprint('route_all', __name__)
 route_static = Blueprint('route_static', __name__)
+api_crud = Blueprint('api_crud', __name__)
 
 
 @route_all.route('/')
@@ -130,7 +131,26 @@ def admin():
     return render_template('admin.html', user=c_user)
 
 
-@route_all.route('/user/<user_id>')
+# CRUD METHODS
+@api_crud.route('/registrant/<registrant_id>', methods=['GET', 'POST', 'PUT', 'DELETE'])
+def registrant(registrant_id):
+    if request.method == 'GET':
+        # gets a registrant
+        return jsonify(process=True, registrant='')
+    elif request.method == 'POST':
+        # creates a registrant
+        return jsonify(process=True, message='')
+    elif request.method == 'PUT':
+        # updates a registrant
+        return jsonify(process=True, message='')
+    elif request.method == 'DELETE':
+        # deletes a registrant
+        return jsonify(process=True, message='')
+    else:
+        abort(401)
+
+
+@api_crud.route('/user/<user_id>', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def user(user_id):
     if request.method == 'GET':
         return jsonify(process=True, message='')

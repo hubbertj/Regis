@@ -6,7 +6,7 @@
 from flask import Flask, render_template, redirect, url_for
 from dotenv import load_dotenv
 from os import environ
-from routes import route_all, route_static
+from routes import route_all, route_static, api_crud
 from auth import auth
 from models import registrationtable, userstable, workshoptable, awardtable
 from models.userstable import User
@@ -40,6 +40,7 @@ def create_app():
     app.register_blueprint(route_all)
     app.register_blueprint(route_static)
     app.register_blueprint(auth)
+    app.register_blueprint(api_crud)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
