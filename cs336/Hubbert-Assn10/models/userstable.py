@@ -28,6 +28,9 @@ class User(UserMixin, db.Model):
     def serialized(self):
         return {
             'id': self.id,
+            'username': self.username,
+            'firstname': self.firstname,
+            'lastname': self.lastname,
         }
 
     def __repr__(self):

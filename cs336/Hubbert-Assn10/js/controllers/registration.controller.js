@@ -27,7 +27,8 @@
                 $(this).checkboxradio('refresh');
             });
 
-            $('input[name="morningRadio"], input[name="afternoonRadio"], input[name="eveningRadio"]').checkboxradio();
+            $('input[name="morningRadio"], input[name="afternoonRadio"], input[name="eveningRadio"], input[name="cardRadio"]')
+                .checkboxradio();
 
             $('.popup-overlay .cls').on('click', jQuery.proxy(this, 'onCloseRegistrationFailedModal'));
             $('form#registration-form :input').change(jQuery.proxy(this, 'onChange'));
@@ -56,6 +57,13 @@
             form.find('input[name="zipCode"]').val(data.zipCode);
             form.find('select[name="state"]').val(data.state);
             form.find('select[name="title"]').val(data.title);
+            
+            form.find('input[name="billFirstName"]').val(data.billFirstName);
+            form.find('input[name="billLastName"]').val(data.billLastName);
+            form.find('input[name="cardNumber"]').val(data.cardNumber);
+            form.find('input[name="cvs"]').val(data.cvs);
+            form.find('input[name="expirationMonth"]').val(data.expirationMonth);
+            form.find('input[name="expirationYear"]').val(data.expirationYear);
 
             if (data.morningRadio) {
                 form.find(`input[type="radio"][value="${data.morningRadio}"]`).prop('checked', true).checkboxradio('refresh');
@@ -65,6 +73,15 @@
             }
             if (data.eveningRadio) {
                 form.find(`input[type="radio"][value="${data.eveningRadio}"]`).prop('checked', true).checkboxradio('refresh');
+            }
+            if (data.cardRadio) {
+                form.find(`input[type="radio"][value="${data.cardRadio}"]`).prop('checked', true).checkboxradio('refresh');
+            }
+            if (data.mealPackRadio) {
+                form.find(`input[type="radio"][value="${data.mealPackRadio}"]`).prop('checked', true).checkboxradio('refresh');
+            }
+            if (data.mealPackDay2Radio) {
+                form.find(`input[type="radio"][value="${data.mealPackDay2Radio}"]`).prop('checked', true).checkboxradio('refresh');
             }
             return false;
         }
@@ -76,7 +93,8 @@
         clearForm() {
             const formElem = $('#registration-form');
             formElem.find('input:not([type=checkbox]):not([type=radio]), textarea, select').val('');
-            formElem.find('input[type=radio]').prop('checked', false).checkboxradio('refresh');
+            formElem.find('input[type=radio]:not([name="mealPackDay2Radio"]):not([name="mealPackRadio"])')
+                .prop('checked', false).checkboxradio('refresh');
         }
 
         /**
@@ -179,11 +197,11 @@
                 type: "POST",
                 data: data,
                 success: (response) => {
-                    if(response && 'registrant' in response) {
+                    if (response && 'registrant' in response) {
                         window.location.href = `/thankyou?id=${ response.registrant.id }`;
                     } else {
-                       console.error(response);
-                       if (err && 'responseText' in err) {
+                        console.error(response);
+                        if (err && 'responseText' in err) {
                             this.showRegistrationFailedModal({ message: 'Unknown server error' });
                         }
                     }

@@ -2,7 +2,6 @@
         AssignmentL CS336 Assignment #8
         Created: 08/04/2020
         Description: Registration for the conference site. -->
-
 {% extends 'base.html' %}
 {% block title %}|&nbsp;Registration{% endblock %}
 {% block head_block %}
@@ -22,8 +21,7 @@
                     <legend>Personal&nbsp;Information</legend>
                     <div class="form-group row pb-2">
                         <div class="col-sm-12 col-md-7">
-                            <input type="number" class="form-control" name="conferenceId" id="conferenceId"
-                                   placeholder="Conference Id" minlength="6" maxlength="6"/>
+                            <input type="number" class="form-control" name="conferenceId" id="conferenceId" placeholder="Conference Id" minlength="6" maxlength="6" />
                             <div class="dialog-bg"></div>
                         </div>
                     </div>
@@ -38,27 +36,22 @@
                             <div class="dialog-bg"></div>
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="firstName" id="firstName"
-                                   placeholder="First Name" pattern="[a-zA-Z]+" required=""/>
+                            <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" pattern="[a-zA-Z]+" required="" />
                             <div class="dialog-bg"></div>
                         </div>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" name="lastName" id="lastName"
-                                   placeholder="Last Name" pattern="[a-zA-Z\-]+" required=""/>
+                            <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name" pattern="[a-zA-Z\-]+" required="" />
                             <div class="dialog-bg"></div>
                         </div>
                     </div>
                     <div class="form-group row pb-2">
                         <div class="col-sm-12 col-md-6">
-                            <input type="text" class="form-control" name="addressLine1" id="addressLine1"
-                                   placeholder="Address Line 1" pattern="[a-zA-Z0-9 \\#]+" required=""/>
-                            <input type="text" class="form-control" name="addressLine2" id="addressLine2"
-                                   placeholder="Address Line 2" pattern="[a-zA-Z0-9 \\#]+"/>
+                            <input type="text" class="form-control" name="addressLine1" id="addressLine1" placeholder="Address Line 1" pattern="[a-zA-Z0-9 \\#]+" required="" />
+                            <input type="text" class="form-control" name="addressLine2" id="addressLine2" placeholder="Address Line 2" pattern="[a-zA-Z0-9 \\#]+" />
                             <div class="dialog-bg"></div>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <input type="text" class="form-control" name="city" id="city" placeholder="City"
-                                   pattern="[a-zA-Z\s]+" required=""/>
+                            <input type="text" class="form-control" name="city" id="city" placeholder="City" pattern="[a-zA-Z\s]+" required="" />
                             <select class="form-control" id="stateSelect" name="state" required="">
                                 <option value="" disabled selected>State</option>
                                 <option value="AL">Alabama</option>
@@ -118,21 +111,17 @@
                     </div>
                     <div class="form-group row pb-2">
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip Code"
-                                   pattern="[0-9]{5}" required=""/>
+                            <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="Zip Code" pattern="[0-9]{5}" required="" />
                             <div class="dialog-bg"></div>
                         </div>
                         <div class="col-sm-4">
-                            <input type="tel" class="form-control" id="phone" name="phone"
-                                   placeholder="Telphone (123-123-1234)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                                   required=""/>
+                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Telphone (123-123-1234)" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required="" />
                             <div class="dialog-bg"></div>
                         </div>
                     </div>
                     <div class="form-group row pb-2">
                         <div class="col-12">
-                            <input type="email" class="form-control" id="emailAddress" name="emailAddress"
-                                   placeholder="Email Address" required=""/>
+                            <input type="email" class="form-control" id="emailAddress" name="emailAddress" placeholder="Email Address" required="" />
                             <div class="dialog-bg"></div>
                         </div>
                     </div>
@@ -141,19 +130,37 @@
                     <legend>Company&nbsp;Information</legend>
                     <div class="form-group row pb-2">
                         <div class="col-12">
-                            <input type="text" class="form-control" id="companyName" name="companyName"
-                                   placeholder="Name" pattern="[a-zA-Z0-9\s]+" required=""/>
+                            <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Name" pattern="[a-zA-Z0-9\s]+" required="" />
                             <div class="dialog-bg"></div>
                         </div>
                         <div class="col-12">
-                            <input type="url" class="form-control" id="companyWebsite" name="companyWebsite"
-                                   placeholder="Website"/>
+                            <input type="url" class="form-control" id="companyWebsite" name="companyWebsite" placeholder="Website" />
                             <div class="dialog-bg"></div>
                         </div>
                         <div class="col-12">
-                            <input type="text" class="form-control" id="position" name="position"
-                                   placeholder="Your Position" pattern="[a-zA-Z0-9\s]+" required=""/>
+                            <input type="text" class="form-control" id="position" name="position" placeholder="Your Position" pattern="[a-zA-Z0-9\s]+" required="" />
                             <div class="dialog-bg"></div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="fieldset fieldset-highlight">
+                    <legend>Dining&nbsp;Information</legend>
+                    <div class="form-group row pb-2">
+                        <div class="col-12">
+                            <div class="radio d-flex flex-wrap">
+                                <span>Do you want to purchase the meal pack?</span>
+                                <input type="radio" value="yes" name="mealPackRadio" required>Yes
+                                <input type="radio" value="no" name="mealPackRadio">No
+                                <div class="dialog-bg"></div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="radio d-flex flex-wrap">
+                                <span>Purchase meal pack or just the Day 2 Dinner?</span>
+                                <input type="radio" value="yes" name="mealPackDay2Radio" required>Yes
+                                <input type="radio" value="no" name="mealPackDay2Radio">No
+                                <div class="dialog-bg"></div>
+                            </div>
                         </div>
                     </div>
                 </fieldset>
@@ -167,18 +174,17 @@
                                     <div class="d-flex flex-column">
                                         <div class="p-2">
                                             <label for="leadership">Leadership</label>
-                                            <input type="radio" id="leadership" value="leadership" name="morningRadio"
-                                                   required/>
+                                            <input type="radio" id="leadership" value="leadership" name="morningRadio" required />
                                             <div class="dialog-bg"></div>
                                         </div>
                                         <div class="p-2">
                                             <label for="discovery">Discovery</label>
-                                            <input type="radio" id="discovery" value="discovery" name="morningRadio"/>
+                                            <input type="radio" id="discovery" value="discovery" name="morningRadio" />
                                             <div class="dialog-bg"></div>
                                         </div>
                                         <div class="p-2">
                                             <label for="mentorship">Mentorship</label>
-                                            <input type="radio" id="mentorship" value="mentorship" name="morningRadio"/>
+                                            <input type="radio" id="mentorship" value="mentorship" name="morningRadio" />
                                             <div class="dialog-bg"></div>
                                         </div>
                                     </div>
@@ -190,19 +196,17 @@
                                     <div class="d-flex flex-column">
                                         <div class="p-2">
                                             <label for="pitching">Pitching</label>
-                                            <input type="radio" id="pitching" value="pitching" name="afternoonRadio"/>
+                                            <input type="radio" id="pitching" value="pitching" name="afternoonRadio" />
                                             <div class="dialog-bg"></div>
                                         </div>
                                         <div class="p-2">
                                             <label for="simulation">Power&nbsp;Company&nbsp;Simulation</label>
-                                            <input type="radio" id="simulation" value="simulation"
-                                                   name="afternoonRadio"/>
+                                            <input type="radio" id="simulation" value="simulation" name="afternoonRadio" />
                                             <div class="dialog-bg"></div>
                                         </div>
                                         <div class="p-2">
                                             <label for="exitStrategy">Exit&nbsp;Strategy</label>
-                                            <input type="radio" id="exitStrategy" value="exitStrategy"
-                                                   name="afternoonRadio">
+                                            <input type="radio" id="exitStrategy" value="exitStrategy" name="afternoonRadio">
                                             <div class="dialog-bg"></div>
                                         </div>
                                     </div>
@@ -214,8 +218,7 @@
                                     <div class="d-flex flex-column">
                                         <div class="p-2">
                                             <label for="networking">Networking</label>
-                                            <input type="radio" id="networking" value="networking" name="eveningRadio"
-                                                   required>
+                                            <input type="radio" id="networking" value="networking" name="eveningRadio" required>
                                             <div class="dialog-bg"></div>
                                         </div>
                                         <div class="p-2">
@@ -225,12 +228,73 @@
                                         </div>
                                         <div class="p-2">
                                             <label for="moneyManagement">Money&nbsp;Management</label>
-                                            <input type="radio" id="moneyManagement" value="moneyManagement"
-                                                   name="eveningRadio">
+                                            <input type="radio" id="moneyManagement" value="moneyManagement" name="eveningRadio">
                                             <div class="dialog-bg"></div>
                                         </div>
                                     </div>
                                 </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="fieldset fieldset-highlight">
+                    <legend>Billing&nbsp;Information</legend>
+                    <div class="form-group row pb-2">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="billFirstName" name="billFirstName" placeholder="First Name" pattern="[a-zA-Z]+" required="" />
+                                    <div class="dialog-bg"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="billLastName" name="billLastName" placeholder="Last Name" pattern="[a-zA-Z-]+" required="" />
+                                    <div class="dialog-bg"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <fieldset class="fieldset">
+                                        <legend>Card&nbsp;Type</legend>
+                                        <div class="p-2">
+                                            <label for="visa">Visa</label>
+                                            <input type="radio" id="visa" value="visa" name="cardRadio" required>
+                                            <div class="dialog-bg"></div>
+                                        </div>
+                                        <div class="p-2">
+                                            <label for="mastercard">Mastercard</label>
+                                            <input type="radio" id="mastercard" value="mastercard" name="cardRadio">
+                                            <div class="dialog-bg"></div>
+                                        </div>
+                                        <div class="p-2">
+                                            <label for="american-express">American&nbsp;Express</label>
+                                            <input type="radio" id="american-express" value="american_express" name="cardRadio">
+                                            <div class="dialog-bg"></div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="Card Number" minlength="16" maxlength="16" pattern="[0-9]{16}" required="" />
+                                            <div class="dialog-bg"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" id="CSV" name="cvs" placeholder="CVS" minlength="4" maxlength="4" pattern="[0-9]{4}" required="" />
+                                            <div class="dialog-bg"></div>
+                                        </div>
+                                        <div class="col-4">
+                                            <input type="text" class="form-control" id="expirationMonth" name="expirationMonth" minlength="2" maxlength="2" placeholder="Month" pattern="(0[1-9]|1[0-2])" required="" />
+                                            <div class="dialog-bg"></div>
+                                        </div>
+                                        /
+                                        <div class="col-4">
+                                            <input type="text" class="form-control" id="expirationYear" name="expirationYear" minlength="4" maxlength="4" placeholder="Year" pattern="[2][0]([1-2][0-9])" required="" />
+                                            <div class="dialog-bg"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -257,9 +321,8 @@
 {% block js_block %}
 <script src="/js/controllers/registration.controller.js" type="text/javascript"></script>
 <script type="text/javascript">
-    if ('controller' in conference) {
-        conference.controller.init();
-    }
-
+if ('controller' in conference) {
+    conference.controller.init();
+}
 </script>
 {% endblock %}
