@@ -2,10 +2,16 @@
 <script src="/static/node_modules/jquery-ui-dist/jquery-ui.min.js" type="text/javascript"></script>
 <script src="/js/conference.js" type="text/javascript"></script>
 <script type="text/javascript">
-        $(document).ready(function() {
-            if('conference' in window){
-                conference.loadNavLocation();
-            }
-        });
-
+	$(document).ready(function() {
+	    if ('conference' in window) {
+	        conference.loadNavLocation();
+	        conference.isLoggedIn().then((isLoggedIn) =>{
+	        	if (isLoggedIn) {
+	            	$('#nav-login-container').show();
+		        } else {
+		            $('#nav-login-container').hide();
+		        }
+	        }).catch((err) => console.error(err));
+	    }
+	});
 </script>

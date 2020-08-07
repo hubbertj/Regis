@@ -80,11 +80,13 @@ def workshop_schedule():
 
 
 @route_all.route('/nametags/nametags8gen')
+@login_required
 def name_tags_8():
     return render_template('nametags/nametags8gen.html')
 
 
 @route_all.route('/nametags/nametags10gen')
+@login_required
 def name_tags_10():
     return render_template('nametags/nametags10gen.html')
 

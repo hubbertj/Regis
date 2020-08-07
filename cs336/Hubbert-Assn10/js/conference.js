@@ -23,10 +23,30 @@
         loadNavLocation: () => {
             const currentRoute = $(location).attr('href').split('/').pop();
             $('#site-nav-links li').removeClass('active');
-            if(currentRoute){
+            if (currentRoute) {
                 $(`a[href*=${currentRoute}]`).parent().addClass('active');
             }
             return false
+        },
+
+        /**
+         * Check if a user is logged in or not
+         * @return {promise}
+         */
+        isLoggedIn: () => {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: `/login/check`,
+                    type: "GET",
+                    data: null,
+                    success: (response) => {
+                        return resolve(response.status);
+                    },
+                    error: (err) => {
+                        return resolve(response.status);
+                    },
+                });
+            });
         },
 
 
@@ -92,7 +112,7 @@
          * @return {boolean}
          */
         eraseCookie: (name) => {
-            document.cookie = `${name}=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+            document.cookie = `${name}=""; expires=Thu, 01 Jan 1970 00:00:01 GMT; Path=${window.location.pathname}; SameSite=none`;
             return false;
         },
 

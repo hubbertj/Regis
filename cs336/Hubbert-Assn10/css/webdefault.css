@@ -166,6 +166,9 @@ p {
     font-size: 1rem;
 }
 
+.icon.xl {
+    font-size: 35px
+}
 
 .icon[data-icon]:before {
     content: attr(data-icon);
@@ -192,6 +195,10 @@ p {
 }
 
 .full-vote-icon::before {
+    content: "\E0F8";
+}
+
+.full-logout-icon::before {
     content: "\E059";
 }
 

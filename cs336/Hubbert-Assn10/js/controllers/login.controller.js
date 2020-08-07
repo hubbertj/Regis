@@ -43,8 +43,12 @@
                     },
                 });
             }).then((response) => {
-                const { username } = data;
-                conference.setCookie(this.key, JSON.stringify({ username: username }), 365);
+                const { username, remember } = data;
+                if(remember){
+                    conference.setCookie(this.key, JSON.stringify({ username: username }), 365);
+                } else {
+                    conference.eraseCookie(this.key);
+                }
                 if (response) {
                     window.location.href = '/admin';
                 }
