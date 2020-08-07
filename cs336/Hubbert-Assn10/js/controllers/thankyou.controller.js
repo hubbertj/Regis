@@ -12,10 +12,10 @@
          * @return {[type]}
          */
         async init(data) {
-            const regId = $.urlParam('id');
-            if (regId) {
+            const confirmation = $.urlParam('confirmation');
+            if (confirmation) {
                 try {
-                    const registration = await this.getRegistration(regId);
+                    const registration = await this.getRegistration(confirmation);
                     $("#registrationInfoTemplate").tmpl(registration).appendTo("#registration-container");
                 } catch (err) {
                     const errorMessage = err.responseJSON.message || err;
@@ -30,10 +30,10 @@
          * @param  {int} id
          * @return {Promise}
          */
-        getRegistration(id) {
+        getRegistration(confirmation) {
             return new Promise((result, reject) => {
                 $.ajax({
-                    url: `/registrant/${id}`,
+                    url: `/registrant/${confirmation}`,
                     type: "GET",
                     data: null,
                     success: (response) => {

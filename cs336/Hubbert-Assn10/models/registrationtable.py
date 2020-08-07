@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from . import environ
 import csv
+import uuid
 
 db = SQLAlchemy()
 
@@ -39,6 +40,7 @@ class Registrant(db.Model):
     session1 = db.Column(db.String(80), unique=False, nullable=True)
     session2 = db.Column(db.String(80), unique=False, nullable=True)
     session3 = db.Column(db.String(80), unique=False, nullable=True)
+    confirmation = db.Column(db.String(120), unique=True, nullable=False)
 
     @property
     def serialized(self):
@@ -68,6 +70,7 @@ class Registrant(db.Model):
             'session1': self.session1,
             'session2': self.session2,
             'session3': self.session3,
+            'confirmation': self.confirmation,
         }
 
     def __init__(self, **kwargs):
@@ -118,6 +121,7 @@ class Registrant(db.Model):
                             session1=row[22],
                             session2=row[23],
                             session3=row[24],
+                            confirmation=str(uuid.uuid4()),
                         )
                         db.session.add(registrant)
                         db.session.commit()
