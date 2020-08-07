@@ -8,6 +8,7 @@ from flask_login import current_user, login_required
 from models.registrationtable import Registrant, db
 from models.userstable import User
 import datetime
+import uuid
 
 route_all = Blueprint('route_all', __name__)
 route_static = Blueprint('route_static', __name__)
@@ -94,6 +95,7 @@ def registration():
                 session1=request.form.get('morningRadio'),
                 session2=request.form.get('afternoonRadio'),
                 session3=request.form.get('eveningRadio'),
+                confirmation=str(uuid.uuid4()),
             )
             db.session.add(new_registrant)
             db.session.commit()
@@ -138,14 +140,14 @@ def admin():
 
 
 # CRUD METHODS
-@api_crud.route('/registrant/<registrant_id>', methods=['GET', 'POST', 'PUT', 'DELETE'])
-def registrant(registrant_id):
+@api_crud.route('/registrant/<confirmation>', methods=['GET'])
+def registrant(confirmation):
     if request.method == 'GET':
-        f_registrant = Registrant.query.get(registrant_id)
+        f_registrant = Registrant.query.filter_by(confirmation=confirmation).first()
         if f_registrant is not None:
             return jsonify(process=True, registrant=f_registrant.serialized)
         else:
-            response = jsonify(process=True, message='id=' + registrant_id + ' not found')
+            response = jsonify(process=True, message='confirmation=' + confirmation + ' not found')
             return response, 404
     else:
         abort(401)

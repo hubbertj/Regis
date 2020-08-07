@@ -198,19 +198,19 @@
                 data: data,
                 success: (response) => {
                     if (response && 'registrant' in response) {
-                        window.location.href = `/thankyou?id=${ response.registrant.id }`;
+                        window.location.href = `/thankyou?confirmation=${ response.registrant.confirmation }`;
                     } else {
                         const { error } = response;
                         const message = error.responseText || error;
-                        
+
                         console.error(error);
                         this.showRegistrationFailedModal({ message: message });
                     }
                 },
                 error: (err) => {
-                    const error = err.responseText || err;
+                    const error = JSON.parse(err.responseText).message || err;
                     console.error(err);
-                    this.showRegistrationFailedModal({ message: err });
+                    this.showRegistrationFailedModal({ message: error });
                 },
             });
 
