@@ -24,6 +24,12 @@ class User(UserMixin, db.Model):
         super(User, self).__init__(**kwargs)
         # do custom initialization here
 
+    @property
+    def serialized(self):
+        return {
+            'id': self.id,
+        }
+
     def __repr__(self):
         return '<Users %r>' % self.username
 

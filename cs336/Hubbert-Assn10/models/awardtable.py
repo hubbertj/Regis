@@ -22,8 +22,14 @@ class Nominee(db.Model):
         super(Nominee, self).__init__(**kwargs)
         # do custom initialization here
 
+    @property
+    def serialized(self):
+        return {
+            'id': self.id,
+        }
+
     def __repr__(self):
-        return '<Nominees %r>' % self.name
+        return '<Nominee %r>' % self.name
 
     def seed(self):
         class_name = self.__class__.__name__

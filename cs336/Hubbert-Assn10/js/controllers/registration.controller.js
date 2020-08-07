@@ -177,9 +177,16 @@
             $.ajax({
                 url: `/registration`,
                 type: "POST",
-                data: JSON.stringify(data),
+                data: data,
                 success: (response) => {
-                    window.location.href = '/thankyou';
+                    if(response && 'registrant' in response) {
+                        window.location.href = `/thankyou?id=${ response.registrant.id }`;
+                    } else {
+                       console.error(response);
+                       if (err && 'responseText' in err) {
+                            this.showRegistrationFailedModal({ message: 'Unknown server error' });
+                        }
+                    }
                 },
                 error: (err) => {
                     console.error(err);

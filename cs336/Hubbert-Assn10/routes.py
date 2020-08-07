@@ -4,7 +4,9 @@
 # Description: Routes file for management of flask server
 
 from flask import request, abort, jsonify, render_template, Blueprint, send_from_directory
-from flask_login import login_required, current_user
+from flask_login import current_user, login_required
+from models.registrationtable import Registrant, db
+import datetime
 
 route_all = Blueprint('route_all', __name__)
 route_static = Blueprint('route_static', __name__)
@@ -57,13 +59,40 @@ def registration():
     if request.method == 'GET':
         return render_template('registration.html')
     elif request.method == 'POST':
-        print(request.form)
-        return jsonify(process=True, message='')
+        registrant = Registrant(
+            date=datetime.datetime.now(),
+            title=request.form.get('title'),
+            firstname=request.form.get('firstName'),
+            lastname=request.form.get('lastName'),
+            address1=request.form.get('addressLine1'),
+            address2=request.form.get('addressLine2'),
+            city=request.form.get('city'),
+            state=request.form.get('state'),
+            zipcode=request.form.get('zipCode'),
+            phone=request.form.get('phone'),
+            email=request.form.get('emailAddress'),
+            web=request.form.get('companyWebsite'),
+            job_title=request.form.get('position'),
+            company=request.form.get('companyName'),
+            meal_pack='',
+            billing_firstname=request.form.get('firstName'),
+            billing_lastname=request.form.get('lastName'),
+            card_type='mc',
+            card_number='1234123123',
+            sid='1232',
+            exp_year='2020',
+            exp_month='12',
+            session1=request.form.get('morningRadio'),
+            session2=request.form.get('afternoonRadio'),
+            session3=request.form.get('eveningRadio'),
+        )
+        db.session.add(registrant)
+        db.session.commit()
+        return jsonify(process=True, message='registration successful', registrant=registrant.serialized)
+
     elif request.method == 'PUT':
-        print(request.form)
         return jsonify(process=True, message='')
     elif request.method == 'DELETE':
-        print(request.form)
         return jsonify(process=True, message='')
     else:
         abort(401)
