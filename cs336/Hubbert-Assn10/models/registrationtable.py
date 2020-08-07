@@ -48,6 +48,7 @@ class Registrant(db.Model):
             'title': self.title,
             'firstname': self.firstname,
             'lastname': self.lastname,
+            'email': self.email,
             'address1': self.address1,
             'address2': self.address2,
             'city': self.city,

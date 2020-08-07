@@ -2,26 +2,35 @@
         AssignmentL CS336 Assignment #8
         Created: 08/04/2020
         Description: Thank you for the conference site. -->
-
 {% extends 'base.html' %}
 {% block title %}|&nbsp;Thank&nbsp;You{% endblock %}
 {% block main_content %}
-<div class="row">
-    <div class="col-12">&nbsp;</div>
-    <div class="col-12">
-        <p class="lead">Thank you for registering, you should receive an email with your registration confirmation
-            soon.</p>
+<div class="row" id="registration-container">
+    <div class="alert hide" role="alert">
+        <span class="lead"></span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
     </div>
+    <div class="col-12">&nbsp;</div>
 </div>
+<div class="row" id="registration-container"></div>
 {% endblock %}
 {% block js_block %}
-<script src="/js/controllers/home.controller.js" type="text/javascript"></script>
+<script src="/js/controllers/thankyou.controller.js" type="text/javascript"></script>
+<script src="/static/node_modules/jquery-templates/jquery.tmpl.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-        if ('controller' in conference) {
-            conference.controller.init();
-        }
-
-
-
+if ('controller' in conference) {
+    conference.controller.init();
+}
+</script>
+<script id="registrationInfoTemplate" type="text/x-jQuery-tmpl">
+    <div class="col-md-9 col-sm-12">
+        <p class="lead">Thank you for registering, ${title}${firstname}&nbsp;${lastname}, we are excited host you. Shortly you should recieve your registration confirmation @ ${email}. Please check your span or filter if you don't recieve it. Present this email to the clerks to completed your registation check-in, prior to attending the conferance.</p>
+    </div>
+    <div class="col-12">
+        <fieldset class="fieldset">
+            <legend>Registration&nbsp;Summary</legend>
+        </fieldset>
+    </div>
+    <div class="col-12">&nbsp;</div>
 </script>
 {% endblock %}

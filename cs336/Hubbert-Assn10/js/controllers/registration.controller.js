@@ -78,10 +78,10 @@
                 form.find(`input[type="radio"][value="${data.cardRadio}"]`).prop('checked', true).checkboxradio('refresh');
             }
             if (data.mealPackRadio) {
-                form.find(`input[type="radio"][value="${data.mealPackRadio}"]`).prop('checked', true).checkboxradio('refresh');
+                form.find(`input[type="radio"][value="${data.mealPackRadio}"]`).prop('checked', true);
             }
             if (data.mealPackDay2Radio) {
-                form.find(`input[type="radio"][value="${data.mealPackDay2Radio}"]`).prop('checked', true).checkboxradio('refresh');
+                form.find(`input[type="radio"][value="${data.mealPackDay2Radio}"]`).prop('checked', true);
             }
             return false;
         }
@@ -200,17 +200,17 @@
                     if (response && 'registrant' in response) {
                         window.location.href = `/thankyou?id=${ response.registrant.id }`;
                     } else {
-                        console.error(response);
-                        if (err && 'responseText' in err) {
-                            this.showRegistrationFailedModal({ message: 'Unknown server error' });
-                        }
+                        const { error } = response;
+                        const message = error.responseText || error;
+                        
+                        console.error(error);
+                        this.showRegistrationFailedModal({ message: message });
                     }
                 },
                 error: (err) => {
+                    const error = err.responseText || err;
                     console.error(err);
-                    if (err && 'responseText' in err) {
-                        this.showRegistrationFailedModal({ message: err.responseText });
-                    }
+                    this.showRegistrationFailedModal({ message: err });
                 },
             });
 
