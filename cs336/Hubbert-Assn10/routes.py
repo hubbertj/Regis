@@ -117,6 +117,12 @@ def workshop_schedule():
     return render_template('workshopschedule.html')
 
 
+@route_all.route('/lists')
+@login_required
+def lists():
+    return render_template('lists.html')
+
+
 @route_all.route('/nametags/nametags8gen')
 @login_required
 def name_tags_8():
@@ -149,6 +155,23 @@ def registrant(confirmation):
         else:
             response = jsonify(process=True, message='confirmation=' + confirmation + ' not found')
             return response, 404
+    else:
+        abort(401)
+
+
+@api_crud.route('/registrant/search', methods=['GET'])
+@login_required
+def registrant_search():
+    if request.method == 'GET':
+        try:
+            if request.form is None or len(request.form) == 0:
+                registrants = Registrant.query.all()
+                response = jsonify(process=True, registrants=[reg.serialized for reg in registrants])
+                return response
+        except Exception as e:
+            return jsonify(message='registration failed', error=str(e)), 500
+
+        return jsonify(process=True, message='not implemented'), 401
     else:
         abort(401)
 

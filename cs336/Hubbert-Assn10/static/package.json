@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "datatables": "^1.10.18",
     "jquery": "^3.5.1",
     "jquery-templates": "^1.0.0",
     "jquery-ui-dist": "^1.12.1"

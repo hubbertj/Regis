@@ -2,7 +2,7 @@
         AssignmentL CS336 Assignment #8
         Created: 08/04/2020
         Description: admin for the conference site. -->
-{% extends 'base.html' %}
+{% extends 'admin_layout.html' %}
 {% block title %}|&nbsp;Admin{% endblock %}
 {% block main_content %}
 <article class="main">
@@ -11,9 +11,20 @@
         <h1 class="col-12">Administrative Tasks</h1>
         <div class="col-12">&nbsp;</div>
         <h2 class="col-12">Nametags</h2>
-        <div class="d-flex flex-column">
-            <a href="nametags/nametags8gen" class="p-2" target="_blank">Name Badge Labels (8 per page)</a>
-            <a href="nametags/nametags10gen" class="p-2" target="_blank">Name Badge Labels (10 per page)</a>
+        <div class="col-12">
+            <div class="p-2">
+                <a href="nametags/nametags8gen" target="_blank">Name Badge Labels (8 per page)</a>
+            </div>
+            <div class="p-2">
+                <a href="nametags/nametags10gen" target="_blank">Name Badge Labels (10 per page)</a>
+            </div>
+        </div>
+        <h2 class="col-12">System Query List View</h2>
+        <p class="lead col-12">Query a list of everyone who selected full meal packs.. and more</p>
+        <div class="col-12">
+            <div class="p-2">
+                <a href="lists">List&nbsp;View</a>
+            </div>
         </div>
         <div class="col-12">&nbsp;</div>
     </section>
@@ -25,6 +36,9 @@
     if ('controller' in conference) {
         conference.controller.init();
     }
+
+
+
 
 </script>
 {% endblock %}
