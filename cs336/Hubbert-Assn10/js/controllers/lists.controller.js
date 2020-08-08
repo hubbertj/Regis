@@ -39,6 +39,22 @@
                         }
                     },
                     { data: 'company' },
+                    { data: 'meal_pack' },
+                    {
+                        "mData": "session1",
+                        "mRender": function(pass, type, data, row) {
+
+                            data.session1 = data.session1 || 'none';
+                            data.session2 = data.session2 || 'none';
+                            data.session3 = data.session3 || 'none';
+
+                            data.session1 = data.session1.replace(/_/g, ' ');
+                            data.session2 = data.session2.replace(/_/g, ' ');
+                            data.session3 = data.session3.replace(/_/g, ' ');
+                            
+                            return `<div><small>morning:&nbsp;${data.session1.replace(/_/g, '&nbsp;') || 'none'}</small></div><div><small>afternoon:&nbsp;${data.session2.replace(/_/g, '&nbsp;') || 'none'}</small></div><div><small>evening:&nbsp;${data.session3.replace(/_/g, '&nbsp;') || 'none'}</small></div>`;
+                        }
+                    },
                     {
                         "mData": "actions",
                         "mRender": function(pass, type, data, row) {
@@ -114,15 +130,21 @@
                     f_data.workshops = Object.values(data);
                 }
             }
- 
-            try {
-                const registrantList = await this.getRegisteredUserList(f_data);
-                this.dt.clear();
-                this.dt.rows.add(registrantList);
-                this.dt.draw();
 
+            try {
+                const response = await this.getRegisteredUserList(f_data);
+                if ('title' in response) {
+                    const filteredStr = response.title.replace(/_/g, ' ');
+                    $('.search-title').text(filteredStr);
+                }
+                if ('registrants' in response) {
+                    this.dt.clear();
+                    this.dt.rows.add(response.registrants);
+                    this.dt.draw();
+                }
             } catch (err) {
                 const errorMessage = JSON.parse(err.responseText).message || err;
+                console.error(err);
                 conference.alert(errorMessage, 'danger');
             }
 
@@ -144,11 +166,7 @@
                     type: "GET",
                     data: searchCriteria,
                     success: (response) => {
-                        if ('registrants' in response) {
-                            results(response.registrants);
-                        } else {
-                            results(response);
-                        }
+                        results(response);
                     },
                     error: (err) => {
                         reject(err);

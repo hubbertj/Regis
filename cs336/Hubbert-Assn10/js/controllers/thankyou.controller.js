@@ -15,7 +15,16 @@
             const confirmation = $.urlParam('confirmation');
             if (confirmation) {
                 try {
-                    const registration = await this.getRegistration(confirmation);
+                    let registration = await this.getRegistration(confirmation);
+
+                    registration.session1 = registration.session1 || 'none';
+                    registration.session2 = registration.session2 || 'none';
+                    registration.session3 = registration.session3 || 'none';
+
+                    registration.session1 = registration.session1.replace(/_/g, ' ');
+                    registration.session2 = registration.session2.replace(/_/g, ' ');
+                    registration.session3 = registration.session3.replace(/_/g, ' ');
+
                     $("#registrationInfoTemplate").tmpl(registration).appendTo("#registration-container");
                 } catch (err) {
                     const errorMessage = err.responseJSON.message || err;
