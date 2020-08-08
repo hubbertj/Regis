@@ -46,7 +46,7 @@ class Registrant(db.Model):
     def serialized(self):
         return {
             'id': self.id,
-            'date': self.date,
+            'date': self.date.isoformat(),
             'title': self.title,
             'firstname': self.firstname,
             'lastname': self.lastname,
@@ -59,6 +59,7 @@ class Registrant(db.Model):
             'phone': self.phone,
             'web': self.web,
             'job_title': self.job_title,
+            'company': self.company,
             'meal_pack': self.meal_pack,
             'billing_firstname': self.billing_firstname,
             'billing_lastname': self.billing_lastname,
