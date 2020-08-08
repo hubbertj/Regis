@@ -14,8 +14,42 @@
          * @return {[type]}
          */
         init(data) {
-            this.tableOptions = {};
-            this.table = $('#search-resuls-table').dataTable(this.tableOptions);
+            this.tableOptions = {
+                data: [],
+                columns: [
+                    { data: 'id' },
+                    {
+                        "mData": "date",
+                        "mRender": function(pass, type, data, row) {
+                            return new Date(data.date).toLocaleString();
+                        }
+                    },
+                    {
+                        "mData": "name",
+                        "mRender": function(pass, type, data, row) {
+                            return `${data.title.charAt(0).toUpperCase() + data.title.slice(1)} 
+                            ${data.firstname.charAt(0).toUpperCase() + data.firstname.slice(1)} 
+                            ${data.lastname.charAt(0).toUpperCase() + data.lastname.slice(1)}`;
+                        }
+                    },
+                    {
+                        "mData": "job title",
+                        "mRender": function(pass, type, data, row) {
+                            return data.job_title;
+                        }
+                    },
+                    { data: 'company' },
+                    {
+                        "mData": "actions",
+                        "mRender": function(pass, type, data, row) {
+                            return `<a href="/thankyou?confirmation=${data.confirmation}" class="btn btn-sm btn-primary" target="_blank">details</a>`
+                        },
+                        "orderable": false
+                    },
+                ]
+            };
+            this.datatable = $('#search-resuls-table').dataTable(this.tableOptions);
+            this.dt = new $.fn.dataTable.Api('#search-resuls-table');
             $('input[type="radio"], input[type="checkbox"]').checkboxradio();
 
             $('.workshop-radio-container input[type="radio"], .all-radio-container input[type="radio"]').click(function() {
@@ -80,10 +114,13 @@
                     f_data.workshops = Object.values(data);
                 }
             }
-            console.log(f_data);
+ 
             try {
                 const registrantList = await this.getRegisteredUserList(f_data);
-                console.log(registrantList);
+                this.dt.clear();
+                this.dt.rows.add(registrantList);
+                this.dt.draw();
+
             } catch (err) {
                 console.error(err);
                 conference.alert(err, 'danger');
