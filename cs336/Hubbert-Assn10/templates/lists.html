@@ -6,6 +6,7 @@
 {% block title %}|&nbsp;Lists{% endblock %}
 {% block head_block %}
 <link rel="stylesheet" href="/static/node_modules/datatables/media/css/jquery.dataTables.css" type="text/css">
+<link rel="stylesheet" href="/static/node_modules/jquery-ui-dist/jquery-ui.min.css" type="text/css">
 {% endblock %}
 {% block main_content %}
 <div class="col-12">&nbsp;</div>
@@ -18,18 +19,69 @@
         <fieldset class="fieldset">
             <legend>Registered&nbsp;User&nbsp;Search</legend>
             <form id="search-form" name="searchForm" onsubmit="conference.controller.onSubmit(event); return false;" class="form">
-                <div class="form-group row pb-2">
-                    <div class="col-sm-12 col-md-7">
-                        <input type="number" class="form-control" name="conferenceId" id="conferenceId" placeholder="Conference Id" minlength="6" maxlength="6" />
-                    </div>
-                </div>
-                <div class="form-group row pb-2">
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" pattern="[a-zA-Z]+"/>
-                    </div>
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name" pattern="[a-zA-Z\-]+"/>
-                    </div>
+                <div class="row">
+                    <fieldset class="col-md-3 col-sm-12">
+                        <legend class="pl-2">Workshops</legend>
+                        <div class="workshop-radio-container d-flex flex-row flex-wrap">
+                            <div class="p-2">
+                                <label for="mealpack">Meal&nbsp;Pack</label>
+                                <input type="radio" id="mealpack" value="mealpack" name="meal_pack">
+                            </div>
+                            <div class="p-2">
+                                <label for="dinnerday2">Dinner&nbsp;Day&nbsp;2</label>
+                                <input type="radio" id="dinnerday2" value="dinnerday2" name="meal_pack">
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="col-md-9 col-sm-12">
+                        <legend class="pl-3">Workshops</legend>
+                        <div class="workshop-radio-container d-flex flex-row flex-wrap">
+                            <div class="p-2">
+                                <label for="leadership">Leadership</label>
+                                <input type="radio" id="leadership" value="leadership" name="leadership">
+                            </div>
+                            <div class="p-2">
+                                <label for="discovery">Discovery</label>
+                                <input type="radio" id="discovery" value="discovery" name="discovery">
+                            </div>
+                            <div class="p-2">
+                                <label for="mentorship">Mentorship</label>
+                                <input type="radio" id="mentorship" value="mentorship" name="mentorship">
+                            </div>
+                            <div class="p-2">
+                                <label for="pitching">Pitching</label>
+                                <input type="radio" id="pitching" value="pitching" name="pitching">
+                            </div>
+                            <div class="p-2">
+                                <label for="power_company_simulation">Power&nbsp;Company&nbsp;Simulation</label>
+                                <input type="radio" id="power_company_simulation" value="power_company_simulation" name="power_company_simulation">
+                            </div>
+                            <div class="p-2">
+                                <label for="exit_strategy">Exit&nbsp;Strategy</label>
+                                <input type="radio" id="exit_strategy" value="exit_strategy" name="exit_strategy">
+                            </div>
+                            <div class="p-2">
+                                <label for="networking">Networking</label>
+                                <input type="radio" id="networking" value="networking" name="networking">
+                            </div>
+                            <div class="p-2">
+                                <label for="money_management">Money&nbsp;Management</label>
+                                <input type="radio" id="money_management" value="money_management" name="money_management">
+                            </div>
+                            <div class="p-2">
+                                <label for="sales">Sales</label>
+                                <input type="radio" id="sales" value="sales" name="sales">
+                            </div>
+                    </fieldset>
+                    <fieldset class="col-12">
+                        <legend class="pl-3">All</legend>
+                        <div class="all-radio-container d-flex flex-row flex-wrap">
+                            <div class="p-2">
+                                <label for="all_registrants">All&nbsp;Registrants</label>
+                                <input type="radio" id="all_registrants" value="all_registrants" name="all_registrants">
+                            </div>
+                        </div>
+                    </fieldset>
                 </div>
                 <div class="btn-container">
                     <button type="submit" class="btn btn-primary float-right">Search</button>
