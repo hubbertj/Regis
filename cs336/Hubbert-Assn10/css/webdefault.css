@@ -195,11 +195,11 @@ p {
 }
 
 .full-vote-icon::before {
-    content: "\E0F8";
+    content: "\E058";
 }
 
 .full-logout-icon::before {
-    content: "\E059";
+    content: "\E0F8";
 }
 
 .full-vote-icon-1::after {
