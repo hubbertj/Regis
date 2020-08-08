@@ -6,7 +6,8 @@
 from flask import Flask, render_template, redirect, url_for
 from dotenv import load_dotenv
 from os import environ
-from routes import route_all, route_static, api_crud
+from routes import route_all, route_static
+from api import api_crud
 from auth import auth
 from models import registrationtable, userstable, workshoptable, awardtable
 from models.userstable import User

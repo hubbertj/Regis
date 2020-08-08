@@ -122,8 +122,8 @@
                 this.dt.draw();
 
             } catch (err) {
-                console.error(err);
-                conference.alert(err, 'danger');
+                const errorMessage = JSON.parse(err.responseText).message || err;
+                conference.alert(errorMessage, 'danger');
             }
 
             e.preventDefault();
