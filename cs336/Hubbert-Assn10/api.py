@@ -1,5 +1,6 @@
 from flask import request, abort, jsonify, render_template, Blueprint
 from flask_login import login_required
+from sqlalchemy import or_
 from models.registrationtable import Registrant, db
 from models.userstable import User
 import datetime
@@ -25,19 +26,46 @@ def registrant(confirmation):
 @api_crud.route('/registrant/search', methods=['GET'])
 @login_required
 def registrant_search():
+    registrants = []
     if request.method == 'GET':
-        print(request.args.get('workshops[]'))
+        workshop_list = request.args.getlist('workshops[]')
+        meal_pack = request.args.get('meal_pack')
+
         try:
             if request.args is None or len(request.args) == 0:
                 registrants = Registrant.query.all()
-                response = jsonify(process=True, registrants=[reg.serialized for reg in registrants])
-                return response
-        except Exception as e:
-            return jsonify(message='registration failed', error=str(e)), 500
+                return jsonify(process=True, title='List of all registrants',
+                               registrants=[reg.serialized for reg in registrants])
+            if workshop_list is not None and meal_pack is not None:
+                query = db.session.query(Registrant).filter(or_(Registrant.meal_pack == meal_pack))
+                query.filter(or_(Registrant.session1.in_(workshop_list)))
+                query.filter(or_(Registrant.session2.in_(workshop_list)))
+                query.filter(or_(Registrant.session3.in_(workshop_list)))
 
-        return jsonify(process=True, message='Not Implemented'), 401
+                registrants = query.all()
+                return jsonify(process=True,
+                               title='People taking ' + ', '.join(
+                                   map(str, workshop_list)) + ' & purchased meal option ' + str(
+                                   meal_pack),
+                               registrants=[reg.serialized for reg in registrants])
+            elif workshop_list is not None and meal_pack is None:
+                query = db.session.query(Registrant).filter(or_(Registrant.session1.in_(workshop_list)))
+                query.filter(or_(Registrant.session2.in_(workshop_list)))
+                query.filter(or_(Registrant.session3.in_(workshop_list)))
+
+                registrants = query.all()
+                return jsonify(process=True,
+                               title='People taking ' + ', '.join(map(str, workshop_list)),
+                               registrants=[reg.serialized for reg in registrants])
+            else:
+                registrants = Registrant.query.filter_by(meal_pack=meal_pack)
+                return jsonify(process=True, title='People who purchased meal options ' + str(meal_pack),
+                               registrants=[reg.serialized for reg in registrants])
+        except Exception as e:
+            print(e)
+            return jsonify(message='Registrant search results failed', error=str(e)), 500
     else:
-        abort(401)
+        return jsonify(process=True, message='Not Implemented'), 401
 
 
 @api_crud.route('/user/<user_id>', methods=['GET', 'POST', 'PUT', 'DELETE'])
@@ -74,8 +102,8 @@ def registration():
                 address2=request.form.get('addressLine2').lower(),
                 city=request.form.get('city').lower(),
                 state=request.form.get('state').lower(),
-                zipcode=request.form.get('zipCode').lower(),
-                phone=request.form.get('phone').lower(),
+                zipcode=request.form.get('zipCode'),
+                phone=request.form.get('phone'),
                 email=request.form.get('emailAddress').lower(),
                 web=request.form.get('companyWebsite').lower(),
                 job_title=request.form.get('position').lower(),
@@ -84,20 +112,24 @@ def registration():
                 billing_firstname=request.form.get('billFirstName').lower(),
                 billing_lastname=request.form.get('billLastName').lower(),
                 card_type=request.form.get('cardRadio').lower(),
-                card_number=request.form.get('cardNumber').lower(),
-                sid=request.form.get('cvs').lower(),
-                exp_year=request.form.get('expirationYear').lower(),
-                exp_month=request.form.get('expirationMonth').lower(),
-                session1=request.form.get('morningRadio').lower(),
-                session2=request.form.get('afternoonRadio').lower(),
-                session3=request.form.get('eveningRadio').lower(),
+                card_number=request.form.get('cardNumber'),
+                sid=request.form.get('cvs'),
+                exp_year=request.form.get('expirationYear'),
+                exp_month=request.form.get('expirationMonth'),
+                session1=request.form.get('morningRadio'),
+                session2=request.form.get('afternoonRadio'),
+                session3=request.form.get('eveningRadio'),
                 confirmation=str(uuid.uuid4()),
             )
             db.session.add(new_registrant)
             db.session.commit()
             return jsonify(process=True, message='registration successful', registrant=new_registrant.serialized)
         except Exception as e:
-            response = jsonify(message='registration failed', error=str(e))
+            if 'UNIQUE constraint failed: registrants.email' in str(e):
+                response = jsonify(message='The email address has already registered for this conference', error=str(e))
+            else:
+                response = jsonify(message='System failed to registration patron', error=str(e))
+            print(e)
             return response, 500
     elif request.method == 'DELETE':
         return jsonify(process=True, message='Not Implemented'), 401
