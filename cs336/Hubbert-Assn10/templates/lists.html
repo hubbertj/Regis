@@ -1,0 +1,67 @@
+<!--    Name: Jerum Hubbert
+        AssignmentL CS336 Assignment #8
+        Created: 08/07/2020
+        Description: List view for the conference site. -->
+{% extends 'admin_layout.html' %}
+{% block title %}|&nbsp;Lists{% endblock %}
+{% block head_block %}
+<link rel="stylesheet" href="/static/node_modules/datatables/media/css/jquery.dataTables.css" type="text/css">
+{% endblock %}
+{% block main_content %}
+<div class="col-12">&nbsp;</div>
+<div class="col-12">
+    <div class="container">
+        <div class="alert hide" role="alert">
+            <span class="lead"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
+        </div>
+        <fieldset class="fieldset">
+            <legend>Registered&nbsp;User&nbsp;Search</legend>
+            <form id="search-form" name="searchForm" onsubmit="conference.controller.onSubmit(event); return false;" class="form">
+                <div class="form-group row pb-2">
+                    <div class="col-sm-12 col-md-7">
+                        <input type="number" class="form-control" name="conferenceId" id="conferenceId" placeholder="Conference Id" minlength="6" maxlength="6" />
+                    </div>
+                </div>
+                <div class="form-group row pb-2">
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" pattern="[a-zA-Z]+"/>
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name" pattern="[a-zA-Z\-]+"/>
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-primary float-right">Search</button>
+                </div>
+            </form>
+        </fieldset>
+    </div>
+</div>
+<div class="col-12 table-container">
+    <div class="container">
+        <table id="search-resuls-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Registered Date</th>
+                    <th>name</th>
+                    <th>Job Title</th>
+                    <th>company</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<div class="col-12">&nbsp;</div>
+{% endblock %}
+{% block js_block %}
+<script src="/static/node_modules/datatables/media/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="/js/controllers/lists.controller.js" type="text/javascript"></script>
+<script type="text/javascript">
+if ('controller' in conference) {
+    conference.controller.init();
+}
+</script>
+{% endblock %}

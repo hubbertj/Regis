@@ -15,8 +15,6 @@
          * @return {null}
          */
         init(data) {
-            console.log(`RegistrationController has been init with ${JSON.stringify(data)}`);
-
             $('#registration-form').on("submit", jQuery.proxy(this, "onSubmit"));
 
             $('input[type=radio][name="afternoonRadio"]').click(function() {
