@@ -1,17 +1,23 @@
 <script src="/static/node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
 <script src="/static/node_modules/jquery-ui-dist/jquery-ui.min.js" type="text/javascript"></script>
+<script src="/static/node_modules/jquery-templates/jquery.tmpl.min.js" type="text/javascript"></script>
 <script src="/js/conference.js" type="text/javascript"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-	    if ('conference' in window) {
-	        conference.loadNavLocation();
-	        conference.isLoggedIn().then((isLoggedIn) =>{
-	        	if (isLoggedIn) {
-	            	$('#nav-login-container').show();
-		        } else {
-		            $('#nav-login-container').hide();
-		        }
-	        }).catch((err) => console.error(err));
-	    }
-	});
+$(document).ready(function() {
+    if ('conference' in window) {
+        conference.loadNavLocation();
+        conference.isLoggedIn().then((reponse) => {
+            if ('status' in reponse && reponse.status) {
+                $('#nav-login-container .login-info-container').remove();
+                $("#loginTemplate").tmpl(reponse.user).prependTo("#nav-login-container .contain");
+                $('#nav-login-container').show();
+            } else {
+                $('#nav-login-container').hide();
+            }
+        }).catch((err) => {
+        	console.error(err);
+        	$('#nav-login-container').hide();
+        });
+    }
+});
 </script>

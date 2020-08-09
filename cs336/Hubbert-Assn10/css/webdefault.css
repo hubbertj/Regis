@@ -6096,3 +6096,9 @@ button.close {
 .card {
     overflow: hidden;
 }
+
+/*nav*/
+#navigate .login-info-container {
+    border: 1px solid white;
+    border-radius: .5em;
+}

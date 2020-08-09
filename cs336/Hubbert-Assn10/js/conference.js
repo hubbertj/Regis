@@ -41,10 +41,10 @@
                     type: "GET",
                     data: null,
                     success: (response) => {
-                        return resolve(response.status);
+                        return resolve(response);
                     },
                     error: (err) => {
-                        return resolve(response.status);
+                        return reject(err);
                     },
                 });
             });
