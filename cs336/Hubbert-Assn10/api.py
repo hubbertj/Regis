@@ -1,6 +1,6 @@
 from flask import request, abort, jsonify, render_template, Blueprint
 from flask_login import login_required
-from sqlalchemy import or_
+from sqlalchemy import or_, and_
 from models.registrationtable import Registrant, db as registrant_db
 from models.userstable import User
 from models.awardtable import Nominee, db as nominee_db
@@ -70,29 +70,30 @@ def registrant_search():
                 registrants = Registrant.query.all()
                 return jsonify(process=True, title='List of all registrants',
                                registrants=[reg.serialized for reg in registrants])
-            if workshop_list is not None and meal_pack is not None:
-                query = registrant_db.session.query(Registrant).filter(or_(Registrant.meal_pack == meal_pack))
-                query.filter(or_(Registrant.session1.in_(workshop_list)))
-                query.filter(or_(Registrant.session2.in_(workshop_list)))
-                query.filter(or_(Registrant.session3.in_(workshop_list)))
-
+            if workshop_list is not None and len(workshop_list) > 0 and meal_pack is not None:
+                query = registrant_db.session.query(Registrant).filter(and_(
+                    Registrant.meal_pack == meal_pack,
+                    or_(Registrant.session1.in_(workshop_list),
+                        Registrant.session2.in_(workshop_list),
+                        Registrant.session3.in_(workshop_list))))
                 registrants = query.all()
                 return jsonify(process=True,
                                title='People taking ' + ', '.join(
                                    map(str, workshop_list)) + ' & purchased meal option ' + str(
                                    meal_pack),
                                registrants=[reg.serialized for reg in registrants])
-            elif workshop_list is not None and meal_pack is None:
-                query = registrant_db.session.query(Registrant).filter(or_(Registrant.session1.in_(workshop_list)))
-                query.filter(or_(Registrant.session2.in_(workshop_list)))
-                query.filter(or_(Registrant.session3.in_(workshop_list)))
-
+            elif workshop_list is not None and len(workshop_list) > 0 and meal_pack is None:
+                query = registrant_db.session.query(Registrant).filter(or_(
+                    Registrant.session1.in_(workshop_list),
+                    Registrant.session2.in_(workshop_list),
+                    Registrant.session3.in_(workshop_list)))
                 registrants = query.all()
                 return jsonify(process=True,
                                title='People taking ' + ', '.join(map(str, workshop_list)),
                                registrants=[reg.serialized for reg in registrants])
             else:
-                registrants = Registrant.query.filter_by(meal_pack=meal_pack)
+                query = Registrant.query.filter_by(meal_pack=meal_pack)
+                registrants = query.all()
                 return jsonify(process=True, title='People who purchased meal options ' + str(meal_pack),
                                registrants=[reg.serialized for reg in registrants])
         except Exception as e:
