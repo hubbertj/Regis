@@ -23,7 +23,6 @@ def login():
     elif request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
-        remember = True if request.form.get('remember') else False
         user = User.query.filter_by(username=username).first()
 
         if not user or not check_password_hash(user.password, password):

@@ -35,23 +35,6 @@ def meals():
     return render_template('meals.html')
 
 
-@route_all.route('/poll', methods=['GET', 'POST', 'PUT', 'DELETE'])
-def poll():
-    if request.method == 'GET':
-        return render_template('poll.html')
-    elif request.method == 'POST':
-        print(request.form)
-        return jsonify(process=True, message='')
-    elif request.method == 'PUT':
-        print(request.form)
-        return jsonify(process=True, message='')
-    elif request.method == 'DELETE':
-        print(request.form)
-        return jsonify(process=True, message='')
-    else:
-        abort(401)
-
-
 @route_all.route('/thankyou')
 def thank_you():
     return render_template('thankyou.html')
@@ -60,6 +43,11 @@ def thank_you():
 @route_all.route('/workshopschedule')
 def workshop_schedule():
     return render_template('workshopschedule.html')
+
+
+@route_all.route('/poll')
+def poll():
+    return render_template('poll.html')
 
 
 @route_all.route('/lists')

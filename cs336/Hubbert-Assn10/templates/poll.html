@@ -2,7 +2,6 @@
         AssignmentL CS336 Assignment #8
         Created: 08/04/2020
         Description: Poll for the conference site. -->
-
 {% extends 'base.html' %}
 {% block title %}|&nbsp;Poll{% endblock %}
 {% block head_block %}
@@ -13,7 +12,7 @@
 <div class="row" style="position: relative;">
     <div class="col-12">
         <div class="container">
-            <form id="poll-form" name="pollForm" class="form">
+            <form id="poll-form" name="pollForm" class="form" onsubmit="conference.controller.onSubmit(event); return false;">
                 <div class="alert hide" role="alert">
                     <span class="lead"></span>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</button>
@@ -23,31 +22,7 @@
                         <div class="col-12">
                             <fieldset class="fieldset">
                                 <legend>Nominees</legend>
-                                <div class="radio d-flex flex-wrap justify-content-between">
-                                    <div>
-                                        <label for="dario_enriquez">Dario&nbsp;Enriquez</label>
-                                        <input type="radio" id="dario_enriquez" value="dario_enriquez"
-                                               name="nomineeRadio" required>
-                                        <div class="p-2 font-blue font-lg">
-                                            <span class="votes">0</span><i class="icon full-vote-icon-1 no-pointer">&nbsp;</i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label for="lilly-May_parrish">Lilly-May&nbsp;Parrish</label>
-                                        <input type="radio" id="lilly-May_parrish" value="lilly-May_parrish"
-                                               name="nomineeRadio">
-                                        <div class="p-2 font-blue font-lg">
-                                            <span class="votes">0</span><i class="icon full-vote-icon-1 no-pointer">&nbsp;</i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label for="charlene_buxton">Charlene&nbsp;Buxton</label>
-                                        <input type="radio" id="charlene_buxton" value="charlene_buxton"
-                                               name="nomineeRadio">
-                                        <div class="p-2 font-blue font-lg">
-                                            <span class="votes">0</span><i class="icon full-vote-icon-1 no-pointer">&nbsp;</i>
-                                        </div>
-                                    </div>
+                                <div class="radio d-flex flex-wrap justify-content-between nominees-container">
                                 </div>
                             </fieldset>
                         </div>
@@ -60,24 +35,23 @@
         </div>
     </div>
     <div class="col-12">&nbsp;</div>
-    <div class="alert alert-danger popup-overlay">
-        <div class="popup-content row">
-            <div class="col-12">
-                <p class="message"></p>
-            </div>
-            <div class="col-12 button-container">
-                <button class="btn btn-danger cls">Close</button>
-            </div>
-        </div>
-    </div>
 </div>
 {% endblock %}
 {% block js_block %}
 <script src="/js/controllers/poll.controller.js" type="text/javascript"></script>
+<script src="/static/node_modules/jquery-templates/jquery.tmpl.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-        if ('controller' in conference) {
-            conference.controller.init();
-        }
-
+if ('controller' in conference) {
+    conference.controller.init();
+}
+</script>
+<script id="nominee-template" type="text/x-jQuery-tmpl">
+    <div class="nominee-container">
+        <label for="${id}-${name.toLowerCase().replace(/ /g,'_')}">${name}</label>
+        <input type="radio" id="${id}-${name.toLowerCase().replace(/ /g,'_')}" value="${id}" name="nominee_id" required>
+        <div class="p-2 font-blue font-lg">
+            <span class="votes">${vote_count}</span><i class="icon full-vote-icon-1 no-pointer">&nbsp;</i>
+        </div>
+    </div>
 </script>
 {% endblock %}
