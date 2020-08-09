@@ -9,7 +9,7 @@ auth = Blueprint('auth', __name__)
 @auth.route('/login/check', methods=['GET'])
 def login_check():
     if current_user.is_authenticated:
-        return jsonify(process=True, status=True)
+        return jsonify(process=True, status=True, user=current_user.serialized)
     else:
         return jsonify(process=True, status=False)
 
@@ -31,7 +31,7 @@ def login():
 
         login_user(user, remember=True)
         return jsonify(process=True, message='login successful',
-                       user={"id": current_user.id, "username": current_user.username})
+                       user=current_user.serialized)
     else:
         abort(401)
 

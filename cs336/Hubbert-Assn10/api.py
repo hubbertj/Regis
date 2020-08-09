@@ -105,7 +105,7 @@ def registrant_search():
 @api_crud.route('/user/<user_id>', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def user(user_id):
     if request.method == 'GET':
-        f_user = User.query.get(user_id)
+        f_user = User.query.get(user_id).first()
         if f_user is not None:
             return jsonify(process=True, registrant=f_user.serialized)
         else:

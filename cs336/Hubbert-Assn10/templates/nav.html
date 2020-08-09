@@ -12,8 +12,17 @@
             <li class="p-2"><a href="/registration">Registration&nbsp;Form</a></li>
             <li class="p-2"><a href="/admin">Administration</a></li>
         </ul>
-        <div id="nav-login-container" class="p-2 ml-auto" style="display: none;">
-            <a href="/logout"><i class="icon full-logout-icon xl"></i></a>
+        <div id="nav-login-container" class="ml-auto" style="display: none;">
+            <div class="d-flex contain">
+                <a href="/logout"><i class="icon full-logout-icon xl"></i></a>
+            </div>
+            
         </div>
     </div>
 </nav>
+<script id="loginTemplate" type="text/x-jQuery-tmpl">
+    <div class="d-flex flex-column m-2 login-info-container">
+        <div class="p-1"><small>Welcome&nbsp;${firstname}&nbsp;${lastname}</small></div>
+        <div class="p-1"><small>current&nbsp;user:&nbsp;${username}</small></div>
+    </div>
+</script>
