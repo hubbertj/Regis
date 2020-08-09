@@ -5,8 +5,35 @@
     }
 
     class PollController {
-        constructor() {
-            $('#poll-form').on("submit", jQuery.proxy(this, "onSubmit"));
+        constructor() {}
+
+        /**
+         * Init the controller with any data from frontend
+         * @return {null}
+         */
+        init(data) {
+            this.updateVotes();
+        }
+
+        /**
+         * Updates the view with current vote numbers
+         * @return {[type]}
+         */
+        async updateVotes(p_nominees) {
+            $('.nominees-container').empty();
+            let nominees;
+            if (p_nominees) {
+                nominees = p_nominees;
+            } else {
+                try {
+                    nominees = await this.getNominees();
+                } catch (err) {
+                    conference.alert(err, 'danger');
+                }
+            }
+            if (nominees && nominees.length > 0) {
+                nominees.forEach(nominee => $("#nominee-template").tmpl(nominee).appendTo(".nominees-container"));
+            }
             $('input[type="radio"]').click(function() {
                 if (this.previous) {
                     this.checked = false;
@@ -14,31 +41,56 @@
                 this.previous = this.checked;
                 $(this).checkboxradio('refresh');
             });
-
-            $('input[name="nomineeRadio"]').checkboxradio();
-            this.updateVotes();
+            $('input[name="nominee_id"]').checkboxradio();
         }
 
         /**
-         * Init the controller with any data from frontend
-         * @return {null}
+         * Gets all Nominees from the system
+         * @return {Promise}
          */
-        init(data) {
-            console.log(`PollController has been init with ${JSON.stringify(data)}`);
+        getNominees() {
+            return new Promise((results, reject) => {
+                $.ajax({
+                    url: `/nominee`,
+                    type: "GET",
+                    data: null,
+                    success: (response) => {
+                        if ('nominees' in response) {
+                            results(response.nominees);
+                        } else {
+                            results(response);
+                        }
+                    },
+                    error: (err) => {
+                        reject(err);
+                    },
+                });
+            });
         }
 
         /**
-         * Updates the view with current vote numbers
-         * @return {[type]}
+         * updates votes on the server
+         * @param  {int} nominee_id 
+         * @param  {obj} data
+         * @return {Promise} 
          */
-        updateVotes() {
-            $('.votes').each(function() {
-                const nominee = $(this).parent().parent().find('input[type="radio"]').val();
-                if (nominee && conference.getLocalStorage(nominee)) {
-                    $(this).text(conference.getLocalStorage(nominee));
-                } else {
-                    $(this).text(0);
-                }
+        onUpdateVotes(nominee_id, data) {
+            return new Promise((results, reject) => {
+                $.ajax({
+                    url: `/nominee/${nominee_id}`,
+                    type: "PUT",
+                    data: data,
+                    success: (response) => {
+                        if ('nominees' in response) {
+                            results(response.nominees);
+                        } else {
+                            results(response);
+                        }
+                    },
+                    error: (err) => {
+                        reject(err);
+                    },
+                });
             });
         }
 
@@ -55,35 +107,29 @@
          * Handles the submittion
          * @return {[type]} [description]
          */
-        onSubmit(e) {
+        async onSubmit(e) {
             let data = {};
             $($(e.currentTarget).serializeArray()).each(function(index, obj) {
                 data[obj.name] = obj.value;
             });
-            const { nomineeRadio } = data;
-            const vote = nomineeRadio.replace('_', ' ').split(' ')
-                .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-                .join(' ');
-            if (vote) {
-                $.ajax({
-                    url: `/poll`,
-                    type: "PUT",
-                    data: JSON.stringify({nominee: nomineeRadio}),
-                    success: (response) => {
-                        const voteCount = conference.getLocalStorage(nomineeRadio) + 1;
-                        conference.setLocalStorage(nomineeRadio, voteCount);
-                        this.updateVotes();
-                        this.reset();
-                        alert(`Thank you for voting for: ${vote}`);
-                    },
-                    error: (err) => {
-                        console.error(err);
-                        if (err && 'responseText' in err) {
-                            alert(err.responseText);
-                        }
-                    },
-                });
+            const { nominee_id } = data;
+            let nomineesList;
+            try {
+                if (nominee_id) {
+                    nomineesList = await this.onUpdateVotes(nominee_id, { votes: 1 });
+                    const nominee = nomineesList.find(nominee => nominee.id == parseInt(nominee_id));
+                    conference.alert(`Vote casted for ${nominee.name}`, 'success');
+                    this.updateVotes(nomineesList);
+                }
+            } catch (err) {
+                if ('statusText' in err) {
+                    conference.alert(`Failed to cast vote [error=${err.statusText.toLowerCase()}]`, 'danger');
+                } else {
+                    conference.alert(`Failed to cast vote [error=${err}]`, 'danger');
+                }
+                console.error(err);
             }
+            this.updateVotes();
             return false;
         }
     }

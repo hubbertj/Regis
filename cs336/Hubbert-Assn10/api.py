@@ -1,8 +1,9 @@
 from flask import request, abort, jsonify, render_template, Blueprint
 from flask_login import login_required
 from sqlalchemy import or_
-from models.registrationtable import Registrant, db
+from models.registrationtable import Registrant, db as registrant_db
 from models.userstable import User
+from models.awardtable import Nominee, db as nominee_db
 import datetime
 import uuid
 
@@ -23,10 +24,43 @@ def registrant(confirmation):
         abort(401)
 
 
+@api_crud.route('/nominee', methods=['GET'])
+def nominees():
+    all_nominees = Nominee.query.all()
+    return jsonify(process=True, nominees=[n.serialized for n in all_nominees])
+
+
+@api_crud.route('/nominee/<nominee_id>', methods=['GET', 'PUT'])
+def nominee(nominee_id):
+    if request.method == 'GET':
+        f_nominee = Nominee.query.filter_by(id=nominee_id).first()
+        if f_nominee is not None:
+            return jsonify(process=True, message='Nominee successfully found', nominee=f_nominee.serialized)
+        else:
+            return jsonify(process=True, message='failed to find nominee ' + nominee_id), 404
+    elif request.method == 'PUT':
+        votes = int(request.form.get('votes'))
+        f_nominee = Nominee.query.filter_by(id=nominee_id).first()
+        if f_nominee is not None and votes is not None:
+            try:
+                f_nominee.vote_count = f_nominee.vote_count + votes
+                nominee_db.session.add(f_nominee)
+                nominee_db.session.commit()
+            except Exception as e:
+                print(e)
+                return jsonify(message='Nominee vote update failed', error=str(e)), 500
+
+        else:
+            return jsonify(process=True, message='failed to update votes'), 401
+        all_nominees = Nominee.query.all()
+        return jsonify(process=True, nominees=[n.serialized for n in all_nominees])
+    else:
+        return jsonify(process=True, message='Not Implemented'), 404
+
+
 @api_crud.route('/registrant/search', methods=['GET'])
 @login_required
 def registrant_search():
-    registrants = []
     if request.method == 'GET':
         workshop_list = request.args.getlist('workshops[]')
         meal_pack = request.args.get('meal_pack')
@@ -37,7 +71,7 @@ def registrant_search():
                 return jsonify(process=True, title='List of all registrants',
                                registrants=[reg.serialized for reg in registrants])
             if workshop_list is not None and meal_pack is not None:
-                query = db.session.query(Registrant).filter(or_(Registrant.meal_pack == meal_pack))
+                query = registrant_db.session.query(Registrant).filter(or_(Registrant.meal_pack == meal_pack))
                 query.filter(or_(Registrant.session1.in_(workshop_list)))
                 query.filter(or_(Registrant.session2.in_(workshop_list)))
                 query.filter(or_(Registrant.session3.in_(workshop_list)))
@@ -49,7 +83,7 @@ def registrant_search():
                                    meal_pack),
                                registrants=[reg.serialized for reg in registrants])
             elif workshop_list is not None and meal_pack is None:
-                query = db.session.query(Registrant).filter(or_(Registrant.session1.in_(workshop_list)))
+                query = registrant_db.session.query(Registrant).filter(or_(Registrant.session1.in_(workshop_list)))
                 query.filter(or_(Registrant.session2.in_(workshop_list)))
                 query.filter(or_(Registrant.session3.in_(workshop_list)))
 
@@ -121,8 +155,8 @@ def registration():
                 session3=request.form.get('eveningRadio'),
                 confirmation=str(uuid.uuid4()),
             )
-            db.session.add(new_registrant)
-            db.session.commit()
+            registrant_db.session.add(new_registrant)
+            registrant_db.session.commit()
             return jsonify(process=True, message='registration successful', registrant=new_registrant.serialized)
         except Exception as e:
             if 'UNIQUE constraint failed: registrants.email' in str(e):
