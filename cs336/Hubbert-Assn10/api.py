@@ -78,8 +78,8 @@ def registrant_search():
                         Registrant.session3.in_(workshop_list))))
                 registrants = query.all()
                 return jsonify(process=True,
-                               title='People taking ' + ', '.join(
-                                   map(str, workshop_list)) + ' & purchased meal option ' + str(
+                               title='People taking ' + ' or '.join(
+                                   map(str, workshop_list)) + ' & purchased meal option = ' + str(
                                    meal_pack),
                                registrants=[reg.serialized for reg in registrants])
             elif workshop_list is not None and len(workshop_list) > 0 and meal_pack is None:
@@ -89,12 +89,12 @@ def registrant_search():
                     Registrant.session3.in_(workshop_list)))
                 registrants = query.all()
                 return jsonify(process=True,
-                               title='People taking ' + ', '.join(map(str, workshop_list)),
+                               title='People taking ' + ' or '.join(map(str, workshop_list)),
                                registrants=[reg.serialized for reg in registrants])
             else:
                 query = Registrant.query.filter_by(meal_pack=meal_pack)
                 registrants = query.all()
-                return jsonify(process=True, title='People who purchased meal options ' + str(meal_pack),
+                return jsonify(process=True, title='People who purchased meal options = ' + str(meal_pack),
                                registrants=[reg.serialized for reg in registrants])
         except Exception as e:
             print(e)
