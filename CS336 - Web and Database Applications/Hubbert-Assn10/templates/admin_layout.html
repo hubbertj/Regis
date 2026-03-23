@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--    Name: Jerum Hubbert
+        AssignmentL CS336 Assignment #10
+        Created: 08/07/2020
+        Description: admin base template for the conference site. -->
+<html lang="en">
+
+<head>
+    <title>Entrepreneur&nbsp;Workshop {% block title %}{% endblock %}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="keywords" content="Entrepreneur, Business development, Entrepreneur">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Entrepreneur Workshop, your one stop to the year entrepreneur conference.">
+    <meta name="author" content="Jerum Hubbert">
+    <meta name="robots" content="noindex">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+    <link rel="manifest" href="/static/site.webmanifest">
+    <link rel="shortcut icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="/css/webdefault.css" type="text/css">
+    {% block head_block %}{% endblock %}
+    <style></style>
+</head>
+
+<body>
+    <header>
+        {% include 'nav.html' %}
+    </header>
+    <div id="main" class="container-fluid">
+        {% block main_content %}
+        {% endblock %}
+    </div>
+    {% include 'footer.html' %}
+    {% include 'js.html' %}
+    {% block js_block %}
+    {% endblock %}
+</body>
+
+</html>

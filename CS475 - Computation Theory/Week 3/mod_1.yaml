@@ -1,0 +1,17 @@
+input: '0011011100'
+blank: '#'
+start state: Q
+table:
+  Q:
+    0: {write: 0, R: Q}
+    1: {write: 0, R: Q1}
+  Q1:
+    0: {write: 1, R: Q2}
+    1: {write: 1, R: Q1}
+  Q2:
+    0: {write: 0, L: Q3}
+    1: {write: 1, R: done}
+  Q3:
+    0: {write: 0, R: Q}
+    1: {write: 1, L: Q3}
+  done:

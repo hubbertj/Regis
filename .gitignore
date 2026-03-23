@@ -34,10 +34,9 @@
 .project
 .settings
 
-#ide
-.idea
-
 #haskell
+dist
+dist-*
 cabal-dev
 *.o
 *.hi
@@ -57,3 +56,7 @@ cabal.sandbox.config
 cabal.project.local
 .HTF/
 .ghc.environment.*
+/cs473/week1/CleaningAgent/nbproject/private/
+/cs473/week1/aima-gui/nbproject/private/
+/cs473/week1/aima-all/nbproject/private/
+/cs473/week1/aimax-osm/nbproject/private/

@@ -1,0 +1,30 @@
+input: '#10101#'
+blank: '#'
+start state: QS
+table:
+  Q:
+    0: {write: '#', R: Q1}
+    1: {write: '#', R: Q5}
+  Q1:
+    '#': {write: '#', L: Q2}
+    0: {write: 0, R: Q1}
+    1:   {write: 1, R: Q1}
+  Q2:
+    '#': {write: '#', R: Q6}
+    0: {write: '#', L: Q3}
+    1:   {write: '#', R: Q6}
+  Q3:
+    '#': {write: '#', R: Q}
+    0: {write: 0, L: Q3}
+    1: {write: 1, L: Q3}
+  Q4:
+    '#': {write: '#', R: Q6}
+    0: {write: '#', R: Q6}
+    1: {write: '#', L: Q3}
+  Q5:
+    '#': {write: '#', L: Q4}
+    0: {write: 0, R: Q5}
+    1: {write: 1, R: Q5}
+  Q6:
+  QS:
+    '#': {write: '#', R: Q}

@@ -1,0 +1,263 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*///////////////////////////////////////////////////BEGIN BODY & HEADERS///////////////////////////////////////////////////*/	
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background: #d0d0d0 url(images/background.jpg) top left repeat;
+	color:#000000;
+	font-size:small;
+	margin: 0em;
+}
+
+
+h1 {
+	font-size:100%;
+	font-weight:bold;
+	color:#ffffff;
+	padding:15px 0px 0px 280px;
+	margin:0em;
+}
+
+h1.inner {
+	font-size:100%;
+	font-weight:bold;
+	color:#ffffff;
+	padding:15px 0px 0px 20px;
+}
+	 
+h2 { font-size:130%;
+	 color:#495750;
+	font-weight:bold;
+}
+
+
+h3 { font-size:115%; 
+	 font-weight:bold; 
+	 color:#73887d;}
+
+h4 { font-size:105%;
+	 color:#23553a;
+	font-weight:bold;
+}
+
+p.references {
+ padding-left: 2em;
+ text-indent: -2em;
+ }
+ 
+ .coursetitle {
+	font-size:115%;
+	font-weight:bold;
+	color:#ffffff;
+	text-align:right;
+	margin:0em 2em 1em 0em;
+	padding-top:1.5em;
+}
+
+ /*///////////////////////////////////////////////////END HEADERS + BODY///////////////////////////////////////////////////*/	
+ 
+ 
+ /*///////////////////////////////////////////////////BEGIN LAYOUT STRUCTURE///////////////////////////////////////////////////*/
+
+div.container
+	{margin: 0em 1.4em 0em 1.35em;
+	background-color:#FFFFFF;
+	}
+	
+div.content
+	{padding: 2em 3em;}
+	
+	
+.top { 
+background:transparent url(images/background_top.gif) top left repeat-x;
+height:127px;
+}
+
+
+div.footer {
+	color:#23553a;
+	text-align:center;
+	padding-bottom:.25em;
+}  
+
+div.footer_brd{
+height:11px;
+	background:#6e8378 url(images/bdr_bottom.gif) bottom left repeat-x;}
+
+/*Header image style is applied through the header_img_temp.psd file located in the souce folder */
+
+.headerimg {
+	background:transparent url(images/header_img.png) no-repeat left top;
+	height:117px;
+	width: 288px;
+	position:absolute;
+	margin-top:-43px;
+	margin-left:-19px;
+	}
+	
+	
+div.topicbar
+	{background:#6d8277 url(images/headerbar_bg.png) repeat-x top left;
+	 margin: 1.9em 1.4em 0em 1.4em;
+	 height: 46px;
+	 }
+
+
+/*///////////////////////////////////////////////////END LAYOUT STRUCTURE///////////////////////////////////////////////////*/
+
+ 
+  
+/*///////////////////////////////////////////////////TABLE DATA LAYOUT GOES HERE///////////////////////////////////////////////////*/	
+
+table {
+	
+	background-color:#f0f0f0;
+	border: 1px solid #a5a5a5;
+    border-collapse: collapse; 
+	}
+	
+table.grade {
+	width:50%;
+	background-color:#f0f0f0;
+	border: 1px solid #a5a5a5;
+    border-collapse: collapse; 
+	}
+  	
+  
+th { 
+  border: 1px solid #a5a5a5;
+  text-align:left;
+  background-color:#495750;
+  color:#fff;
+  padding: .3em;
+  }
+  
+th.center { 
+  border: 1px solid #a5a5a5;
+  text-align:left;
+  background-color:#495750;
+  color:#fff;
+  padding: .3em;
+  }
+  
+td {border: 1px solid #a5a5a5;
+   padding: .3em;
+   vertical-align:top;}
+   
+td.center {border: 1px solid #a5a5a5;
+   padding: .3em;
+   text-align:center;}
+   
+caption {color:#495750;
+		 font-weight:bold;
+		 padding-bottom:10px;}
+  
+
+/*///////////////////////////////////////////////////END TABLE and DATA LAYOUT///////////////////////////////////////////////////*/
+
+
+
+/*///////////////////////////////////////////////////BEGIN IMAGE TREATMENT///////////////////////////////////////////////////*/
+
+/*Mood image style is applied through the mood_temp.psd file located in the souce folder */
+
+
+.mood {float:right;
+	   margin:0.31em 0.31em 0.31em 0.63em;
+	  }
+	  
+	  
+/*The two callout classes below need to go together for this style to work. See template for example of what that should look like in the code*/	
+
+
+.callout
+
+	{background-color:#ffffff;
+	border: 1px solid #d0d0d0;
+	padding:1em;
+	width: 75%;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:1em;
+	margin-bottom:1em;
+	}
+	
+p.callout_bg
+
+	{background-color:#eaeaea;
+	color:#595959;
+	padding:1em;
+	margin:0em;
+	}
+	
+
+
+.icon {
+	float:left;
+	padding-right:10px;
+	position:relative;
+	top:-2px;	
+	}
+
+/*///////////////////////////////////////////////////END IMAGE TREATMENT///////////////////////////////////////////////////*/
+
+
+
+/*///////////////////////////////////////////////////BEGIN Links and TypeFaces and INDENTATION///////////////////////////////////////////////////*/
+a:link 
+		{color:#23553a;}
+
+
+a:visited 
+		{color:#656565;}
+
+a:hover 
+		{
+		color:#774232;
+		}
+		
+ul {margin-left: 1em;
+padding-left: 0;
+list-style: none;
+} 
+
+ul li {padding-left: 18px;
+background-image: url(images/bullet.gif);
+background-repeat: no-repeat;
+background-position: 0 .3em;
+  }
+
+/*///////////////////////////////////////////////////END Links and TypeFaces and INDENTATION///////////////////////////////////////////////////*/
+
+
+
+/*///////////////////////////////////////////////////BEGIN SPRY///////////////////////////////////////////////////*/
+
+.AccordionPanel{
+	
+	width: 80%;
+	}
+
+.AccordionPanelTab	 {
+  cursor: pointer;
+  background-color: #6e8378;
+  padding:7px;
+  color: #fff;
+  border-bottom: solid 1px #fff;
+  
+}
+
+.AccordionPanelContent {
+	height: 1px;
+	list-style-type: none;
+	overflow: hidden;
+	background-color:#f2efef;
+	padding-left:15px;
+}
+
+
+/*///////////////////////////////////////////////////END SPRY///////////////////////////////////////////////////*/
+strong {color:#23553a;}
+br.clear {clear: both;}

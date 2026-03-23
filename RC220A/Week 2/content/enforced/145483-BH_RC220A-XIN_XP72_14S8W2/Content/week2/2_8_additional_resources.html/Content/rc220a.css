@@ -1,0 +1,284 @@
+/*Course: RC220A::::::::::::::::::::::::Author: Sam Davis SPII 2007:::::::::::::::::::::::::*/
+   
+body 
+
+{
+	font-family:"Trebuchet MS";
+	color:#FFFFFF;
+	font-size:medium;
+	background-color: #669933;
+
+}
+  
+
+h1 /* used for main course header logo --------- */
+
+{
+	font-size: 145%;
+	font-weight:bold;
+	padding: 8px 0 0;
+	text-indent: 2px;
+	text-align: right;
+	color: #003366;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+}
+
+h2 
+{ 
+font-size: 140%;
+font-weight:bold;
+
+
+}
+
+
+h3
+
+{ 
+	font-size:  130%;
+	border-bottom:1px solid #ffffff;
+	width:89%;
+}
+
+h4 
+{ 
+	font-size: 125%;
+	font-weight:bold;
+	border-bottom:1px solid #ffffff;
+	width:50%;
+}
+
+
+ul 
+{
+	list-style-image: url(images/bullet_.gif);
+
+}
+
+
+/* ---------links  --------- */
+
+a 
+{
+	color: #FFFFFF;
+	background: inherit;
+	font-weight: bold;
+}
+
+a:hover 
+{
+	color: #000066;
+	background-color: #FFFFFF;
+	font-weight: bold;
+}
+
+p {	}
+
+/* ---------lists items  --------- */
+	
+ol 
+
+{
+}
+
+li 
+{
+  margin:0.5em 0.5em 0.5em .25em;
+} 
+  
+
+/* ---------image treatment and indentation --------- */
+
+.imageright {
+	float: right;
+	padding: 5px;
+	border-color: #FFFFFF;
+	border-width: 5px;
+	background: #FFFFFF;
+}
+	
+
+.taskbot
+{
+	background:url(images/bot.gif) no-repeat;
+	text-indent: 4px;
+	height: 10px;
+	margin-left: 10px;
+}
+
+#containerright {
+	float:right;
+	width:250px;
+	padding:0px;
+	z-index:1;
+	height: auto;
+	margin: 0px 5px 2px;
+}
+
+.taskhead /* ---------used for text ontop of blue rounded floating right div --------- */
+{
+	padding:0px;
+	background:url(images/bg_pop.gif) no-repeat;
+	font-weight:bold;
+	text-align:left;
+	margin: 0px 10px;
+	text-indent: 8px;
+	height: 26px;
+}
+
+
+.taskbody /* ---------used for text inside of blue rounded floating right div --------- */
+
+{
+	background-color:#ffffff;
+	padding:2px;
+	margin-right:10px;
+	margin-left:10px;
+	height: auto;
+	border-right: 1px solid #003366;
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #003366;
+	color: #333333;
+	font-size: small;
+}
+	
+
+
+.quote_outline { /* ---------used for quotes and callouts throughout the course --------- */
+	background-color: #ffffff;
+	width:69%;
+	padding: 15px;
+	background-image: url(images/background_content.gif);
+	color:#003366; /* gray */
+	background-repeat: no-repeat;
+	border-top: 1px outset #cccccc;
+	border-right: 1px outset #cccccc;
+	border-bottom: 4px inset #cccccc;
+	border-left: 1px outset #cccccc;
+	background-position: left bottom;
+	margin-right:3em;
+	margin-left:3em;
+}	
+.mid {
+	text-align:center;
+	background-repeat: repeat-x;
+	background-color: #FFFFFF;
+	width: 69%;
+}  
+.indent1 
+{
+	  margin-left: 2em;
+}
+	 
+.indent2 
+{  
+	  margin-left: 4em;
+}
+	 
+.indent3 
+{
+	  margin-left: 6em;
+}
+	
+
+/* ---------links  --------- */
+
+/* ------------------------------------ Begin Structure  ------------------------------------ */
+
+#header { /* --------- begin header treatment  --------- */
+
+	margin: 0 0 0px;
+	background-color: #FFFFFF;
+	background-image: url(images/bg.gif);
+	background-repeat: repeat-x;
+	background-position: top;
+	height: 69px;
+}
+#slogan {
+	font-size: 0.9em;
+	margin: 0 0 10px 2px;
+	padding: 0;
+	color: #999999;
+	background: #fff;
+	text-indent: 2px;
+	text-align: right;
+	font-weight: bold;
+}
+/* --------- end  header treatment  --------- */
+#emcompass 
+
+{
+	float: left;
+	width: 100%;
+	background: #FFFFFF;
+}
+
+.subheader 
+
+{
+	margin: 0 0 0px;
+	background: #347892 url(images/blue_headbg.gif) no-repeat right top;
+	color: #808080;
+	height: 35px;
+}
+
+
+.emcompass { /* ---------emcompassing div  --------- */
+
+	width: 99%;
+	margin-top: 25px;
+}
+
+
+.main_wrapper /* ---------wrapper for spacing  --------- */
+
+
+{
+	margin: 0 0 15px 0;
+	padding: 0 0 0 10px;
+}
+
+.lt /* ---------used for rounded corner top left   --------- */
+
+{
+	height: 10px;
+	background: #6E6E6E url(images/lt_.gif) no-repeat;
+	color: #FFF;
+}
+	
+.lbox /* ---------used for rounded corner top right   --------- */
+{
+	color: #eee;
+	padding: 3px 12px;
+	margin: 0 0 5px;
+	background: #6E6E6E url(images/lb_.gif) no-repeat right bottom;
+	height: auto;
+}
+	
+#content {
+	width: 94%;
+	background-color: #FFFFFF;
+	margin-left: 2em;
+}
+	
+/* footer */
+
+#footer {
+	clear: both;
+	color: #FFFFFF;
+	background: #669933 no-repeat right top;
+	height: 75px;
+	font-weight: normal;
+	font-size: small;
+}
+
+
+#footer .right {
+float: right;
+height: 15px;
+width: 100px;
+
+}
+/* ------------------------------------ End Structure  ------------------------------------ */

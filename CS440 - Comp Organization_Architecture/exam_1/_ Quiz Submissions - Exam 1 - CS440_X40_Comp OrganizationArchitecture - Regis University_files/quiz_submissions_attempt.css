@@ -1,0 +1,21 @@
+.d2l-quiz-submission-exit-preview-button {
+	float: right;
+}
+
+[dir="rtl"] .d2l-quiz-submission-exit-preview-button {
+	float: left;
+}
+
+.d2l-quiz-submission-top-close-button {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+}
+
+[dir='rtl'] .d2l-quiz-submission-top-close-button {
+    position: absolute;
+    top: 0.75rem;
+    right: unset;
+    left: 1rem;
+}
+

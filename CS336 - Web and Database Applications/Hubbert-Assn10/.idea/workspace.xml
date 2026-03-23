@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="790e63a7-5f3d-40a8-a0ca-5ad8f1872ff4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conference.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/conference.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/name_tags.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/name_tags.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1fbzt4b1A4ZHDYLao01QMjzmVUI" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="add_unversioned_files" value="true&#10;C:/cmder/development/Regis/cs336/Hubbert-Assn9/.env" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="run.code.analysis.last.selected.profile" value="aDefault" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager" selected="Python.conferance_run">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="Hubbert-Assn10" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\hubbe\.virtualenvs\Hubbert-Assn8-f9e0Fb65\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="conferance_run" type="PythonConfigurationType" factoryName="Python">
+      <module name="Hubbert-Assn10" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="generate_name_tags" type="PythonConfigurationType" factoryName="Python">
+      <module name="Hubbert-Assn10" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/name_tags.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.conferance_run" />
+      <item itemvalue="Python.generate_name_tags" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="790e63a7-5f3d-40a8-a0ca-5ad8f1872ff4" name="Default Changelist" comment="" />
+      <created>1596501791260</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1596501791260</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="453" y="209" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596699062797">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="453" y="209" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1596699062797" />
+    <state x="734" y="249" width="520" height="469" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1596616289976">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="734" y="249" width="520" height="469" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1596616289976" />
+    <state x="585" y="307" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1598567796995">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="585" y="307" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1598567796995" />
+    <state x="718" y="390" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1596932396116">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="718" y="390" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1596932396116" />
+    <state x="266" y="133" key="DBNavigator.ProjectSettingsDialog" timestamp="1596577971557">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="266" y="133" key="DBNavigator.ProjectSettingsDialog/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1596577971557" />
+    <state width="1444" height="466" key="DebuggerActiveHint" timestamp="1596990504974">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1444" height="466" key="DebuggerActiveHint/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1596990504974" />
+    <state x="549" y="311" key="FileChooserDialogImpl" timestamp="1598042236564">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="549" y="311" key="FileChooserDialogImpl/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1598042236564" />
+    <state width="1687" height="218" key="GridCell.Tab.0.bottom" timestamp="1598568938093">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1687" height="107" key="GridCell.Tab.0.bottom/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1596829553511" />
+    <state width="1687" height="218" key="GridCell.Tab.0.bottom/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1598568938093" />
+    <state width="1687" height="281" key="GridCell.Tab.0.bottom/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1598281869736" />
+    <state width="1687" height="218" key="GridCell.Tab.0.center" timestamp="1598568938093">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1687" height="107" key="GridCell.Tab.0.center/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1596829553511" />
+    <state width="1687" height="218" key="GridCell.Tab.0.center/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1598568938093" />
+    <state width="1687" height="281" key="GridCell.Tab.0.center/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1598281869736" />
+    <state width="1687" height="218" key="GridCell.Tab.0.left" timestamp="1598568938093">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1687" height="107" key="GridCell.Tab.0.left/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1596829553511" />
+    <state width="1687" height="218" key="GridCell.Tab.0.left/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1598568938093" />
+    <state width="1687" height="281" key="GridCell.Tab.0.left/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1598281869736" />
+    <state width="1687" height="218" key="GridCell.Tab.0.right" timestamp="1598568938093">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1687" height="107" key="GridCell.Tab.0.right/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1596829553511" />
+    <state width="1687" height="218" key="GridCell.Tab.0.right/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1598568938093" />
+    <state width="1687" height="281" key="GridCell.Tab.0.right/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@1920.0.1920.1040" timestamp="1598281869736" />
+    <state width="1899" height="347" key="GridCell.Tab.1.bottom" timestamp="1597032916264">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="347" key="GridCell.Tab.1.bottom/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1597032916264" />
+    <state width="1899" height="347" key="GridCell.Tab.1.center" timestamp="1597032916264">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="347" key="GridCell.Tab.1.center/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1597032916264" />
+    <state width="1899" height="347" key="GridCell.Tab.1.left" timestamp="1597032916264">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="347" key="GridCell.Tab.1.left/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1597032916264" />
+    <state width="1899" height="347" key="GridCell.Tab.1.right" timestamp="1597032916264">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="347" key="GridCell.Tab.1.right/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1597032916264" />
+    <state x="249" y="137" width="1219" height="710" key="SettingsEditor" timestamp="1596734852395">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="249" y="137" width="1219" height="710" key="SettingsEditor/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1596734852395" />
+    <state x="770" y="271" width="672" height="678" key="search.everywhere.popup" timestamp="1596656147408">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="770" y="271" width="672" height="678" key="search.everywhere.popup/1920.0.1920.1040/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1596656147408" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/api.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

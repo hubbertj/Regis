@@ -1,0 +1,6 @@
+Task Description: Complete these activities from the “Ruby – Day 1” self-study.  Demonstrate or test each activity.
+Print the string “Hello world.”
+For the string “Hello Ruby,” find the index of the word “Ruby.”
+Print the string “This is sentence number 1” where the number 1 increments from 1 to 10.
+Write a program that picks a random number.  Let a player guess the number telling the player whether the guess is too high or too low.
+Delivery: Submit your MS Word document to the Week 1 Assignment Drop Box by Sunday (midnight).
