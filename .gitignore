@@ -60,3 +60,6 @@ cabal.project.local
 /cs473/week1/aima-gui/nbproject/private/
 /cs473/week1/aima-all/nbproject/private/
 /cs473/week1/aimax-osm/nbproject/private/
+
+# Large textbooks (exceed GitHub's 100MB limit)
+CS375 - Computation Theory/Introduction_to_Computer_Theory_(Cohen).pdf
